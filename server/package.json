@@ -1,0 +1,27 @@
+{
+  "name": "sklep-internetowy-gry",
+  "version": "1.0.0",
+  "description": "Projekt sklepu internetowego dla branży gier wideo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dariuszgawron/sklep-internetowy-gry.git"
+  },
+  "author": "DG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dariuszgawron/sklep-internetowy-gry/issues"
+  },
+  "homepage": "https://github.com/dariuszgawron/sklep-internetowy-gry#readme",
+  "dependencies": {
+    "bookshelf": "^1.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.21.14",
+    "mysql": "^2.18.1",
+    "sqlite3": "^5.0.0"
+  }
+}
