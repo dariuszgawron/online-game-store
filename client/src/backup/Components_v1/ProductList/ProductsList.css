@@ -1,0 +1,19 @@
+.productsList {
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    width: 2000px;
+    /* display: flex;s
+    overflow-x: scroll;
+    scroll-behavior: smooth; */
+    /* display: inline-block; */
+    /* overflow: auto; */
+    /* overflow-x: hidden; */
+}
+
+.productsList2 {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
