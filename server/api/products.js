@@ -21,6 +21,15 @@ productsRouter.param('productId', (req, res, next, productId) => {
         }) 
 });
 
+productsRouter.get('/count', (req, res, next) => {
+    Gry.forge()
+        .query()
+        .count('* as totalNumber')
+        .then(function(products) {
+            res.json({ products });
+        });
+});
+
 productsRouter.get('/:productId', (req, res, next) => {
     Gry.forge()
         .where({

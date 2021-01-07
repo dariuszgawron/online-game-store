@@ -1,7 +1,9 @@
 import React from 'react';
+import queryString from 'query-string';
 import './Products.css';
 
 import ProductsList from '../ProductList/ProductsList';
+import ProductPagination from '../ProductPagination/ProductPagination';
 
 class Products extends React.Component {
   constructor(props) {
@@ -14,18 +16,42 @@ class Products extends React.Component {
   }
 
   componentDidMount() {
-    const productsUrl = 'http://localhost:4001/products?limit=20'
+    this.getProductData();
+    // const queryValues = queryString.parse(this.props.location.search);
+    // const currentPage = queryValues.page || 1;
+    // console.log(this.props.match.params.page);
+    // const limit = 22;
+    // const offset = (currentPage-1)*20;
+    // const productsUrl = `http://localhost:4001/products?limit=${limit}&offset=${offset}`;
+    // // const productsUrl = 'http://localhost:4001/products?limit=20'
+    // fetch(productsUrl)
+    //   .then(res => res.json())
+    //   .then(data=>{
+    //     this.setState({
+    //       isLoaded: true,
+    //       products: data.products
+    //     },()=>{
+    //       console.log(this.state.products)
+    //     })
+    //   })
+    //   .catch(console.log('Zakończono pobieranie'))
+  }
+
+  getProductData() {
+    const queryValues = queryString.parse(this.props.location.search);
+    const currentPage = queryValues.page || 1;
+    console.log(this.props.match.params.page);
+    const limit = 22;
+    const offset = (currentPage-1)*20;
+    const productsUrl = `http://localhost:4001/products?limit=${limit}&offset=${offset}`;
     fetch(productsUrl)
       .then(res => res.json())
       .then(data=>{
         this.setState({
           isLoaded: true,
           products: data.products
-        },()=>{
-          console.log(this.state.products)
         })
       })
-      .catch(console.log('Zakończono pobieranie'))
   }
 
   btnOnClick (e) {
@@ -47,6 +73,7 @@ class Products extends React.Component {
           <div className="mainWrapper__products">
             <ProductsList products={this.state.products} addProduct={this.props.addProduct}/>
           </div>
+          <ProductPagination getProductData={this.getProductData} />
         </div>
       </main>
     );
