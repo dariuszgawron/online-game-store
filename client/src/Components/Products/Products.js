@@ -10,9 +10,11 @@ class Products extends React.Component {
     super(props);
     this.state = {
       products: [],
+      numberOfProducts: 0,
       isLoaded: false
     };
     this.btnOnClick = this.btnOnClick.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
   componentDidMount() {
@@ -40,9 +42,32 @@ class Products extends React.Component {
   getProductData() {
     const queryValues = queryString.parse(this.props.location.search);
     const currentPage = queryValues.page || 1;
-    console.log(this.props.match.params.page);
-    const limit = 22;
+    const limit = 20;
     const offset = (currentPage-1)*20;
+    const productsUrl = `http://localhost:4001/products?limit=${limit}&offset=${offset}`;
+    const numberOfProductsUrl = 'http://localhost:4001/products/count';
+    fetch(productsUrl)
+      .then(res => res.json())
+      .then(data=>{
+        this.setState({
+          // isLoaded: true,
+          products: data.products
+        });
+        fetch(numberOfProductsUrl)
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              isLoaded: true,
+              numberOfProducts: data.products[0].totalNumber
+            });
+          });
+      })
+  }
+
+  changePage(nextPage) {
+    console.log(nextPage);
+    const limit = 20;
+    const offset = (nextPage-1)*20;
     const productsUrl = `http://localhost:4001/products?limit=${limit}&offset=${offset}`;
     fetch(productsUrl)
       .then(res => res.json())
@@ -73,7 +98,7 @@ class Products extends React.Component {
           <div className="mainWrapper__products">
             <ProductsList products={this.state.products} addProduct={this.props.addProduct}/>
           </div>
-          <ProductPagination getProductData={this.getProductData} />
+          <ProductPagination count={this.state.numberOfProducts} getProductData={this.changePage} />
         </div>
       </main>
     );
