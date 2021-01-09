@@ -55,12 +55,23 @@ productsRouter.get('/:productId', (req, res, next) => {
 
 productsRouter.get('', (req, res, next) => {
     const limit = req.query.limit || 15;
-    const offset = req.query.offset || 0;
+    // const offset = req.query.offset || 0;
+    const page = req.query.page || 1;
+    const offset = (page-1)*20;
     Gry.forge()
         .query(qb => {
-            qb.offset(offset).limit(limit);
+            // qb.offset(offset).limit(limit);
         })
-        .fetchAll({
+        // .fetchAll({
+        //     withRelated: [
+        //         'grafiki',
+        //         'platformy',
+        //         'producenci'
+        //     ]
+        // })
+        .fetchPage({
+            pageSize: limit,
+            page: page,
             withRelated: [
                 'grafiki',
                 'platformy',
@@ -68,7 +79,7 @@ productsRouter.get('', (req, res, next) => {
             ]
         })
         .then(function(products) {
-            res.json({ products });
+            res.json({ products: products, rowCount: products.pagination.rowCount });
         });
 });
 
