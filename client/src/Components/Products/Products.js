@@ -11,6 +11,8 @@ class Products extends React.Component {
     this.state = {
       products: [],
       numberOfProducts: 0,
+      limit: 20,
+      currentPage: 1,
       isLoaded: false
     };
     this.btnOnClick = this.btnOnClick.bind(this);
@@ -18,39 +20,63 @@ class Products extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductData();
-    // const queryValues = queryString.parse(this.props.location.search);
-    // const currentPage = queryValues.page || 1;
-    // console.log(this.props.match.params.page);
-    // const limit = 22;
-    // const offset = (currentPage-1)*20;
-    // const productsUrl = `http://localhost:4001/products?limit=${limit}&offset=${offset}`;
-    // // const productsUrl = 'http://localhost:4001/products?limit=20'
-    // fetch(productsUrl)
-    //   .then(res => res.json())
-    //   .then(data=>{
-    //     this.setState({
-    //       isLoaded: true,
-    //       products: data.products
-    //     },()=>{
-    //       console.log(this.state.products)
-    //     })
-    //   })
-    //   .catch(console.log('Zakończono pobieranie'))
-  }
-
-  getProductData() {
     const queryValues = queryString.parse(this.props.location.search);
     const currentPage = queryValues.page || 1;
-    const limit = 20;
-    const offset = (currentPage-1)*20;
-    const productsUrl = `http://localhost:4001/products?limit=${limit}&offset=${offset}`;
+    this.setState({
+      currentPage: currentPage
+    });
+    this.getProductData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevQueryValues = queryString.parse(prevProps.location.search);
+    const queryValues = queryString.parse(this.props.location.search);
+    const queryParams = Object.keys(this.props.location.search).length ? '&'+this.props.location.search.substring(1) : '';
+    // const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}${queryParams}`;
+    // const numberOfProductsUrl = 'http://localhost:4001/products/count';
+    const prevPage = prevQueryValues.page ? prevQueryValues.page : '1';
+    const currPage = queryValues.page ? queryValues.page : '1';
+    // const currentPage = queryValues.page || 1;
+    // const offset = (currentPage-1)*20;
+    if(prevPage !== currPage || prevQueryValues.search !== queryValues.search ||prevQueryValues.sort !== queryValues.sort || prevQueryValues.genre !== queryValues.genre || prevQueryValues.producer !== queryValues.producer || prevQueryValues.publisher !== queryValues.publisher || prevQueryValues.category !== queryValues.category) {
+      
+      this.getProductsData(queryParams);
+    };
+  }
+
+  getProductsData(queryParams='') {
+    const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}${queryParams}`;
     const numberOfProductsUrl = 'http://localhost:4001/products/count';
     fetch(productsUrl)
       .then(res => res.json())
       .then(data=>{
         this.setState({
-          // isLoaded: true,
+          products: data.products,
+          numberOfProducts: data.pagination.rowCount
+        });
+        fetch(numberOfProductsUrl)
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              isLoaded: true,
+              // numberOfProducts: data.products[0].totalNumber,
+
+            });
+          });
+      })
+      .catch(console.log('Zaktualizowano dane'));
+  }
+
+  getProductData() {
+    const queryValues = queryString.parse(this.props.location.search);
+    const currentPage = queryValues.page || 1;
+    const offset = (currentPage-1)*20;
+    const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}&offset=${offset}`;
+    const numberOfProductsUrl = 'http://localhost:4001/products/count';
+    fetch(productsUrl)
+      .then(res => res.json())
+      .then(data=>{
+        this.setState({
           products: data.products
         });
         fetch(numberOfProductsUrl)
@@ -62,21 +88,21 @@ class Products extends React.Component {
             });
           });
       })
+      .catch(console.log('Załadowano dane'));
   }
 
   changePage(nextPage) {
-    console.log(nextPage);
-    const limit = 20;
-    const offset = (nextPage-1)*20;
-    const productsUrl = `http://localhost:4001/products?limit=${limit}&offset=${offset}`;
-    fetch(productsUrl)
-      .then(res => res.json())
-      .then(data=>{
-        this.setState({
-          isLoaded: true,
-          products: data.products
-        })
-      })
+    // console.log(nextPage);
+    // const offset = (nextPage-1)*20;
+    // const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}&offset=${offset}`;
+    // fetch(productsUrl)
+    //   .then(res => res.json())
+    //   .then(data=>{
+    //     this.setState({
+    //       isLoaded: true,
+    //       products: data.products
+    //     })
+    //   })
   }
 
   btnOnClick (e) {
@@ -90,31 +116,29 @@ class Products extends React.Component {
   }
 
   render() {
+    if (!this.state.isLoaded) {
+      return <span>Loading...</span>;
+    }
     return (
       <main className="mainWrapper">
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Polecane</h3>
-          {/* <button onClick={this.btnOnClick.bind(this)} value="Click me">Click me </button> */}
           <div className="mainWrapper__products">
-            <ProductsList products={this.state.products} addProduct={this.props.addProduct}/>
+            <ProductsList 
+              products={this.state.products} 
+              addProduct={this.props.addProduct}
+            />
           </div>
-          <ProductPagination count={this.state.numberOfProducts} getProductData={this.changePage} />
+          <ProductPagination 
+            numberOfProducts={this.state.numberOfProducts} 
+            currentPage={this.state.currentPage} 
+            getProductData={this.changePage} 
+          />
         </div>
       </main>
     );
   }
 }
-
-// const Home = () => {
-//   return (
-//     <div className="container">
-//       <h1>Home!!</h1><br/><br/><br/>
-//       <button onClick={BtnOnClick} value="Click me">Click me</button>
-//     </div>
-//   );
-// }
-// var arr = [];
-// var cartItems = 0;
 
 // const BtnOnClick = () => {
 //   arr.push({'a': 1, 'b':2});

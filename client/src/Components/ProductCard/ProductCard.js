@@ -32,6 +32,7 @@ class ProductCard extends React.Component {
                             src={this.props.product.grafiki
                                     .filter(this.findCover.bind(this))[0].sciezka_do_pliku
                                 }
+                            alt={this.props.tytul}
                         />
                     </div>
                     <h5 className="productCard__title">
