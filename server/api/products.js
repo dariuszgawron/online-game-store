@@ -57,11 +57,60 @@ productsRouter.get('', (req, res, next) => {
     const limit = req.query.limit || 15;
     // const offset = req.query.offset || 0;
     const page = req.query.page || 1;
-    const offset = (page-1)*20;
+    // const offset = (page - 1) * 20;
+    const genre = (req.query.genre) ? req.query.genre.split(',').map(num => parseInt(num)) : '';
+    const producer = (req.query.producer) ? req.query.producer.split(',').map(num => parseInt(num)) : '';
+    const publisher = (req.query.publisher) ? req.query.publisher.split(',').map(num => parseInt(num)) : '';
+    const platform = (req.query.platform) ? req.query.platform.split(',').map(num => parseInt(num)) : '';
+    const category = (req.query.category) ? req.query.category : '';
+    const search = (req.query.search) ? req.query.search : '';
+    const order = (req.query.order) ? req.query.order.split('-') : '';
     Gry.forge()
         .query(qb => {
+            qb.innerJoin('producenci_gier', 'producenci_gier.id_gry', 'gry.id_gry');
+            qb.innerJoin('wydawcy_gier', 'wydawcy_gier.id_gry', 'gry.id_gry');
+            qb.innerJoin('gatunki_gier', 'gatunki_gier.id_gry', 'gry.id_gry');
+            qb.innerJoin('platformy_gier', 'platformy_gier.id_gry', 'gry.id_gry');
+
+            // Selekcja rekordów
+            if(producer)
+                qb.where('producenci_gier.id_producenta', 'in', producer);
+            if(genre)
+                qb.where('gatunki_gier.id_gatunku', 'in', genre);
+            if(publisher)
+                qb.where('wydawcy_gier.id_wydawcy', 'in', publisher);
+            if(platform)
+                qb.where('platformy_gier.id_platformy', 'in', platform);
+            if(search)
+                qb.whereRaw(`tytul LIKE '%${search}%'`);
+            
+            // if(category === 'dodatki') {
+
+            // } else if (category === 'nowosci') {
+
+            // } else if (category === 'preordery') {
+
+            // } else if (category === 'promocje') {
+
+            // }
+
+            // Kolejność rekordów
+            if(order[0] === 'tytul') {
+                qb.orderByRaw(`gry.tytul ${order[1]}`);
+            } else if(order[0] === 'data') {
+                qb.orderByRaw(`gry.data_wydania ${order[1]}`);
+            } else if(order[0] === 'ocena') {
+                qb.leftJoin('oceny_gier', 'oceny_gier.id_gry', 'gry.id_gry');
+                qb.orderByRaw(`avg(oceny_gier.ocena) ${order[1]}`);
+            } else if(order[0] === 'popularnosc') {
+                qb.leftJoin('zamowione_gry', 'zamowione_gry.id_gry', 'gry.id_gry');
+                qb.orderByRaw(`count(zamowione_gry.id_zamowienia) ${order[1]}`);
+            }
+            qb.groupBy('gry.id_gry');
+
             // qb.offset(offset).limit(limit);
         })
+        // .query('orderBy','tytul','asc')
         // .fetchAll({
         //     withRelated: [
         //         'grafiki',
