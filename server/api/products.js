@@ -65,6 +65,9 @@ productsRouter.get('', (req, res, next) => {
     const category = (req.query.category) ? req.query.category : '';
     const search = (req.query.search) ? req.query.search : '';
     const order = (req.query.order) ? req.query.order.split('-') : '';
+    let currentDate = new Date();
+    let pastDate = new Date();
+    pastDate.setDate(pastDate.getDate()-1600);
     Gry.forge()
         .query(qb => {
             qb.innerJoin('producenci_gier', 'producenci_gier.id_gry', 'gry.id_gry');
@@ -84,15 +87,15 @@ productsRouter.get('', (req, res, next) => {
             if(search)
                 qb.whereRaw(`tytul LIKE '%${search}%'`);
             
-            // if(category === 'dodatki') {
+            if(category === 'dodatki') {
+                qb.where('gry.czy_dodatek', 1);
+            } else if (category === 'nowosci') {
+                qb.whereBetween('gry.data_wydania', [pastDate, currentDate]);
+            } else if (category === 'preordery') {
+                qb.where('gry.data_wydania', '>', currentDate);
+            } else if (category === 'promocje') {
 
-            // } else if (category === 'nowosci') {
-
-            // } else if (category === 'preordery') {
-
-            // } else if (category === 'promocje') {
-
-            // }
+            }
 
             // Kolejność rekordów
             if(order[0] === 'tytul') {
