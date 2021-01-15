@@ -13,7 +13,7 @@ class Products extends React.Component {
       numberOfProducts: 0,
       limit: 20,
       currentPage: 1,
-      queryParams: '',
+      queryValues: '',
       isLoaded: false
     };
     this.btnOnClick = this.btnOnClick.bind(this);
@@ -35,6 +35,7 @@ class Products extends React.Component {
   }
 
   getData() {
+    const urlParams = this.props.location.search;
     const queryParams = Object.keys(this.props.location.search).length ? '&'+this.props.location.search.substring(1) : '';
     const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}${queryParams}`;
     const queryValues = queryString.parse(this.props.location.search);
@@ -47,7 +48,7 @@ class Products extends React.Component {
           products: data.products,
           numberOfProducts: data.rowCount,
           currentPage: currentPage,
-          queryParams: queryParams
+          queryValues: queryValues
         });
       })
       .catch(console.log('Zaktualizowano dane'));
@@ -169,7 +170,7 @@ class Products extends React.Component {
             limit={this.state.limit} 
             currentPage={this.state.currentPage} 
             getProductData={this.changePage} 
-            queryParams={this.state.queryParams}
+            queryValues={this.state.queryValues}
           />
         </div>
       </main>

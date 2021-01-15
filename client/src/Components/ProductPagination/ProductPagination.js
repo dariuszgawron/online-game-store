@@ -81,18 +81,37 @@ class ProductPagination extends React.Component {
       <div className="productPagination">
         <ul className="pagination">
           <li className="pagination__button">
-            <Link to={`/products?page=3`}>(3)</Link>
+            <Link 
+              className="pagination__link" 
+              to={`/products?page=${parseInt(this.props.currentPage)-1}&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}`}>
+              {`<`}
+            </Link>
+          </li>
+          {this.state.pages.map((page) => {
+              return (
+                <li className="pagination__button" id={`page${page}`}>
+                  <Link className="pagination__link" to={`/products?page=${page}&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}`}>
+                    {page}
+                  </Link>
+                </li>
+              )
+            })
+          }
+          <li className="pagination__button">
+            <Link className="pagination__link" to={`/products?page=${parseInt(this.props.currentPage)+1}`}>
+              {`>`}
+            </Link>
           </li>
         </ul>
-        {this.state.pages}
-        {this.props.count}
+
+        {/* {this.props.count}
         {this.props.numberOfProducts}
         <Link className="abc" to="/products?page=12" onClick={this.props.getProductData}>Bestsellery</Link>
         <Link className="abc" to={`/products?page=${this.props.count}`}>{this.props.numberOfProducts}</Link>
         <Link className="abc" to={`/products?page=1`} onClick={() => this.props.getProductData(1)}> @1@ </Link>
         <Link className="abc" to={`/products?page=2`} onClick={() => this.props.getProductData(2)}> @2@ </Link>
         <Link className="abc" to={`/products?page=1`}> @1@ </Link>
-        <Link className="abc" to={`/products?page=2`}> @2@ </Link>
+        <Link className="abc" to={`/products?page=2`}> @2@ </Link> */}
       </div>
     )
   }
