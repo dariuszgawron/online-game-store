@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import './Products.css';
 
 import ProductsList from '../ProductList/ProductsList';
+import ProductFilter from '../ProductFilter/ProductFilter';
 import ProductPagination from '../ProductPagination/ProductPagination';
 
 class Products extends React.Component {
@@ -36,9 +37,9 @@ class Products extends React.Component {
 
   getData() {
     const urlParams = this.props.location.search;
-    const queryParams = Object.keys(this.props.location.search).length ? '&'+this.props.location.search.substring(1) : '';
+    const queryParams = Object.keys(urlParams).length ? '&'+urlParams.substring(1) : '';
     const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}${queryParams}`;
-    const queryValues = queryString.parse(this.props.location.search);
+    const queryValues = queryString.parse(urlParams);
     const currentPage = queryValues.page || 1;
     fetch(productsUrl)
       .then(res => res.json())
@@ -51,7 +52,7 @@ class Products extends React.Component {
           queryValues: queryValues
         });
       })
-      .catch(console.log('Zaktualizowano dane'));
+      .catch(console.log(`Zaktualizowano dane`));
   }
 
   // componentDidMount() {
@@ -159,6 +160,7 @@ class Products extends React.Component {
       <main className="mainWrapper">
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Polecane</h3>
+          <ProductFilter queryValues={this.state.queryValues} />
           <div className="mainWrapper__products">
             <ProductsList 
               products={this.state.products} 

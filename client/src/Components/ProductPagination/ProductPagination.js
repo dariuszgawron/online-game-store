@@ -36,6 +36,11 @@ class ProductPagination extends React.Component {
     // });
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.numberOfProducts!==this.props.numberOfProducts)
+      this.createPagination();
+  }
+
   createPagination() {
     const totalItems = this.props.numberOfProducts;
     const currentPage = this.props.currentPage;
@@ -89,7 +94,7 @@ class ProductPagination extends React.Component {
           </li>
           {this.state.pages.map((page) => {
               return (
-                <li className="pagination__button" id={`page${page}`}>
+                <li className={`pagination__button ${this.props.currentPage === page.toString() ? "pagination__button--active" : ""}`} id={`page${page}`} key={page}>
                   <Link className="pagination__link" to={`/products?page=${page}&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}`}>
                     {page}
                   </Link>
@@ -98,12 +103,12 @@ class ProductPagination extends React.Component {
             })
           }
           <li className="pagination__button">
-            <Link className="pagination__link" to={`/products?page=${parseInt(this.props.currentPage)+1}`}>
+            <Link className="pagination__link" to={`/products?page=${parseInt(this.props.currentPage)+1}&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}`}>
               {`>`}
             </Link>
           </li>
         </ul>
-
+        
         {/* {this.props.count}
         {this.props.numberOfProducts}
         <Link className="abc" to="/products?page=12" onClick={this.props.getProductData}>Bestsellery</Link>
