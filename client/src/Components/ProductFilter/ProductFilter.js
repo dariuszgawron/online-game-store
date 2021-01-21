@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import './ProductFilter.css';
+// import '../AccordionElement/AccordionElement';
 
 class ProductFilter extends React.Component {
   constructor(props) {
@@ -20,27 +21,23 @@ class ProductFilter extends React.Component {
 
   componentDidUpdate(prevProps) {
     if(prevProps.queryValues !== this.props.queryValues){
-      const [publisherAdd, publisherDel] = this.propsDiff(prevProps,'publisher');
-      const [producerAdd, producerDel] = this.propsDiff(prevProps,'producer');
-      const [genreAdd, genreDel] = this.propsDiff(prevProps,'genre');
-      this.checkboxChecked(publisherAdd, 'wydawca', true);
-      this.checkboxChecked(publisherDel, 'wydawca', false);
-      this.checkboxChecked(producerAdd, 'wydawca', true);
-      this.checkboxChecked(producerDel, 'wydawca', false);
-      this.checkboxChecked(genreAdd, 'wydawca', true);
-      this.checkboxChecked(genreDel, 'wydawca', false);
+      this.propsDiff(prevProps,'publisher','wydawca');
+      this.propsDiff(prevProps,'producer','producent');
+      this.propsDiff(prevProps,'genre','gatunek');
       // this.checkboxChecked();
     }
   }
 
-  propsDiff(prevProps,paramName) {
+  propsDiff(prevProps,paramName,paramSQL) {
     const currString = this.props.queryValues[paramName] || '';
     const currValues = currString.split(',').filter(el => el !== "");
     const prevString = prevProps.queryValues[paramName] || '';
     const prevValues = prevString.split(',').filter(el => el !== "");
     const addValues = currValues.filter(el => !prevValues.includes(el));
     const delValues = prevValues.filter(el => !currValues.includes(el));
-    return [addValues, delValues];
+    this.checkboxChecked(addValues, paramSQL, true);
+    this.checkboxChecked(delValues, paramSQL, false);
+    // return [addValues, delValues];
   }
 
   getData() {
@@ -70,8 +67,11 @@ class ProductFilter extends React.Component {
                   const publisherTab = publisherQueryValue.split(',').filter(el => el !== "");
                   const producerQueryValue = this.props.queryValues['producer'] || '';
                   const producerTab = producerQueryValue.split(',').filter(el => el !== "");
+                  const genreQueryValue = this.props.queryValues['genre'] || '';
+                  const genreTab = genreQueryValue.split(',').filter(el => el !== "");
                   this.checkboxChecked(publisherTab,'wydawca',true);
                   this.checkboxChecked(producerTab,'producent',true);
+                  this.checkboxChecked(genreTab,'gatunek',true);
                   // this.checkboxChecked();
                 });
               })
@@ -124,7 +124,7 @@ class ProductFilter extends React.Component {
         <div className="filter">
           <h2 className="filter__title">Filter</h2>
           <div className="accordion">
-            <button className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}>Gatunki</button>
+            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Gatunki</span><i class="fas fa-chevron-down"></i></div>
             <div className="accordion__content">
               <ul className="accorion__list">
                 {this.state.listOfGenres.map(gatunek => {
@@ -132,6 +132,8 @@ class ProductFilter extends React.Component {
                     <li className="accordion__element">
                       <Link className="accordion__link" 
                           to={`/products?page=1&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}&producer=${this.props.queryValues.producer || ''}&publisher=${this.props.queryValues.publisher || ''}&genre=${this.createUrlParam('genre',gatunek.id_gatunku.toString())}`}>
+                        <input type='checkbox' name={`gatunek${gatunek.id_gatunku}`} id={`gatunek${gatunek.id_gatunku}`}/>
+                        <label for={`gatunek${gatunek.id_gatunku}`}>{gatunek.nazwa_gatunku}</label> 
                         {gatunek.nazwa_gatunku} 
                       </Link>
                     </li>
@@ -139,7 +141,9 @@ class ProductFilter extends React.Component {
                 })}
               </ul>
             </div>
-            <button className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}>Producenci</button>
+            
+            <hr/>
+            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Producenci</span><i class="fas fa-chevron-down"></i></div>
             <div className="accordion__content">
               <ul className="accorion__list">
                 {this.state.listOfProducers.map(producent => {
@@ -147,7 +151,8 @@ class ProductFilter extends React.Component {
                     <li className="accordion__element">
                       <Link className="accordion__link" 
                           to={`/products?page=1&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}&genre=${this.props.queryValues.genre || ''}&publisher=${this.props.queryValues.publisher || ''}&producer=${this.createUrlParam('producer',producent.id_producenta.toString())}`}>
-                        {producent.nazwa_producenta} 
+                        <input type='checkbox' name={`producent${producent.id_producenta}`} id={`producent${producent.id_producenta}`}/>
+                        <label for={`producent${producent.id_producenta}`}>{producent.nazwa_producenta}</label> 
                       </Link>
                     </li>
                   )
@@ -155,7 +160,8 @@ class ProductFilter extends React.Component {
               </ul>
             </div>
 
-            <button className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}>Wydawcy</button>
+            <hr/>
+            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Wydawcy</span><i class="fas fa-chevron-down"></i></div>
             <div className="accordion__content">
               <ul className="accorion__list">
                 {this.state.listOfPublishers.map(wydawca => {

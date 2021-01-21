@@ -160,20 +160,26 @@ class Products extends React.Component {
       <main className="mainWrapper">
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Polecane</h3>
-          <ProductFilter queryValues={this.state.queryValues} />
-          <div className="mainWrapper__products">
-            <ProductsList 
-              products={this.state.products} 
-              addProduct={this.props.addProduct}
-            />
+          <div className="gridPanel">
+            <div className="gridPanel__left">
+              <ProductFilter queryValues={this.state.queryValues} />
+            </div>
+            <div className="gridPanel__right">
+              <div className="mainWrapper__products">
+                <ProductsList 
+                  products={this.state.products} 
+                  addProduct={this.props.addProduct}
+                />
+              </div>
+              <ProductPagination 
+                numberOfProducts={this.state.numberOfProducts}
+                limit={this.state.limit} 
+                currentPage={this.state.currentPage} 
+                getProductData={this.changePage} 
+                queryValues={this.state.queryValues}
+              />
+            </div>
           </div>
-          <ProductPagination 
-            numberOfProducts={this.state.numberOfProducts}
-            limit={this.state.limit} 
-            currentPage={this.state.currentPage} 
-            getProductData={this.changePage} 
-            queryValues={this.state.queryValues}
-          />
         </div>
       </main>
     );

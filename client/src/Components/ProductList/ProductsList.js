@@ -23,12 +23,14 @@ const ProductsList = (props) => {
     return (
         <div className="productsList">
             {
-                props.products.map(
-                    product=>{
-                        // return <button business={recommended.tytul} key={recommended.id_gry}>{recommended.tytul}</button>;
-                        return <ProductCard product={product} addProduct={props.addProduct} key={product.id_gry}/>
-                    }
-                )
+                props.products.length===0 
+                    ?   <div className="productList__error">Brak danych spełniających podane kryteria</div> 
+                    :   props.products.map(
+                            product=>{
+                                // return <button business={recommended.tytul} key={recommended.id_gry}>{recommended.tytul}</button>;
+                                return <ProductCard product={product} addProduct={props.addProduct} key={product.id_gry}/>
+                            }
+                        )
             }
         </div>
         

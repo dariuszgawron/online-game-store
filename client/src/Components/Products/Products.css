@@ -26,6 +26,12 @@
 
 }
 
+.gridPanel {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-gap: 30px;
+}
+
 .mainWrapper__products {
     /* overflow-x: scroll; */
     /* scroll-behavior: smooth; */
