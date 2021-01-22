@@ -1,0 +1,24 @@
+.productPage__features {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.bar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #e4e4e4;
+    border-bottom: 1px solid lightgray;
+}
+
+.bar__item {
+    padding: 5px 20px;
+}
+
+.bar__item--active {
+    border: 0px solid black;
+    margin-bottom: -1px;
+    font-weight: 500;
+    background-color: #fff;
+}

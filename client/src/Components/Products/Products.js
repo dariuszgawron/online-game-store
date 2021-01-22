@@ -5,6 +5,7 @@ import './Products.css';
 import ProductsList from '../ProductList/ProductsList';
 import ProductFilter from '../ProductFilter/ProductFilter';
 import ProductPagination from '../ProductPagination/ProductPagination';
+import ProductSort from '../ProductSort/ProductSort';
 
 class Products extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Products extends React.Component {
     const queryValues = queryString.parse(this.props.location.search);
     const prevPage = prevQueryValues.page ? prevQueryValues.page : '1';
     const currPage = queryValues.page ? queryValues.page : '1';
-    if(prevPage !== currPage || prevQueryValues.search !== queryValues.search ||prevQueryValues.sort !== queryValues.sort || prevQueryValues.genre !== queryValues.genre || prevQueryValues.producer !== queryValues.producer || prevQueryValues.publisher !== queryValues.publisher || prevQueryValues.category !== queryValues.category) {
+    if(prevPage !== currPage || prevQueryValues.search !== queryValues.search ||prevQueryValues.order !== queryValues.order || prevQueryValues.genre !== queryValues.genre || prevQueryValues.producer !== queryValues.producer || prevQueryValues.publisher !== queryValues.publisher || prevQueryValues.category !== queryValues.category) {
       this.getData();
     };
   }
@@ -152,6 +153,11 @@ class Products extends React.Component {
     // this.props.addProduct({'title':'adaf','price': 12,'amount':1,'productId':1});
   }
 
+  onSelectionChange = (e) => {
+    this.props.history.push(`/products?page=1&category=${this.state.queryValues.category || ''}&search=${this.state.queryValues.search || ''}&order=${e.target.value || ''}&producer=${this.state.queryValues.producer || ''}&publisher=${this.state.queryValues.publisher || ''}&genre=${this.state.queryValues.genre || ''}`);
+    // this.props.history.push(`/products?order=${e.target.value}`);
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return <span>Loading...</span>;
@@ -160,6 +166,17 @@ class Products extends React.Component {
       <main className="mainWrapper">
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Polecane</h3>
+          <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
+          {/* <div className="productSort">
+            <label className="productSort__label" for="order" id="order">Sortuj: </label> 
+            <select className="productSort__select" name="order" onChange={this.onChange}>
+              <option value="">Wybierz</option>
+              <option value="tytul-asc">Od A do Z</option>
+              <option value="tytul-desc">Od Z do A</option>
+              <option value="tytul-asc">Od najnowszych</option>
+              <option value="tytul-desc">Od najstarszych</option>
+            </select>
+          </div> */}
           <div className="gridPanel">
             <div className="gridPanel__left">
               <ProductFilter queryValues={this.state.queryValues} />
