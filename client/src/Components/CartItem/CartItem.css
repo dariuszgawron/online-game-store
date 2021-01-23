@@ -1,0 +1,32 @@
+.cart__item {
+    display: flex;
+    flex-direction: row;
+}
+
+.cart__itemImage {
+    width: 120px;
+}
+
+.cart__itemTitle {
+    width: 40%;
+}
+
+.cart__itemPlatform {
+    width: 110px
+}
+
+.cart__itemQuantity {
+    width: 130px;
+}
+
+.cart__itemUnitPrice {
+    width: 100px;
+}
+
+.cart__itemTotalPrice {
+    width: 100px;
+}
+
+.cart__itemDelete {
+    width: 70px;
+}

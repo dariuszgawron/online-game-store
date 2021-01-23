@@ -12,6 +12,7 @@ import Products from './Components/Products/Products';
 import Product from './Components/Product/Product';
 import About from './Components/about';
 import LoginForm from './Components/LoginForm/LoginForm';
+import Cart from './Components/Cart/Cart';
 
 class App extends React.Component {
   constructor(props) {
@@ -130,7 +131,7 @@ class App extends React.Component {
             <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} />} />
             <Route path="/orders" component={About} />
             <Route path="/order/:id" component={About} />
-            {/* <Route path="/cart" component={Cart} /> */}
+            <Route path="/cart" render={(props) => <Cart cartValue={this.state.cartValue} cartQuantity={this.state.cartQuantity} cartItems={this.state.cartItems} />} />
             <Route path="/login" component={LoginForm} />
             {/* <Route path="/register" component={LoginForm} /> */}
             

@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 // 2. component dla basketa
 // 3. konto warunek w zależności od zmiennej stanu albo okno logowania albo opcje
 
-import Cart from '../Cart/Cart';
+import MiniCart from '../MiniCart/MiniCart';
 
 const hamburgerOnClick = (e) => {
     e.currentTarget.classList.toggle('active');
@@ -56,7 +56,9 @@ const Navbar = (props) => {
                     {/* <div className="menu__basket">
                         <i className="fas fa-shopping-basket"></i><span> 12,99zł ({JSON.parse(localStorage.getItem('CartItems'))!==null ? JSON.parse(localStorage.getItem('CartItems')) : 0})</span> 
                     </div> */}
-                    <Cart cartQuantity={props.cartQuantity} cartValue={props.cartValue}/>
+                    <Link className="navbar__link" to="/cart">
+                        <MiniCart cartQuantity={props.cartQuantity} cartValue={props.cartValue}/>
+                    </Link>
                 </div>
             </div>
         </nav>

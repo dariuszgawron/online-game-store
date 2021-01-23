@@ -1,22 +1,16 @@
-// import React, {useState, useEffect} from 'react';
 import React from 'react';
+
 import './Cart.css';
+import CartItem from '../CartItem/CartItem';
 
-const Cart = (props) => {
-    // const [cart, setCart] = React.useState(0);
-    // // React.useEffect(() => {
-    // //     setCart(JSON.parse(localStorage.getItem('myCart')) || [])
-    // // }, [])
+class Cart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-    // useEffect(() => {
-    
-    //     window.addEventListener('storage', () => {
-    //       // When local storage changes, dump the list to
-    //       // the console.
-    //        setCart(JSON.parse(localStorage.getItem('CartItems')) || 0);
-    //        console.log('ok');
-    //     });
-        
+    componentDidMount() {
+
+    }
            
     //  }, []);
 
@@ -28,11 +22,32 @@ const Cart = (props) => {
     // let cartItems = JSON.parse(localStorage.getItem('CartItems'))!==null ? JSON.parse(localStorage.getItem('CartItems')) : 0;
     // let cartValue = JSON.parse(localStorage.getItem('CartItems'))!==null ? JSON.parse(localStorage.getItem('CartItems')) : 0;
 
-    return (
-        <div className="menu__basket">
-            <i className="fas fa-shopping-basket"></i> - <span> {props.cartValue} zł ({props.cartQuantity})</span> 
-        </div>
-    )
+    render() {
+        return (
+            <main className="cart">
+                <div className="cart__container">
+                    <h3 className="cart__title">Koszyk</h3>
+                    <div className="cart__head">
+                        <div className="cart__colTitle cart__colTitle--1">LP</div>
+                        <div className="cart__colTitle cart__colTitle--2"></div>
+                        <div className="cart__colTitle cart__colTitle--4">NAZWA</div>
+                        <div className="cart__colTitle cart__colTitle--2">PLATFORMA</div>
+                        <div className="cart__colTitle cart__colTitle--3">ILOŚĆ</div>
+                        <div className="cart__colTitle cart__colTitle--2">CENA/SZT</div>
+                        <div className="cart__colTitle cart__colTitle--2">SUMA</div>
+                        <div className="cart__colTitle cart__colTitle--2">USUŃ</div>
+                    </div>
+                    <div className="cart__items">{ 
+                        this.props.cartItems.map(item => {
+                            return <CartItem item={item}/>
+                        })}
+                        {this.props.cartValue}
+                    </div>
+                </div>
+            </main>
+        )
+    }
+    
 };
 
 export default Cart;
