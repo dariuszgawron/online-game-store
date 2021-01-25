@@ -26,6 +26,7 @@ class App extends React.Component {
       previousPage: ''
     };
     this.addProduct=this.addProduct.bind(this);
+    this.changeAmountInCart=this.changeAmountInCart.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +43,29 @@ class App extends React.Component {
       ? localStorage.setItem('cartValue', JSON.stringify(this.state.cartValue))
       : this.setState({cartValue: cartValue});
     // console.log(this.state.cartItems);
+  }
+
+  addProductToCart(product) {
+
+  }
+
+  changeAmountInCart(productId, amount, price) {
+    this.setState(prevState => {
+      const index = prevState.cartItems.map(function(product) {return product.productid}).indexOf(productId);
+      let cartItemsNew;
+      if(index!==-1) {
+        cartItemsNew = Object.assign({},prevState.cartItems[index]);
+        cartItemsNew.amount=amount;
+        cartItemsNew.price=amount*price;
+        prevState.cartItems[index]=cartItemsNew;
+        cartItemsNew = [...prevState.cartItems];
+      };
+      return {
+        cartItems: cartItemsNew
+      };
+    },() => {
+      localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
+    })
   }
 
   addProduct(product) {
@@ -131,7 +155,7 @@ class App extends React.Component {
             <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} />} />
             <Route path="/orders" component={About} />
             <Route path="/order/:id" component={About} />
-            <Route path="/cart" render={(props) => <Cart cartValue={this.state.cartValue} cartQuantity={this.state.cartQuantity} cartItems={this.state.cartItems} />} />
+            <Route path="/cart" render={(props) => <Cart cartValue={this.state.cartValue} cartQuantity={this.state.cartQuantity} cartItems={this.state.cartItems} changeAmountInCart={this.changeAmountInCart} />} />
             <Route path="/login" component={LoginForm} />
             {/* <Route path="/register" component={LoginForm} /> */}
             

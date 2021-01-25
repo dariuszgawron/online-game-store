@@ -3,18 +3,35 @@ import React from 'react';
 
 import './CartItem.css';
 
-const CartItem = (props) => {
-    // function increaseAmountOfProduct (e) {
-
-    // }
-
-    function decreaseAmountOfProduct (e) {
-        console.log(e.currentTarget.getAttribute("data-id"));
+const CartItem = (props) => { 
+    function increaseAmountOfProduct (e) {
+        let quantityInput = e.currentTarget.previousSibling;
+        const productId = e.currentTarget.getAttribute("data-productid");
+        const productPrice = e.currentTarget.getAttribute("data-price");
+        const amountValue = parseInt(quantityInput.value)+1
+        quantityInput.value = amountValue;
+        props.changeAmountInCart(String(productId), amountValue, parseFloat(productPrice));
     }
 
-    // function deleteProductFromCart (e) {
-    
-    // }
+    function decreaseAmountOfProduct (e) {
+        let quantityInput = e.currentTarget.nextSibling;
+        console.log(e.currentTarget.getAttribute("data-productid"));
+        if(quantityInput.value>=2)
+            quantityInput.value=parseInt(quantityInput.value)-1;
+        // props.changeAmountInCart();
+    }
+
+    function changeAmountOfProduct (e) {
+        let quantityInput = e.currentTarget;
+        if(quantityInput.value<=0)
+            quantityInput.value='1';
+        console.log(e.currentTarget.getAttribute("data-productid"));
+        // props.changeAmountInCart();
+    }
+
+    function deleteProductFromCart (e) {
+        console.log(e.currentTarget.getAttribute("data-productid"));
+    }
 
     return (
         <div className="cart__item">
@@ -24,14 +41,34 @@ const CartItem = (props) => {
             </div>
             <div className="cart__itemPlatform">Steam</div>
             <div className="cart__itemQuantity">
-                <button className="cart__button cart__button--left cart__button--light" onClick={decreaseAmountOfProduct} data-id="1"><i className="fas fa-minus"></i></button>
-                <input className="cart__input" defaultValue={props.item.amount}/>
-                <button className="cart__button cart__button--right cart__button--light"><i className="fas fa-plus"></i></button>
+                <button className="cart__button cart__button--left cart__button--light" 
+                        onClick={decreaseAmountOfProduct} 
+                        data-productid={props.item.productid}
+                        data-price={props.item.price}>
+                    <i className="fas fa-minus"></i>
+                </button>
+                <input className="cart__input" 
+                       id="quantityNumber" 
+                       defaultValue={props.item.amount}
+                       data-productid={props.item.productid}
+                       data-price={props.item.price}
+                       onBlur={changeAmountOfProduct}
+                />
+                <button className="cart__button cart__button--right cart__button--light" 
+                        onClick={increaseAmountOfProduct}
+                        data-productid={props.item.productid}
+                        data-price={props.item.price}>
+                    <i className="fas fa-plus"></i>
+                </button>
             </div>
             <div className="cart__itemUnitPrice">{props.item.price} zł</div>
             <div className="cart__itemTotalPrice">{props.item.amount*props.item.price} zł</div>
             <div className="cart__itemDelete">
-                <button className="cart__button cart__button--danger"><i className="far fa-trash-alt"></i></button>
+                <button className="cart__button cart__button--danger"
+                        onClick={deleteProductFromCart}
+                        data-productid={props.item.productid}>
+                    <i className="far fa-trash-alt"></i>
+                </button>
             </div>
         </div>
     )
