@@ -39,7 +39,7 @@ class Cart extends React.Component {
                     </div>
                     <div className="cart__items">{ 
                         this.props.cartItems.map(item => {
-                            return <CartItem item={item} changeAmountInCart={this.props.changeAmountInCart} key={item.title}/>
+                            return <CartItem item={item} changeAmountInCart={this.props.changeAmountInCart} deleteProductFromCart={this.props.deleteProductFromCart} key={item.title}/>
                         })}
                         {this.props.cartValue}
                     </div>

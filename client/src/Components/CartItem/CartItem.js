@@ -15,10 +15,13 @@ const CartItem = (props) => {
 
     function decreaseAmountOfProduct (e) {
         let quantityInput = e.currentTarget.nextSibling;
-        console.log(e.currentTarget.getAttribute("data-productid"));
-        if(quantityInput.value>=2)
-            quantityInput.value=parseInt(quantityInput.value)-1;
-        // props.changeAmountInCart();
+        const productId = e.currentTarget.getAttribute("data-productid");
+        const productPrice = e.currentTarget.getAttribute("data-price");
+        const amountValue = parseInt(quantityInput.value)-1
+        if(amountValue>=1) {
+            quantityInput.value=amountValue;
+            props.changeAmountInCart(String(productId), amountValue, parseFloat(productPrice));
+        }
     }
 
     function changeAmountOfProduct (e) {
@@ -30,7 +33,8 @@ const CartItem = (props) => {
     }
 
     function deleteProductFromCart (e) {
-        console.log(e.currentTarget.getAttribute("data-productid"));
+        const productId = e.currentTarget.getAttribute("data-productid");
+        props.deleteProductFromCart(productId);
     }
 
     return (
@@ -62,7 +66,7 @@ const CartItem = (props) => {
                 </button>
             </div>
             <div className="cart__itemUnitPrice">{props.item.price} zł</div>
-            <div className="cart__itemTotalPrice">{props.item.amount*props.item.price} zł</div>
+            <div className="cart__itemTotalPrice">{(props.item.amount*props.item.price).toFixed(2)} zł</div>
             <div className="cart__itemDelete">
                 <button className="cart__button cart__button--danger"
                         onClick={deleteProductFromCart}

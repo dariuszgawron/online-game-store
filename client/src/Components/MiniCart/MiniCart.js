@@ -28,9 +28,19 @@ const MiniCart = (props) => {
     // let cartItems = JSON.parse(localStorage.getItem('CartItems'))!==null ? JSON.parse(localStorage.getItem('CartItems')) : 0;
     // let cartValue = JSON.parse(localStorage.getItem('CartItems'))!==null ? JSON.parse(localStorage.getItem('CartItems')) : 0;
 
+    let cartValue = props.cartItems.reduce((acc, item) => {
+        return acc + (item.amount*item.price); 
+    }, 0);
+
+    let cartQuantity = props.cartItems.reduce((acc, item) => {
+        return acc + item.amount;
+    }, 0)
+
+    console.log(cartValue + ' ' + cartQuantity);
+
     return (
         <div className="menu__basket">
-            <i className="fas fa-shopping-basket"></i> - <span> {props.cartValue} zł ({props.cartQuantity})</span> 
+            <i className="fas fa-shopping-basket"></i> - <span> {cartValue.toFixed(2)} zł ({cartQuantity})</span> 
         </div>
     )
 };

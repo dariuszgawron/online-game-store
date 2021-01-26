@@ -27,6 +27,7 @@ class App extends React.Component {
     };
     this.addProduct=this.addProduct.bind(this);
     this.changeAmountInCart=this.changeAmountInCart.bind(this);
+    this.deleteProductFromCart=this.deleteProductFromCart.bind(this);
   }
 
   componentDidMount() {
@@ -45,25 +46,53 @@ class App extends React.Component {
     // console.log(this.state.cartItems);
   }
 
-  addProductToCart(product) {
-
+  updateCart(operation, product) {
+    this.setState(prevState => {
+      const index = prevState.cartItems.map(function(product) {return product.productid}).indexOf(product.productId);
+      let cartItemsNew = prevState.cartItems;
+      if (operation === 'insert' && index === -1) {
+        cartItemsNew = [...prevState.cartItems, product];
+      } else if (operation === 'update' && index !== -1) {
+        cartItemsNew[index].amount = product.amount;
+        cartItemsNew[index].price = product.price;
+      } else if (operation === 'delete' && index !== -1) {
+        cartItemsNew.splice(index, 1);
+      }
+      return {
+        cartItems: cartItemsNew
+      };
+    },() => {
+      localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
+    })
   }
 
   changeAmountInCart(productId, amount, price) {
     this.setState(prevState => {
       const index = prevState.cartItems.map(function(product) {return product.productid}).indexOf(productId);
-      let cartItemsNew;
+      let cartItemsNew = prevState.cartItems;
       if(index!==-1) {
-        cartItemsNew = Object.assign({},prevState.cartItems[index]);
-        cartItemsNew.amount=amount;
-        cartItemsNew.price=amount*price;
-        prevState.cartItems[index]=cartItemsNew;
-        cartItemsNew = [...prevState.cartItems];
+        cartItemsNew[index].amount=amount;
+        cartItemsNew[index].price=price;
       };
       return {
         cartItems: cartItemsNew
       };
     },() => {
+      localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
+    })
+  }
+
+  deleteProductFromCart(productId) {
+    this.setState(prevState => {
+      const index = prevState.cartItems.map(function(product) {return product.productid}).indexOf(productId);
+      let cartItemsNew = prevState.cartItems;
+      if(index!==-1) {
+        cartItemsNew.splice(index,1);
+      };
+      return {
+        cartItems: cartItemsNew
+      };
+    }, () => {
       localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
     })
   }
@@ -138,7 +167,7 @@ class App extends React.Component {
           {/* <header className="app__header">
             <Navbar />
           </header> */}
-          <Navbar cartQuantity={this.state.cartQuantity} cartValue={this.state.cartValue} />
+          <Navbar cartQuantity={this.state.cartQuantity} cartValue={this.state.cartValue} cartItems = {this.state.cartItems} />
 
           <Switch>
 
@@ -155,7 +184,8 @@ class App extends React.Component {
             <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} />} />
             <Route path="/orders" component={About} />
             <Route path="/order/:id" component={About} />
-            <Route path="/cart" render={(props) => <Cart cartValue={this.state.cartValue} cartQuantity={this.state.cartQuantity} cartItems={this.state.cartItems} changeAmountInCart={this.changeAmountInCart} />} />
+            <Route path="/cart" render={(props) => <Cart cartValue={this.state.cartValue} cartQuantity={this.state.cartQuantity} cartItems={this.state.cartItems} changeAmountInCart={this.changeAmountInCart} 
+              deleteProductFromCart={this.deleteProductFromCart} />} />
             <Route path="/login" component={LoginForm} />
             {/* <Route path="/register" component={LoginForm} /> */}
             
