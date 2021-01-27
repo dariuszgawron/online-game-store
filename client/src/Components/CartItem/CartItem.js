@@ -6,21 +6,27 @@ import './CartItem.css';
 const CartItem = (props) => { 
     function increaseAmountOfProduct (e) {
         let quantityInput = e.currentTarget.previousSibling;
-        const productId = e.currentTarget.getAttribute("data-productid");
-        const productPrice = e.currentTarget.getAttribute("data-price");
-        const amountValue = parseInt(quantityInput.value)+1
+        let amountValue = parseInt(quantityInput.value) + 1;
         quantityInput.value = amountValue;
-        props.changeAmountInCart(String(productId), amountValue, parseFloat(productPrice));
+        let productData = {
+            productId: String(e.currentTarget.getAttribute("data-productid")),
+            amount: amountValue,
+            price: parseFloat(e.currentTarget.getAttribute("data-price"))
+        }
+        props.updateCart('update', productData);
     }
 
     function decreaseAmountOfProduct (e) {
         let quantityInput = e.currentTarget.nextSibling;
-        const productId = e.currentTarget.getAttribute("data-productid");
-        const productPrice = e.currentTarget.getAttribute("data-price");
-        const amountValue = parseInt(quantityInput.value)-1
-        if(amountValue>=1) {
-            quantityInput.value=amountValue;
-            props.changeAmountInCart(String(productId), amountValue, parseFloat(productPrice));
+        let amountValue = parseInt(quantityInput.value) - 1;
+        if (amountValue >= 1) {
+            quantityInput.value = amountValue;
+            let productData = {
+                productId: String(e.currentTarget.getAttribute("data-productid")),
+                amount: amountValue,
+                price: parseFloat(e.currentTarget.getAttribute("data-price"))
+            };
+            props.updateCart('update', productData);
         }
     }
 
@@ -33,8 +39,10 @@ const CartItem = (props) => {
     }
 
     function deleteProductFromCart (e) {
-        const productId = e.currentTarget.getAttribute("data-productid");
-        props.deleteProductFromCart(productId);
+        let productData = {
+            productId: String(e.currentTarget.getAttribute("data-productid"))
+        };
+        props.updateCart('delete', productData);
     }
 
     return (

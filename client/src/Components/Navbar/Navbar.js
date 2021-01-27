@@ -57,7 +57,10 @@ const Navbar = (props) => {
                         <i className="fas fa-shopping-basket"></i><span> 12,99zł ({JSON.parse(localStorage.getItem('CartItems'))!==null ? JSON.parse(localStorage.getItem('CartItems')) : 0})</span> 
                     </div> */}
                     <Link className="navbar__link" to="/cart">
-                        <MiniCart cartQuantity={props.cartQuantity} cartValue={props.cartValue} cartItems={props.cartItems} />
+                        <MiniCart 
+                            // cartQuantity={props.cartQuantity} 
+                            // cartValue={props.cartValue} 
+                            cartItems={props.cartItems} />
                     </Link>
                 </div>
             </div>

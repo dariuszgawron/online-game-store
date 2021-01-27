@@ -148,7 +148,7 @@ class App extends React.Component {
 
             {/* <Route exact path="/" component={Home} /> */}
             <Route exact path="/" render={(props) => <Home {...props} addProduct={this.addProduct} />} />
-            <Route path="/products" render = {(props) => <Products {...props} addProduct={this.addProduct} />} />
+            <Route path="/products" component={Products} />
             <Route path="/products/polecane" component={Products} />
             <Route path="/products/promocje" component={Products} />
             <Route path="/products/bestsellery" component={Products} />

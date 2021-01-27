@@ -124,7 +124,7 @@ class ProductFilter extends React.Component {
         <div className="filter">
           <h2 className="filter__title">Filter</h2>
           <div className="accordion">
-            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Gatunki</span><i class="fas fa-chevron-down"></i></div>
+            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Gatunki</span><i className="fas fa-chevron-down"></i></div>
             <div className="accordion__content">
               <ul className="accorion__list">
                 {this.state.listOfGenres.map(gatunek => {
@@ -133,7 +133,7 @@ class ProductFilter extends React.Component {
                       <Link className="accordion__link" 
                           to={`/products?page=1&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}&producer=${this.props.queryValues.producer || ''}&publisher=${this.props.queryValues.publisher || ''}&genre=${this.createUrlParam('genre',gatunek.id_gatunku.toString())}`}>
                         <input type='checkbox' name={`gatunek${gatunek.id_gatunku}`} id={`gatunek${gatunek.id_gatunku}`}/>
-                        <label for={`gatunek${gatunek.id_gatunku}`}>{gatunek.nazwa_gatunku}</label> 
+                        <label htmlFor={`gatunek${gatunek.id_gatunku}`}>{gatunek.nazwa_gatunku}</label> 
                         {gatunek.nazwa_gatunku} 
                       </Link>
                     </li>
@@ -143,7 +143,7 @@ class ProductFilter extends React.Component {
             </div>
             
             <hr/>
-            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Producenci</span><i class="fas fa-chevron-down"></i></div>
+            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Producenci</span><i className="fas fa-chevron-down"></i></div>
             <div className="accordion__content">
               <ul className="accorion__list">
                 {this.state.listOfProducers.map(producent => {
@@ -152,7 +152,7 @@ class ProductFilter extends React.Component {
                       <Link className="accordion__link" 
                           to={`/products?page=1&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}&genre=${this.props.queryValues.genre || ''}&publisher=${this.props.queryValues.publisher || ''}&producer=${this.createUrlParam('producer',producent.id_producenta.toString())}`}>
                         <input type='checkbox' name={`producent${producent.id_producenta}`} id={`producent${producent.id_producenta}`}/>
-                        <label for={`producent${producent.id_producenta}`}>{producent.nazwa_producenta}</label> 
+                        <label htmlFor={`producent${producent.id_producenta}`}>{producent.nazwa_producenta}</label> 
                       </Link>
                     </li>
                   )
@@ -161,7 +161,7 @@ class ProductFilter extends React.Component {
             </div>
 
             <hr/>
-            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Wydawcy</span><i class="fas fa-chevron-down"></i></div>
+            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}><span>Wydawcy</span><i className="fas fa-chevron-down"></i></div>
             <div className="accordion__content">
               <ul className="accorion__list">
                 {this.state.listOfPublishers.map(wydawca => {
@@ -170,7 +170,7 @@ class ProductFilter extends React.Component {
                       <Link className="accordion__link" 
                           to={`/products?page=1&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}&genre=${this.props.queryValues.genre || ''}&producer=${this.props.queryValues.producer || ''}&publisher=${this.createUrlParam('publisher',wydawca.id_wydawcy.toString())}`}>
                         <input type='checkbox' name={`wydawca${wydawca.id_wydawcy}`} id={`wydawca${wydawca.id_wydawcy}`}/>
-                        <label for={`wydawca${wydawca.id_wydawcy}`}>{wydawca.nazwa_wydawcy}</label>
+                        <label htmlFor={`wydawca${wydawca.id_wydawcy}`}>{wydawca.nazwa_wydawcy}</label>
                       </Link>
                     </li>
                   )

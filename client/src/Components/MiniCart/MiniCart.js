@@ -34,9 +34,7 @@ const MiniCart = (props) => {
 
     let cartQuantity = props.cartItems.reduce((acc, item) => {
         return acc + item.amount;
-    }, 0)
-
-    console.log(cartValue + ' ' + cartQuantity);
+    }, 0);
 
     return (
         <div className="menu__basket">
