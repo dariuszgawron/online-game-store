@@ -50,8 +50,9 @@ class App extends React.Component {
   updateCart(operation, productData) {
     this.setState(prevState => {
       console.log(productData);
-      const index = prevState.cartItems.map(function(product) {return product.productid}).indexOf(productData.productId);
+      const index = prevState.cartItems.map(function(product) {return product.productId}).indexOf(productData.productId);
       let cartItemsNew = prevState.cartItems;
+      console.log(index);
       if (operation === 'insert' && index === -1) {
         cartItemsNew = [...prevState.cartItems, productData];
       } else if (operation === 'update' && index !== -1) {
@@ -97,40 +98,6 @@ class App extends React.Component {
     });
   }
 
-
-  addProduct2(product) {
-    // console.log(product.target.getAttribute('data-id'));
-    this.setState(state=>{
-      // let index = state.cartItems.indexOf(product);
-      const index = state.cartItems.map(function(product) {return product.product}).indexOf(product.product);
-// const cartItems = (index===-1) ? [...state.cartItems, product] : state.cartItems[index].amount+1;
-      let cartItemsNew;
-      if(index===-1)
-        cartItemsNew = [...state.cartItems, product];
-      else {
-        cartItemsNew = [...state.cartItems];
-        cartItemsNew[index].amount+=0.5;
-      };
-      
-      // const [theArray, setTheArray] = useState(cartItems);
-      // const cartItems = setTheArray([...theArray,product]);
-      return {
-        cartItems: cartItemsNew,
-        // cartQuantity: state.cartQuantity+1,
-        // cartValue: state.cartValue+product.price
-      };
-    }, () => {
-      localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
-      // localStorage.setItem('cartValue', JSON.stringify(this.state.cartValue));
-      // localStorage.setItem('cartQuantity', JSON.stringify(this.state.cartQuantity));
-      console.log(localStorage.getItem('cartItems'));
-    });
-
-    //   const list = [...state.list, state.value]; - add to array
-    //   const list = state.list.map(item => item + 1); - update array
-
-  }
-
   render() {
     return (
       <Router>
@@ -147,16 +114,16 @@ class App extends React.Component {
           <Switch>
 
             {/* <Route exact path="/" component={Home} /> */}
-            <Route exact path="/" render={(props) => <Home {...props} addProduct={this.addProduct} />} />
-            <Route path="/products" render = {(props) => <Products {...props} addProduct={this.addProduct} />} />
-            <Route path="/products/polecane" component={Products} />
+            <Route exact path="/" render={(props) => <Home {...props} addProduct={this.addProduct} updateCart={this.updateCart} />} />
+            <Route path="/products" render = {(props) => <Products {...props} addProduct={this.addProduct} updateCart={this.updateCart} />} />
+            {/* <Route path="/products/polecane" component={Products} />
             <Route path="/products/promocje" component={Products} />
             <Route path="/products/bestsellery" component={Products} />
             <Route path="/products/nowosci" component={Products} />
             <Route path="/products/preordery" component={Products} />
-            <Route path="/products/dodatki" component={Products} />
+            <Route path="/products/dodatki" component={Products} /> */}
             {/* <Route path="/product/:id" component={Product} /> */}
-            <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} />} />
+            <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} updateCart={this.updateCart} />} />
             <Route path="/orders" component={About} />
             <Route path="/order/:id" component={About} />
             <Route path="/cart" render={(props) => <Cart 

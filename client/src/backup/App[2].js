@@ -50,9 +50,8 @@ class App extends React.Component {
   updateCart(operation, productData) {
     this.setState(prevState => {
       console.log(productData);
-      const index = prevState.cartItems.map(function(product) {return product.productId}).indexOf(productData.productId);
+      const index = prevState.cartItems.map(function(product) {return product.productid}).indexOf(productData.productId);
       let cartItemsNew = prevState.cartItems;
-      console.log(index);
       if (operation === 'insert' && index === -1) {
         cartItemsNew = [...prevState.cartItems, productData];
       } else if (operation === 'update' && index !== -1) {
@@ -148,14 +147,14 @@ class App extends React.Component {
           <Switch>
 
             {/* <Route exact path="/" component={Home} /> */}
-            <Route exact path="/" render={(props) => <Home {...props} addProduct={this.addProduct} updateCart={this.updateCart} />} />
-            <Route path="/products" render = {(props) => <Products {...props} addProduct={this.addProduct} updateCart={this.updateCart} />} />
-            {/* <Route path="/products/polecane" component={Products} />
+            <Route exact path="/" render={(props) => <Home {...props} addProduct={this.addProduct} />} />
+            <Route path="/products" component={Products} />
+            <Route path="/products/polecane" component={Products} />
             <Route path="/products/promocje" component={Products} />
             <Route path="/products/bestsellery" component={Products} />
             <Route path="/products/nowosci" component={Products} />
             <Route path="/products/preordery" component={Products} />
-            <Route path="/products/dodatki" component={Products} /> */}
+            <Route path="/products/dodatki" component={Products} />
             {/* <Route path="/product/:id" component={Product} /> */}
             <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} />} />
             <Route path="/orders" component={About} />
