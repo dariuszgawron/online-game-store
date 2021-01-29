@@ -98,40 +98,6 @@ class App extends React.Component {
     });
   }
 
-
-  addProduct2(product) {
-    // console.log(product.target.getAttribute('data-id'));
-    this.setState(state=>{
-      // let index = state.cartItems.indexOf(product);
-      const index = state.cartItems.map(function(product) {return product.product}).indexOf(product.product);
-// const cartItems = (index===-1) ? [...state.cartItems, product] : state.cartItems[index].amount+1;
-      let cartItemsNew;
-      if(index===-1)
-        cartItemsNew = [...state.cartItems, product];
-      else {
-        cartItemsNew = [...state.cartItems];
-        cartItemsNew[index].amount+=0.5;
-      };
-      
-      // const [theArray, setTheArray] = useState(cartItems);
-      // const cartItems = setTheArray([...theArray,product]);
-      return {
-        cartItems: cartItemsNew,
-        // cartQuantity: state.cartQuantity+1,
-        // cartValue: state.cartValue+product.price
-      };
-    }, () => {
-      localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
-      // localStorage.setItem('cartValue', JSON.stringify(this.state.cartValue));
-      // localStorage.setItem('cartQuantity', JSON.stringify(this.state.cartQuantity));
-      console.log(localStorage.getItem('cartItems'));
-    });
-
-    //   const list = [...state.list, state.value]; - add to array
-    //   const list = state.list.map(item => item + 1); - update array
-
-  }
-
   render() {
     return (
       <Router>
@@ -157,7 +123,7 @@ class App extends React.Component {
             <Route path="/products/preordery" component={Products} />
             <Route path="/products/dodatki" component={Products} /> */}
             {/* <Route path="/product/:id" component={Product} /> */}
-            <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} />} />
+            <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} updateCart={this.updateCart} />} />
             <Route path="/orders" component={About} />
             <Route path="/order/:id" component={About} />
             <Route path="/cart" render={(props) => <Cart 

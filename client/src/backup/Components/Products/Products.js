@@ -185,6 +185,7 @@ class Products extends React.Component {
               <div className="mainWrapper__products">
                 <ProductsList 
                   products={this.state.products} 
+                  addProduct={this.props.addProduct}
                   updateCart={this.props.updateCart}
                 />
               </div>

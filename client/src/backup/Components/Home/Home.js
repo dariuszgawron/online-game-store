@@ -48,7 +48,7 @@ class Home extends React.Component {
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Polecane</h3>
           <div className="mainWrapper__products">
-            <ProductsList products={this.state.recommended} updateCart={this.props.updateCart} />
+            <ProductsList products={this.state.recommended} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
           </div>
         </div>
         <div className="mainWrapper__container">

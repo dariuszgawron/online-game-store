@@ -10,6 +10,13 @@ class ProductCard extends React.Component {
     }
 
     addToBasket(e) {
+        // const newProduct = {
+        //     productid: e.target.getAttribute('data-productid'),
+        //     title: e.target.getAttribute('data-title'),
+        //     price: parseFloat(e.target.getAttribute('data-price')),
+        //     amount: 1
+        // }
+        // this.props.addProduct(newProduct);
         const productData = {
             productId: String(e.target.getAttribute('data-productid')),
             title: e.target.getAttribute('data-title'),

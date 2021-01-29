@@ -1,0 +1,33 @@
+.productsList2 {
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    width: 2000px;
+    /* display: flex;s
+    overflow-x: scroll;
+    scroll-behavior: smooth; */
+    /* display: inline-block; */
+    /* overflow: auto; */
+    /* overflow-x: hidden; */
+}
+
+.productsList {
+    /* overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scroll-behavior: smooth; */
+}
+
+
+
+.productList__error {
+    width: 100%;
+    border: 1px solid rgb(253, 43, 43);
+    background-color: rgba(253, 105, 105, 0.767);
+    text-align: center;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 10px 5px;
+}
+
+

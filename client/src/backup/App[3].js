@@ -1,7 +1,8 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 import './App.css';
+// import Users from './Components/users';
 
 import Navbar from './Components/Navbar/Navbar';
 // import Footer from './Components/Footer/Footer';
@@ -12,12 +13,13 @@ import Product from './Components/Product/Product';
 import About from './Components/about';
 import LoginForm from './Components/LoginForm/LoginForm';
 import Cart from './Components/Cart/Cart';
-// import Users from './Components/users';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartQuantity: 0,
+      cartValue: 0.00,
       cartItems: [],
       activeUser: '',
       activePage: '',
@@ -30,10 +32,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // const cartQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
+    // const cartValue = JSON.parse(localStorage.getItem('cartValue'));
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    // (cartQuantity===null) 
+    //   ? localStorage.setItem('cartQuantity', JSON.stringify(this.state.cartQuantity))
+    //   : this.setState({cartQuantity: cartQuantity});
     (cartItems===null) 
       ? localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems))
       : this.setState({cartItems: cartItems});
+    // (cartValue===null) 
+    //   ? localStorage.setItem('cartValue', JSON.stringify(this.state.cartValue))
+    //   : this.setState({cartValue: cartValue});
     // console.log(this.state.cartItems);
   }
 
@@ -76,12 +86,50 @@ class App extends React.Component {
         // cartItemsNew[index].price+=product.price;
       };
       return {
-        cartItems: cartItemsNew
+        cartItems: cartItemsNew,
+        // cartQuantity: state.cartQuantity+product.amount,
+        // cartValue: +(state.cartValue+product.price).toFixed(2)
       };
     }, () => {
       localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
+      // localStorage.setItem('cartValue', JSON.stringify(this.state.cartValue));
+      // localStorage.setItem('cartQuantity', JSON.stringify(this.state.cartQuantity));
       console.log(localStorage.getItem('cartItems'));
     });
+  }
+
+
+  addProduct2(product) {
+    // console.log(product.target.getAttribute('data-id'));
+    this.setState(state=>{
+      // let index = state.cartItems.indexOf(product);
+      const index = state.cartItems.map(function(product) {return product.product}).indexOf(product.product);
+// const cartItems = (index===-1) ? [...state.cartItems, product] : state.cartItems[index].amount+1;
+      let cartItemsNew;
+      if(index===-1)
+        cartItemsNew = [...state.cartItems, product];
+      else {
+        cartItemsNew = [...state.cartItems];
+        cartItemsNew[index].amount+=0.5;
+      };
+      
+      // const [theArray, setTheArray] = useState(cartItems);
+      // const cartItems = setTheArray([...theArray,product]);
+      return {
+        cartItems: cartItemsNew,
+        // cartQuantity: state.cartQuantity+1,
+        // cartValue: state.cartValue+product.price
+      };
+    }, () => {
+      localStorage.setItem('cartItems', JSON.stringify(this.state.cartItems));
+      // localStorage.setItem('cartValue', JSON.stringify(this.state.cartValue));
+      // localStorage.setItem('cartQuantity', JSON.stringify(this.state.cartQuantity));
+      console.log(localStorage.getItem('cartItems'));
+    });
+
+    //   const list = [...state.list, state.value]; - add to array
+    //   const list = state.list.map(item => item + 1); - update array
+
   }
 
   render() {
@@ -91,25 +139,31 @@ class App extends React.Component {
           {/* <header className="app__header">
             <Navbar />
           </header> */}
-
-          <Navbar cartItems = {this.state.cartItems} />
+          <Navbar 
+            // cartQuantity={this.state.cartQuantity} 
+            // cartValue={this.state.cartValue} 
+            cartItems = {this.state.cartItems} 
+          />
 
           <Switch>
-            <Route exact path="/" render={(props) => 
-                <Home {...props} updateCart = {this.updateCart} />
-            } />
-            <Route path="/products" render = {(props) => 
-                <Products {...props} updateCart = {this.updateCart} />
-            } />
-            <Route exact path="/product/:id" render={(props) => 
-                <Product {...props} updateCart = {this.updateCart} />
-            } />
-            <Route path="/cart" render={(props) => 
-                <Cart cartItems = {this.state.cartItems} updateCart = {this.updateCart} />
-            } />
 
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/" render={(props) => <Home {...props} addProduct={this.addProduct} updateCart={this.updateCart} />} />
+            <Route path="/products" render = {(props) => <Products {...props} addProduct={this.addProduct} updateCart={this.updateCart} />} />
+            {/* <Route path="/products/polecane" component={Products} />
+            <Route path="/products/promocje" component={Products} />
+            <Route path="/products/bestsellery" component={Products} />
+            <Route path="/products/nowosci" component={Products} />
+            <Route path="/products/preordery" component={Products} />
+            <Route path="/products/dodatki" component={Products} /> */}
+            {/* <Route path="/product/:id" component={Product} /> */}
+            <Route exact path="/product/:id" render={(props) => <Product {...props} addProduct={this.addProduct} />} />
             <Route path="/orders" component={About} />
             <Route path="/order/:id" component={About} />
+            <Route path="/cart" render={(props) => <Cart 
+              cartItems={this.state.cartItems} 
+              updateCart = {this.updateCart} />} 
+            />
             <Route path="/login" component={LoginForm} />
             {/* <Route path="/register" component={LoginForm} /> */}
             

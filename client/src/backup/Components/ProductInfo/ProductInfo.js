@@ -13,6 +13,13 @@ class ProductInfo extends React.Component {
   }
 
   addToBasket(e) {
+    // const newProduct = {
+    //     productid: this.props.product.id_gry,
+    //     title: this.props.product.tytul,
+    //     price: parseFloat(this.props.product.cena_podstawowa),
+    //     amount: 1
+    // };
+    // this.props.addProduct(newProduct);
     const productData = {
       productId: String(this.props.product.id_gry),
       title: this.props.product.tytul,

@@ -4,13 +4,13 @@ import './Cart.css';
 import CartItem from '../CartItem/CartItem';
 
 class Cart extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+    }
 
-    // componentDidMount() {
+    componentDidMount() {
 
-    // }
+    }
            
     //  }, []);
 
