@@ -28,14 +28,13 @@ class Cart extends React.Component {
                 <div className="cart__container">
                     <h3 className="cart__title">Koszyk</h3>
                     <div className="cart__head">
-                        <div className="cart__colTitle cart__colTitle--1">LP</div>
-                        <div className="cart__colTitle cart__colTitle--2"></div>
-                        <div className="cart__colTitle cart__colTitle--4">NAZWA</div>
-                        <div className="cart__colTitle cart__colTitle--2">PLATFORMA</div>
-                        <div className="cart__colTitle cart__colTitle--3">ILOŚĆ</div>
-                        <div className="cart__colTitle cart__colTitle--2">CENA/SZT</div>
-                        <div className="cart__colTitle cart__colTitle--2">SUMA</div>
-                        <div className="cart__colTitle cart__colTitle--2">USUŃ</div>
+                        <div className="cart__colTitle"></div>
+                        <div className="cart__colTitle cart__colTitle--left">NAZWA</div>
+                        <div className="cart__colTitle cart__colTitle--left">PLATFORMA</div>
+                        <div className="cart__colTitle">ILOŚĆ</div>
+                        <div className="cart__colTitle cart__colTitle--right">CENA/SZT.</div>
+                        <div className="cart__colTitle cart__colTitle--right">SUMA</div>
+                        <div className="cart__colTitle">USUŃ</div>
                     </div>
                     <div className="cart__items">{ 
                         this.props.cartItems.map(item => {
@@ -43,7 +42,19 @@ class Cart extends React.Component {
                                 updateCart = {this.props.updateCart} 
                                 key={item.productId}/>
                         })}
-                        {this.props.cartValue}
+                    </div>
+                    <div className="cartSummary">
+                        <div className="cartSummary__col"></div>
+                        <div className="cartSummary__col cartSummary__col--right">Do zapłaty: </div>
+                        <div className="cartSummary__col cartSummary__col--right">
+                            {this.props.cartItems.reduce((total, item) => {
+                                return total + (item.price * item.amount)
+                            }, 0).toFixed(2)} zł
+                        </div>
+                        <div className="cartSummary__col"></div>
+                    </div>
+                    <div className="cart__footer">
+                        <button className="cart__buttons">Zrealizuj zamówienie</button>
                     </div>
                 </div>
             </main>

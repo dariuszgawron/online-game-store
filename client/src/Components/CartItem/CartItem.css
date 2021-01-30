@@ -1,6 +1,6 @@
 .cart__item {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 120px auto 150px 160px 130px 130px 100px;
     align-items: center;
     min-height: 150px;
     font-size: 1.2rem;
@@ -12,7 +12,6 @@
 }
 
 .cart__itemImage {
-    width: 120px;
     display: flex;
     justify-content: center;
 }
@@ -23,34 +22,28 @@
 }
 
 .cart__itemTitle {
-    min-width: 40%;
     box-flex: 1;
 }
 
 .cart__itemPlatform {
-    width: 150px
 }
 
 .cart__itemQuantity {
     text-align: right;
-    width: 160px;
     display: flex;
 
 }
 
 .cart__itemUnitPrice {
     text-align: right;
-    width: 130px;
 }
 
 .cart__itemTotalPrice {
     text-align: right;
-    width: 130px;
 }
 
 .cart__itemDelete {
     text-align: center;
-    width: 100px;
 }
 
 .cart__button {
