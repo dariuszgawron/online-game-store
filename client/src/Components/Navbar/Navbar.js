@@ -1,18 +1,18 @@
 import React from 'react';
-import './Navbar.css';
 import {Link} from 'react-router-dom';
 // todo
 // 1. component dla search
 // 2. component dla basketa
 // 3. konto warunek w zależności od zmiennej stanu albo okno logowania albo opcje
 
+import './Navbar.css';
 import MiniCart from '../MiniCart/MiniCart';
 
-const hamburgerOnClick = (e) => {
-    e.currentTarget.classList.toggle('active');
-}
-
 const Navbar = (props) => {
+    const hamburgerOnClick = (e) => {
+        e.currentTarget.classList.toggle('active');
+    }
+
     return (
         <nav className="navbar">
             <div className="navbar__top navbar__top--dark">
@@ -27,7 +27,9 @@ const Navbar = (props) => {
                     <div className="search">
                         <input type="text" className="search__input"/> Search
                     </div>
-                    <div className="navbar__account">Konto <i className="far fa-user-circle"></i></div>
+                    <div className="navbar__account">
+                        Konto <i className="far fa-user-circle"></i>
+                    </div>
                 </div>
             </div>
             <div className="navbar__bottom navbar__bottom--light">
