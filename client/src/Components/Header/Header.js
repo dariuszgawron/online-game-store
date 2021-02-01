@@ -2,16 +2,14 @@ import React from 'react';
 // import {Link} from 'react-router-dom';
 
 import './Header.css';
+import HeaderTop from '../HeaderTop/HeaderTop';
+import Navbar from '../Navbar/Navbar';
 
 const Header = (props) => {
     return (
         <header className="header">
-            <div className="header__top">
-                <HeaderTop />
-            </div>
-            <div className="header__nav">
-                <Navbar />
-            </div>
+            <HeaderTop cartItems={props.cartItems} />
+            <Navbar cartItems={props.cartItems} />
         </header>
     )
 }

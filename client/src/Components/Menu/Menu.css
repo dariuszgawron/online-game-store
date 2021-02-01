@@ -1,0 +1,35 @@
+/* GENERAL STYLES */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ul {
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+
+/* MENU STYLES */
+
+.menu {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.menu__item {
+    padding-right: 20px;
+}
+
+.menu__link {
+    cursor: pointer;
+    color: inherit;
+}
+
+.menu__link:hover {
+    font-weight: bold;
+}
+
+/* MEDIA QUERIES */

@@ -3,7 +3,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import './App.css';
 
-import Navbar from './Components/Navbar/Navbar';
+// import Navbar from './Components/Navbar/Navbar';
+import Header from './Components/Header/Header';
 // import Footer from './Components/Footer/Footer';
 
 import Home from './Components/Home/Home';
@@ -92,7 +93,8 @@ class App extends React.Component {
             <Navbar />
           </header> */}
 
-          <Navbar cartItems = {this.state.cartItems} />
+          {/* <Navbar cartItems = {this.state.cartItems} /> */}
+          <Header cartItems = {this.state.cartItems} />
 
           <Switch>
             <Route exact path="/" render={(props) => 
