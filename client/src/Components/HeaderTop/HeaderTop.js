@@ -1,5 +1,5 @@
 import React from 'react';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import './HeaderTop.css';
 import MiniCart from '../MiniCart/MiniCart';
@@ -13,22 +13,34 @@ const HeaderTop = (props) => {
         <div className="headerTop headerTop--dark">
             <div className="headerTop__container">
                 <div className="headerTop__content">
-                    <div className="headerTop__hamburger" onClick={hamburgerOnClick}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div className="headerTop__logo">
-                        <h2>GameShop</h2>
-                    </div>
-                    <div className="headerTop__miniCart">
-                        <MiniCart cartItems={props.cartItems}/>
+                    <div className="logo">
+                        <h2 className="logo__text">
+                            <Link className="logo__link" to="/">GameShop</Link>
+                        </h2>
                     </div>
                     <div className="headerTop__search">
                         {/* <Search /> */}
                     </div>
-                    <div className="headerTop__user">
-                        Konto <i className="far fa-user-circle"></i>
+                    <div className="headerTop__right">
+                        <div className="userAccount">
+                            <Link className="userAccount__link" to="/login">
+                                <i class="userAccount__icon fas fa-user-tie"></i>
+                                <span className="userAccount__text">Konto</span>
+                            </Link>
+                        </div>
+                        <div className="headerTop__miniCart">
+                            <Link className="headerTop__link" to="/cart">
+                                <MiniCart cartItems={props.cartItems} />
+                            </Link>
+                        </div>
+                        <div className="search">
+                            <i class="search__icon fas fa-search"></i>
+                        </div>
+                        <div className="headerTop__hamburger" onClick={hamburgerOnClick}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -10,6 +10,12 @@ ul {
 li {
     list-style: none;
 }
+a {
+
+}
+a:hover {
+    text-decoration: none;
+}
 
 /* NAVBAR STYLES */
 .navbar{
@@ -18,6 +24,8 @@ li {
     line-height: 45px;
     margin: 0;
     padding: 0;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 .navbar--light {
@@ -37,14 +45,16 @@ li {
     align-items: center;
 }
 
-
-
-.menu__basket {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.navbar__link {
+    cursor: pointer;
+    color: inherit;
 }
+
+.navbar__link:hover {
+    /* font-weight: bold; */
+}
+
+
 
 
 /* MEDIA QUERIES */

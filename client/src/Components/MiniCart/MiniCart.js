@@ -37,8 +37,10 @@ const MiniCart = (props) => {
     }, 0);
 
     return (
-        <div className="menu__basket">
-            <i className="fas fa-shopping-basket"></i> - <span> {cartValue.toFixed(2)} zł ({cartQuantity})</span> 
+        <div className="miniCart">
+            <i className="miniCart__icon fas fa-shopping-basket"></i>
+            <span className="miniCart__text"> Koszyk </span> 
+            <span className="miniCart__quantity">({cartQuantity})</span>
         </div>
     )
 };

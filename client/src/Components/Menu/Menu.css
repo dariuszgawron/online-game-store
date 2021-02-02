@@ -10,6 +10,12 @@ ul {
 li {
     list-style: none;
 }
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
 
 /* MENU STYLES */
 
@@ -29,7 +35,7 @@ li {
 }
 
 .menu__link:hover {
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 /* MEDIA QUERIES */
