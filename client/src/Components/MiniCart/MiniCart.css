@@ -2,10 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-gap: 10px;
+    /* grid-gap: 10px; */
 }
 .miniCart>i {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
 }
 
 /* MEDIA QUERIES */

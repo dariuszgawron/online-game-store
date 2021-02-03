@@ -39,8 +39,10 @@ const MiniCart = (props) => {
     return (
         <div className="miniCart">
             <i className="miniCart__icon fas fa-shopping-basket"></i>
-            <span className="miniCart__text"> Koszyk </span> 
-            <span className="miniCart__quantity">({cartQuantity})</span>
+            <span>
+                <span className="miniCart__text"> Koszyk </span> 
+                <span className="miniCart__quantity">({cartQuantity})</span>
+            </span>
         </div>
     )
 };

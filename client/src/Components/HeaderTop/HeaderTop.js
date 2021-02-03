@@ -13,35 +13,40 @@ const HeaderTop = (props) => {
         <div className="headerTop headerTop--dark">
             <div className="headerTop__container">
                 <div className="headerTop__content">
-                    <div className="logo">
-                        <h2 className="logo__text">
-                            <Link className="logo__link" to="/">GameShop</Link>
-                        </h2>
-                    </div>
-                    <div className="headerTop__search">
-                        {/* <Search /> */}
-                    </div>
-                    <div className="headerTop__right">
-                        <div className="userAccount">
-                            <Link className="userAccount__link" to="/login">
-                                <i class="userAccount__icon fas fa-user-tie"></i>
-                                <span className="userAccount__text">Konto</span>
-                            </Link>
+                    <div className="headerTop__line">
+                        <div className="logo">
+                            <h2 className="logo__text">
+                                <Link className="logo__link" to="/">GameShop</Link>
+                            </h2>
                         </div>
-                        <div className="headerTop__miniCart">
-                            <Link className="headerTop__link" to="/cart">
+                        <div className="headerTop__search">
+                            {/* <Search /> */}
+                        </div>
+                        <div className="headerTop__right">
+                            <Link className="headerTop__link userAccount__link" to="/login">
+                                <div className="userAccount">
+                                    <i class="userAccount__icon fas fa-user-tie"></i>
+                                    <span className="userAccount__text">Konto</span>
+                                </div>
+                            </Link>
+                            <Link className="headerTop__link miniCart__link" to="/cart">
                                 <MiniCart cartItems={props.cartItems} />
                             </Link>
-                        </div>
-                        <div className="search">
-                            <i class="search__icon fas fa-search"></i>
-                        </div>
-                        <div className="headerTop__hamburger" onClick={hamburgerOnClick}>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <div className="headerTop__link menuSearch__link">
+                                <i class="searchLink__icon fas fa-search"></i>
+                            </div>
+                            <div className="headerTop__hamburger" onClick={hamburgerOnClick}>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </div>
                     </div>
+                    {/* <div className="headerTop__line">
+                        <div className="search">
+                            <input className="search__input" />
+                        </div>
+                    </div> */}
                 </div>
             </div>
         </div>
