@@ -1,4 +1,4 @@
-.cart__item {
+.cartItem {
     display: grid;
     grid-template-columns: 120px auto 150px 160px 130px 130px 100px;
     align-items: center;
@@ -7,42 +7,41 @@
     border-bottom: 1px solid #e4e4e4;
 }
 
-.cart__itemImage, .cart__itemTitle, .cart__itemPlatform, .cart__itemQuantity, .cart__itemUnitPrice, .cart__itemTotalPrice, .cart__itemDelete {
+.cartItem__image, .cartItem__title, .cartItem__platform, .cartItem__quantity, .cartItem__unitPrice, .cartItem__totalPrice, .cartItem__delete {
     padding: 10px;
 }
 
-.cart__itemImage {
+.cartItem__image {
     display: flex;
     justify-content: center;
 }
 
-.cart__itemImage > img {
+.cartItem__image > img {
     max-width: 75px;
     max-height: 150px;
 }
 
-.cart__itemTitle {
+.cartItem__title {
     box-flex: 1;
 }
 
-.cart__itemPlatform {
+.cartItem__platform {
 }
 
-.cart__itemQuantity {
+.cartItem__quantity {
     text-align: right;
     display: flex;
-
 }
 
-.cart__itemUnitPrice {
+.cartItem__unitPrice {
     text-align: right;
 }
 
-.cart__itemTotalPrice {
+.cartItem__totalPrice {
     text-align: right;
 }
 
-.cart__itemDelete {
+.cartItem__delete {
     text-align: center;
 }
 
@@ -78,4 +77,47 @@
     width: 60px;
     text-align: center;
     border: 1px solid #d4d4d4;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 1100px) {
+    .cartItem {
+        display: grid;
+        grid-template-columns: 100px auto 140px 140px 60px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "image title title title delete"
+            "image platform platform platform delete"
+            "image quantity unitPrice unitPrice delete";
+        /* align-items: center; */
+    }
+
+    .cartItem__image {
+        grid-area: image;
+    }
+    
+    .cartItem__title {
+        grid-area: title;
+    }
+    
+    .cartItem__platform {
+        grid-area: platform;
+    }
+    
+    .cartItem__quantity {
+        grid-area: quantity;
+    }
+    
+    .cartItem__unitPrice {
+        grid-area: unitPrice;
+    }
+    
+    .cartItem__totalPrice {
+        grid-area: totalPrice;
+    }
+    
+    .cartItem__delete {
+        grid-area: delete;
+    }
 }

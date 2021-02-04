@@ -47,15 +47,15 @@ const CartItem = (props) => {
     }
 
     return (
-        <div className="cart__item">
-            <div className="cart__itemImage">
+        <div className="cartItem">
+            <div className="cartItem__image">
                 <img src="https://i.redd.it/pp63ewz3bt611.jpg" alt={props.item.title} />
             </div>
-            <div className="cart__itemTitle">
+            <div className="cartItem__title">
                 <h4 className="itemTitle">{props.item.title}</h4>
             </div>
-            <div className="cart__itemPlatform">Steam</div>
-            <div className="cart__itemQuantity">
+            <div className="cartItem__platform">Steam</div>
+            <div className="cartItem__quantity">
                 <button className="cart__button cart__button--left cart__button--light" 
                     onClick={decreaseAmountOfProduct} 
                     data-productid={props.item.productId}
@@ -75,9 +75,9 @@ const CartItem = (props) => {
                     <i className="fas fa-plus"></i>
                 </button>
             </div>
-            <div className="cart__itemUnitPrice">{props.item.price} zł</div>
-            <div className="cart__itemTotalPrice">{(props.item.amount*props.item.price).toFixed(2)} zł</div>
-            <div className="cart__itemDelete">
+            <div className="cartItem__unitPrice">{props.item.price} zł</div>
+            <div className="cartItem__totalPrice">{(props.item.amount*props.item.price).toFixed(2)} zł</div>
+            <div className="cartItem__delete">
                 <button className="cart__button cart__button--danger"
                         onClick={deleteProductFromCart}
                         data-productid={props.item.productId}>
