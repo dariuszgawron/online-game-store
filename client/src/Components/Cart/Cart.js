@@ -26,21 +26,26 @@ class Cart extends React.Component {
         return (
             <main className="cart">
                 <div className="cart__container">
-                    <h3 className="cart__title">Koszyk</h3>
-                    <div className="cart__head">
-                        <div className="cart__colTitle"></div>
-                        <div className="cart__colTitle cart__colTitle--left">NAZWA</div>
-                        <div className="cart__colTitle cart__colTitle--left">PLATFORMA</div>
-                        <div className="cart__colTitle">ILOŚĆ</div>
-                        <div className="cart__colTitle cart__colTitle--right">CENA/SZT.</div>
-                        <div className="cart__colTitle cart__colTitle--right">SUMA</div>
-                        <div className="cart__colTitle">USUŃ</div>
-                    </div>
+                    <h3 className="cart__title">Koszyk</h3>{
+                    this.props.cartItems.length>0
+                    ?   <div className="cart__head">
+                            <div className="cart__colTitle"></div>
+                            <div className="cart__colTitle cart__colTitle--left">NAZWA</div>
+                            <div className="cart__colTitle cart__colTitle--left">PLATFORMA</div>
+                            <div className="cart__colTitle">ILOŚĆ</div>
+                            <div className="cart__colTitle cart__colTitle--right">CENA/SZT.</div>
+                            <div className="cart__colTitle cart__colTitle--right">SUMA</div>
+                            <div className="cart__colTitle">USUŃ</div>
+                        </div>
+                    :   <div className="cart__info">
+                            <i class="far fa-sad-cry"></i>
+                            <h4>Twój koszyk jest pusty.</h4>
+                        </div>}
                     <div className="cart__items">{ 
                         this.props.cartItems.map(item => {
                             return <CartItem item={item} 
                                 updateCart = {this.props.updateCart} 
-                                key={item.productId}/>
+                                key={item.productId} />
                         })}
                     </div>
                     <div className="cartSummary">
