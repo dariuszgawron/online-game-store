@@ -139,6 +139,10 @@ a.logo__link:hover {
     transform: rotate(-45deg);
 }
 
+.headerTop__hamburger.active .sidenav {
+    display: block;
+}
+
 /* MEDIA QUERIES */
 @media only screen and (min-width: 900px) {
     .headerTop__hamburger, .miniCart__link, .menuSearch__link {
