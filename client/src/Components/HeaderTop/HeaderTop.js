@@ -41,7 +41,7 @@ const HeaderTop = (props) => {
                             {/* <div className="headerTop__link menuSearch__link">
                                 <i class="searchLink__icon fas fa-search"></i>
                             </div> */}
-                            <div className="headerTop__hamburger" onClick={hamburgerOnClick}>
+                            <div className="headerTop__hamburger" id="hamburgerIcon" onClick={hamburgerOnClick}>
                                 <span></span>
                                 <span></span>
                                 <span></span>
