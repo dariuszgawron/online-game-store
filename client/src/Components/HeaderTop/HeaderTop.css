@@ -61,11 +61,12 @@ i + span {
 
 
 .headerTop__search {
-    line-height: inherit;
+    /* line-height: inherit;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: center; */
     /* padding: 10px 0; */
+    width: 55%;
 }
 
 
@@ -155,6 +156,9 @@ a.logo__link:hover {
 
 @media only screen and (max-width: 899px) {
     .userAccount__text {
+        display: none;
+    }
+    .headerTop__search {
         display: none;
     }
 }

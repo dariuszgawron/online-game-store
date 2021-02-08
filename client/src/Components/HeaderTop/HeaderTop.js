@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { useHistory, useLocation } from "react-router";
 
 import './HeaderTop.css';
+import Search from '../Search/Search';
 import MiniCart from '../MiniCart/MiniCart';
 
 const HeaderTop = (props) => {
@@ -26,7 +28,7 @@ const HeaderTop = (props) => {
                             </h2>
                         </div>
                         <div className="headerTop__search">
-                            {/* <Search /> */}
+                            <Search location={useLocation()} history={useHistory()} />
                         </div>
                         <div className="headerTop__right">
                             <Link className="headerTop__link userAccount__link" to="/login">

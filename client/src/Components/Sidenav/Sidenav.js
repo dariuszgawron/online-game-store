@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from "react-router";
-import queryString from 'query-string';
+// import queryString from 'query-string';
 
 import './Sidenav.css';
 import SidenavMenu from '../SidenavMenu/SidenavMenu';
