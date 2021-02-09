@@ -10,17 +10,12 @@ class ProductCard extends React.Component {
     }
 
     addToBasket(e) {
-        // const newProduct = {
-        //     productid: e.target.getAttribute('data-productid'),
-        //     title: e.target.getAttribute('data-title'),
-        //     price: parseFloat(e.target.getAttribute('data-price')),
-        //     amount: 1
-        // }
-        // this.props.addProduct(newProduct);
         const productData = {
             productId: String(e.target.getAttribute('data-productid')),
             title: e.target.getAttribute('data-title'),
             price: parseFloat(e.target.getAttribute('data-price')),
+            image: e.target.getAttribute('data-image'),
+            platform: e.target.getAttribute('data-platform'),
             amount: 1
         }
         this.props.updateCart('insert',productData);
@@ -59,7 +54,9 @@ class ProductCard extends React.Component {
                 </Link>
                 <button className="productCard__button"
                         data-productid={this.props.product.id_gry} 
+                        data-image={this.props.product.grafiki.filter(this.findCover.bind(this))[0].sciezka_do_pliku}
                         data-title={this.props.product.tytul}
+                        data-platform={this.props.product.platformy.map(product => product.nazwa).join(", ")}
                         data-price={this.props.product.cena_podstawowa}
                         onClick={this.addToBasket.bind(this)} 
                         key={this.props.product.id_gry}

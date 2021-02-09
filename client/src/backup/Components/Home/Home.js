@@ -17,6 +17,9 @@ class Home extends React.Component {
 
   componentDidMount() {
     const recommendedUrl = 'http://localhost:4001/products?limit=20'
+    const saleUrl = 'http://localhost:4001/products?limit=20';
+    const bestsellers = 'http://localhost:4001/products?limit=20';
+    const news = 'http://localhost:4001/products?order=data-desc&limit=20';
     fetch(recommendedUrl)
       .then(res => res.json())
       .then(data=>{
@@ -43,12 +46,16 @@ class Home extends React.Component {
   }
 
   render() {
+    if (!this.state.isLoaded) {
+      return <span>Loading...</span>;
+    }
     return (
       <main className="mainWrapper">
+        <ProductsList products={this.state.recommended} updateCart={this.props.updateCart}/>
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Polecane</h3>
           <div className="mainWrapper__products">
-            <ProductsList products={this.state.recommended} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
+            <ProductsList products={this.state.recommended} updateCart={this.props.updateCart} />
           </div>
         </div>
         <div className="mainWrapper__container">

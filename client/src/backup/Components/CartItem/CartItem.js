@@ -13,7 +13,6 @@ const CartItem = (props) => {
             amount: amountValue,
             price: parseFloat(e.currentTarget.getAttribute("data-price"))
         }
-        console.log(productData);
         props.updateCart('update', productData);
     }
 
@@ -35,7 +34,7 @@ const CartItem = (props) => {
         let quantityInput = e.currentTarget;
         if(quantityInput.value<=0)
             quantityInput.value='1';
-        console.log(e.currentTarget.getAttribute("data-productid"));
+        // console.log(e.currentTarget.getAttribute("data-productid"));
         // props.changeAmountInCart();
     }
 
@@ -47,37 +46,38 @@ const CartItem = (props) => {
     }
 
     return (
-        <div className="cart__item">
-            <div className="cart__itemImage"><img src="https://i.redd.it/pp63ewz3bt611.jpg"/></div>
-            <div className="cart__itemTitle">
+        <div className="cartItem">
+            <div className="cartItem__image">
+                <img src={props.item.image} alt={props.item.title} />
+            </div>
+            <div className="cartItem__title">
                 <h4 className="itemTitle">{props.item.title}</h4>
             </div>
-            <div className="cart__itemPlatform">Steam</div>
-            <div className="cart__itemQuantity">
-                <button className="cart__button cart__button--left cart__button--light" 
-                        onClick={decreaseAmountOfProduct} 
-                        data-productid={props.item.productId}
-                        data-price={props.item.price}>
+            <div className="cartItem__platform">{props.item.platform}</div>
+            <div className="cartItem__quantity">
+                <button className="cartItem__button cartItem__button--left cartItem__button--light" 
+                    onClick={decreaseAmountOfProduct} 
+                    data-productid={props.item.productId}
+                    data-price={props.item.price}>
                     <i className="fas fa-minus"></i>
                 </button>
-                <input className="cart__input" 
-                       id="quantityNumber" 
-                       defaultValue={props.item.amount}
-                       data-productid={props.item.productId}
-                       data-price={props.item.price}
-                       onBlur={changeAmountOfProduct}
+                <input className="cartItem__input"  
+                    defaultValue={props.item.amount}
+                    data-productid={props.item.productId}
+                    data-price={props.item.price}
+                    onBlur={changeAmountOfProduct}
                 />
-                <button className="cart__button cart__button--right cart__button--light" 
-                        onClick={increaseAmountOfProduct}
-                        data-productid={props.item.productId}
-                        data-price={props.item.price}>
+                <button className="cartItem__button cartItem__button--right cartItem__button--light" 
+                    onClick={increaseAmountOfProduct}
+                    data-productid={props.item.productId}
+                    data-price={props.item.price}>
                     <i className="fas fa-plus"></i>
                 </button>
             </div>
-            <div className="cart__itemUnitPrice">{props.item.price} zł</div>
-            <div className="cart__itemTotalPrice">{(props.item.amount*props.item.price).toFixed(2)} zł</div>
-            <div className="cart__itemDelete">
-                <button className="cart__button cart__button--danger"
+            <div className="cartItem__unitPrice">{props.item.price} zł</div>
+            <div className="cartItem__totalPrice">{(props.item.amount*props.item.price).toFixed(2)} zł</div>
+            <div className="cartItem__delete">
+                <button className="cartItem__button cartItem__button--danger"
                         onClick={deleteProductFromCart}
                         data-productid={props.item.productId}>
                     <i className="far fa-trash-alt"></i>

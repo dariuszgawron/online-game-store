@@ -1,88 +1,177 @@
-.cart__item {
-    display: flex;
-    flex-direction: row;
+.cartItem {
+    display: grid;
+    grid-template-columns: 120px auto 150px 130px 130px 130px 70px;
     align-items: center;
-    min-height: 150px;
+    min-height: 130px;
     font-size: 1.2rem;
     border-bottom: 1px solid #e4e4e4;
 }
 
-.cart__itemImage, .cart__itemTitle, .cart__itemPlatform, .cart__itemQuantity, .cart__itemUnitPrice, .cart__itemTotalPrice, .cart__itemDelete {
+.cartItem__image, .cartItem__title, .cartItem__platform, .cartItem__quantity, .cartItem__unitPrice, .cartItem__totalPrice, .cartItem__delete {
     padding: 10px;
 }
 
-.cart__itemImage {
-    width: 120px;
+.cartItem__image {
     display: flex;
     justify-content: center;
 }
 
-.cart__itemImage > img {
+.cartItem__image > img {
     max-width: 75px;
-    max-height: 150px;
+    max-height: 90px;
 }
 
-.cart__itemTitle {
-    min-width: 40%;
+.cartItem__title {
     box-flex: 1;
 }
 
-.cart__itemPlatform {
-    width: 150px
+.cartItem__title>h4 {
+    font-size: 1.3rem;
 }
 
-.cart__itemQuantity {
+.cartItem__platform {
+}
+
+.cartItem__quantity {
     text-align: right;
-    width: 160px;
     display: flex;
-
 }
 
-.cart__itemUnitPrice {
+.cartItem__unitPrice {
     text-align: right;
-    width: 130px;
 }
 
-.cart__itemTotalPrice {
+.cartItem__totalPrice {
     text-align: right;
-    width: 130px;
 }
 
-.cart__itemDelete {
+.cartItem__delete {
     text-align: center;
-    width: 100px;
 }
 
-.cart__button {
-    width: 40px;
-    height: 40px;
+.cartItem__button {
+    width: 35px;
+    height: 35px;
     border-radius: 5px;
+    font-size: 1.1rem;
 }
 
-.cart__button--left {
+.cartItem__button--left {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.cart__button--right {
+.cartItem__button--right {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.cart__button--light {
+.cartItem__button--light {
     border: 1px solid #d4d4d4;
     background-color: #e4e4e4;
     color: #000;
 }
 
-.cart__button--danger {
+.cartItem__button--danger {
     border: 1px solid #ff9696;
     background-color: #f33c3c;
     color: white;
 }
 
-.cart__input {
-    width: 60px;
+.cartItem__input {
+    width: 45px;
     text-align: center;
     border: 1px solid #d4d4d4;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 1200px) {
+    .cartItem {
+        display: grid;
+        grid-template-columns: 100px auto 140px 140px 70px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "image title quantity unitPrice delete"
+            "image platform quantity unitPrice delete";
+        /* align-items: center; */
+    }
+
+    .cartItem__image {
+        grid-area: image;
+    }
+    
+    .cartItem__title {
+        grid-area: title;
+        align-self: end;
+        padding-bottom: 0px;
+    }
+    
+    .cartItem__platform {
+        grid-area: platform;
+        align-self: start;
+        padding-top: 0px;
+    }
+    
+    .cartItem__quantity {
+        grid-area: quantity;
+    }
+    
+    .cartItem__unitPrice {
+        grid-area: unitPrice;
+    }
+    
+    .cartItem__totalPrice {
+        display: none;
+    }
+    
+    .cartItem__delete {
+        grid-area: delete;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .cartItem {
+        display: grid;
+        grid-template-columns: 100px auto 120px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "image title delete"
+            "image platform delete"
+            "image quantity unitPrice";
+        /* align-items: center; */
+    }
+
+    .cartItem__image {
+        grid-area: image;
+    }
+    
+    .cartItem__title {
+        grid-area: title;
+        align-self: end;
+        padding-bottom: 0px;
+    }
+    
+    .cartItem__platform {
+        grid-area: platform;
+        align-self: start;
+        padding-top: 0px;
+    }
+    
+    .cartItem__quantity {
+        grid-area: quantity;
+    }
+    
+    .cartItem__unitPrice {
+        grid-area: unitPrice;
+    }
+    
+    .cartItem__totalPrice {
+        display: none;
+    }
+    
+    .cartItem__delete {
+        grid-area: delete;
+        justify-self: end;
+    }
 }

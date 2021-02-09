@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import ProductsList from '../ProductList/ProductsList';
+import ProductList from '../ProductList/ProductList';
 
 class Home extends React.Component {
   constructor(props) {
@@ -51,32 +51,36 @@ class Home extends React.Component {
     }
     return (
       <main className="mainWrapper">
-        <div className="mainWrapper__container">
+        <ProductList products={this.state.recommended} updateCart={this.props.updateCart} title='Polecane' />
+        <ProductList products={this.state.recommended} updateCart={this.props.updateCart} title='Promocje' />
+        <ProductList products={this.state.recommended} updateCart={this.props.updateCart} title='Bestsellery' />
+        <ProductList products={this.state.recommended} updateCart={this.props.updateCart} title='Nowości' />
+        {/* <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Polecane</h3>
           <div className="mainWrapper__products">
-            <ProductsList products={this.state.recommended} updateCart={this.props.updateCart} />
+            <ProductList products={this.state.recommended} updateCart={this.props.updateCart} />
           </div>
         </div>
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Promocje</h3>
           <div className="mainWrapper__products">
             <button className="productsNav productsNav--left" onClick={this.btnOnClick.bind(this)}>Left</button>
-            <ProductsList products={this.state.recommended} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
+            <ProductList products={this.state.recommended} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
             <button className="productsNav productsNav--right" onClick={this.btnOnClick.bind(this)}>Right</button>
           </div>
         </div>
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Bestsellery</h3>
           <div className="mainWrapper__products">
-            <ProductsList products={this.state.recommended} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
+            <ProductList products={this.state.recommended} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
           </div>
         </div>
         <div className="mainWrapper__container">
           <h3 className="mainWrapper__title">Nowości</h3>
           <div className="mainWrapper__products">
-            <ProductsList products={this.state.recommended} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
+            <ProductList products={this.state.recommended} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
           </div>
-        </div>
+        </div> */}
       </main>
     );
   }

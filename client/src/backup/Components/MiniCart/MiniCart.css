@@ -1,0 +1,16 @@
+.miniCart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* grid-gap: 10px; */
+}
+.miniCart>i {
+    /* font-size: 1.2rem; */
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 899px) {
+    .miniCart__text{
+        display: none;
+    }
+}

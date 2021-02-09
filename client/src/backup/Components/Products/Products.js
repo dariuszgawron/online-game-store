@@ -6,6 +6,7 @@ import ProductsList from '../ProductList/ProductsList';
 import ProductFilter from '../ProductFilter/ProductFilter';
 import ProductPagination from '../ProductPagination/ProductPagination';
 import ProductSort from '../ProductSort/ProductSort';
+import SearchContent from '../SearchContent/SearchContent';
 
 class Products extends React.Component {
   constructor(props) {
@@ -183,9 +184,8 @@ class Products extends React.Component {
             </div>
             <div className="gridPanel__right">
               <div className="mainWrapper__products">
-                <ProductsList 
+                <SearchContent 
                   products={this.state.products} 
-                  addProduct={this.props.addProduct}
                   updateCart={this.props.updateCart}
                 />
               </div>

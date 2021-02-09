@@ -49,7 +49,7 @@ class Product extends React.Component {
     return (
       <main className="productPage">
         <div className="productPage__container">
-          <ProductInfo product={this.state.product} addProduct={this.props.addProduct} updateCart={this.props.updateCart} />
+          <ProductInfo product={this.state.product} updateCart={this.props.updateCart} />
           <ProductFeatures product={this.state.product} />
           {/* <div className="productPage__features">
             {console.log(this.state.product.gatunki[0].nazwa_gatunku)}
