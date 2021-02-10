@@ -6,10 +6,14 @@ import ProductCard from '../ProductCard/ProductCard';
 const ProductSlider = (props) => {
     const scrollLeft = (e) => {
         e.currentTarget.nextElementSibling.scrollLeft -= (window.innerWidth/2);
+        console.log(e.currentTarget.nextElementSibling.scrollWidth - (e.currentTarget.nextElementSibling.scrollLeft - (window.innerWidth/2)));
         // console.log(e.currentTarget.nextElementSibling.scrollWidth - e.currentTarget.nextElementSibling.clientWidth);
     }
     const scrollRight = (e) => {
         e.currentTarget.previousElementSibling.scrollLeft += (window.innerWidth/2);
+        // console.log(e.currentTarget.previousElementSibling.scrollWidth - (e.currentTarget.previousElementSibling.scrollLeft) - window.innerWidth);
+        // e.currentTarget.previousElementSibling.scrollLeft += (e.currentTarget.previousElementSibling.scrollWidth/2);
+        console.log(e.currentTarget.previousElementSibling.scrollLeft);
     } 
     return (
         <div className = "productSlider">

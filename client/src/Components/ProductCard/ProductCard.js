@@ -28,7 +28,7 @@ class ProductCard extends React.Component {
     render() {
         return (
             <div className="productCard">
-                <Link to={{pathname: `/product/${this.props.product.id_gry}`}}>
+                <Link className="productCard__link" to={{pathname: `/product/${this.props.product.id_gry}`}}>
                     <div className="productCard__image">
                         <img 
                             src={this.props.product.grafiki
@@ -49,7 +49,9 @@ class ProductCard extends React.Component {
                         }
                     </p>
                     <div className="productCard__price">
-                        {this.props.product.cena_podstawowa.toFixed(2)}
+                        <span className="productCard__text--warning">
+                            {this.props.product.cena_podstawowa.toFixed(2)} zł
+                        </span>
                     </div>
                 </Link>
                 <button className="productCard__button"

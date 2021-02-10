@@ -55,3 +55,11 @@
     top: 50%;
     right: 0;
 }
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 899px) {
+    .mainWrapper {
+        padding: 65px 0 10px;
+    }
+}

@@ -18,6 +18,10 @@
     font-size: 1.3rem;
 }
 
+.productSlider__control:focus {
+    outline: none;
+}
+
 .productSlider__control--left {
     position: absolute;
     top: calc(50% - 20px);
