@@ -30,6 +30,12 @@
     border-radius: 5px;
 }
 
+.productList__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 
 .productList__error {
@@ -42,4 +48,10 @@
     padding: 10px 5px;
 }
 
+/* MEDIA QUERIES */
+@media only screen and (max-width: 900px) {
+    .productList__title {
+        font-size: 1.5rem;
+    }
+}
 

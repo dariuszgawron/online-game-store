@@ -10,12 +10,19 @@
 }
 
 .productSlider__control {
-    background-color: rgba(163, 163, 163, 0.658);
+    background-color: rgba(190, 190, 190, 0.658);
     border: none;
     border-radius: 100%;
     width: 40px;
     height: 40px;
     font-size: 1.3rem;
+}
+
+.productSlider__control:hover {
+    cursor: pointer;
+    background-color: rgba(245, 245, 245, 0.892);
+    border: 1px solid rgba(163, 163, 163, 0.658);
+    color: #f59210;
 }
 
 .productSlider__control:focus {
