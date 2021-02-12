@@ -4,26 +4,33 @@
     box-sizing: border-box;
 } */
 
-.mainWrapper {
+.productsWrapper {
     background-color: #e4e4e4;
     padding: 110px 0 10px;
 }
 
-.mainWrapper__container {
+.productsWrapper__container {
     width: 90%;
     margin: 30px auto;
+}
+
+.productsWrapper__content {
     background-color: #fff;
     box-shadow: 0 3px 6px rgb(243, 243, 243);
     padding: 10px;
     border-radius: 5px;
 }
 
-.mainWrapper__header {
-
+.productsWrapper__title {
+    padding: 10px 0;
 }
 
-.mainWrapper__title {
-
+.productsWrapper__sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px 0; */
+    font-weight: 500;
 }
 
 .gridPanel {

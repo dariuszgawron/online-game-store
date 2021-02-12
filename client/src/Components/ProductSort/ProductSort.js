@@ -4,7 +4,7 @@ import './ProductSort.css';
 const ProductSort = (props) => {
   return (
     <div className="productSort">
-      <label className="productSort__label" htmlFor="order" id="order">Sortuj: </label> 
+      <label className="productSort__label" htmlFor="order" id="order">Sortuj według: </label> 
       <select className="productSort__select" value={props.value} name="order" onChange={props.onSelectionChange}>
         <option value="">Wybierz</option>
         <option value="tytul-asc">Od A do Z</option>

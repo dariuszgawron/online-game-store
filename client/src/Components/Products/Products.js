@@ -164,38 +164,35 @@ class Products extends React.Component {
       return <span>Loading...</span>;
     }
     return (
-      <main className="mainWrapper">
-        <div className="mainWrapper__container">
-          <h3 className="mainWrapper__title">Polecane</h3>
-          <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
-          {/* <div className="productSort">
-            <label className="productSort__label" for="order" id="order">Sortuj: </label> 
-            <select className="productSort__select" name="order" onChange={this.onChange}>
-              <option value="">Wybierz</option>
-              <option value="tytul-asc">Od A do Z</option>
-              <option value="tytul-desc">Od Z do A</option>
-              <option value="tytul-asc">Od najnowszych</option>
-              <option value="tytul-desc">Od najstarszych</option>
-            </select>
-          </div> */}
-          <div className="gridPanel">
-            <div className="gridPanel__left">
-              <ProductFilter queryValues={this.state.queryValues} />
+      <main className="productsWrapper">
+        <div className="productsWrapper__container">
+          <div className="productsWrapper__content">
+            <h3 className="productsWrapper__title">Polecane</h3>
+            <hr />
+            <div className="productsWrapper__sort">
+              <span>Znaleziono {this.state.numberOfProducts} produktów</span>
+              <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
             </div>
-            <div className="gridPanel__right">
-              <div className="mainWrapper__products">
-                <SearchContent 
-                  products={this.state.products} 
-                  updateCart={this.props.updateCart}
+            <hr />
+            <div className="gridPanel">
+              <div className="gridPanel__left">
+                <ProductFilter queryValues={this.state.queryValues} />
+              </div>
+              <div className="gridPanel__right">
+                <div className="mainWrapper__products">
+                  <SearchContent 
+                    products={this.state.products} 
+                    updateCart={this.props.updateCart}
+                  />
+                </div>
+                <ProductPagination 
+                  numberOfProducts={this.state.numberOfProducts}
+                  limit={this.state.limit} 
+                  currentPage={this.state.currentPage} 
+                  getProductData={this.changePage} 
+                  queryValues={this.state.queryValues}
                 />
               </div>
-              <ProductPagination 
-                numberOfProducts={this.state.numberOfProducts}
-                limit={this.state.limit} 
-                currentPage={this.state.currentPage} 
-                getProductData={this.changePage} 
-                queryValues={this.state.queryValues}
-              />
             </div>
           </div>
         </div>
