@@ -174,17 +174,17 @@ class Products extends React.Component {
               <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
             </div>
             <hr />
-            <div className="gridPanel">
-              <div className="gridPanel__left">
+            <div className="productsContent">
+              <div className="productsContent__filter">
                 <ProductFilter queryValues={this.state.queryValues} />
               </div>
-              <div className="gridPanel__right">
-                <div className="mainWrapper__products">
+              <div className="productsContent__results">
+                {/* <div className="mainWrapper__products"> */}
                   <SearchContent 
                     products={this.state.products} 
                     updateCart={this.props.updateCart}
                   />
-                </div>
+                {/* </div> */}
                 <ProductPagination 
                   numberOfProducts={this.state.numberOfProducts}
                   limit={this.state.limit} 
