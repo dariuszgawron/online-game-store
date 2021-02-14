@@ -7,10 +7,16 @@
 
 .accordion__toggle {
   width: 100%;
-  padding: 5px 0px;
+  padding: 5px 0;
+  padding-left: 4px;
   display: flex;
   justify-content: space-between;
   font-weight: 500;
+}
+
+.accordion__remove {
+  color: rgb(184, 44, 1);
+  padding: 0 7px 0 1px;
 }
 
 .accordion__toggle:hover {

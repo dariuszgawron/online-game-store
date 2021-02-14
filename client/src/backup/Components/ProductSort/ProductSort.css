@@ -1,4 +1,28 @@
-.productPage__features {
+.productSort {
+    display: flex;
+    align-items: center;
+    line-height: 40px;
+    grid-gap: 10px;
+}
+
+.productSort__label {
+    line-height: inherit;
+    margin: 0;
+}
+
+.productSort__select {
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.productSort__select:hover {
+    border: 1px solid #17abf0;
+    box-shadow: 0px 0px 4px #17abf0;
+}
+
+/* .productPage__features {
     background-color: #fff;
     border-radius: 5px;
     padding: 25px;
@@ -21,4 +45,4 @@
     margin-bottom: -1px;
     font-weight: 500;
     background-color: #fff;
-}
+} */

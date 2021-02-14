@@ -7,7 +7,7 @@ const Menu = (props) => {
     return (
         <ul className="menu">
             <li className="menu__item">
-                <Link className="menu__link" to="/products?order=popularnosc-desc">Bestsellery</Link>
+                <Link className="menu__link" to="/products?category=bestsellery&order=popularnosc-desc">Bestsellery</Link>
                 {/* <NavLink exact activeClassName="menu__link--active" className="menu__link" to="/">Bestsellery</NavLink> */}
             </li>
             <li className="menu__item">

@@ -1,8 +1,7 @@
 .searchContent {
-    text-align: center;
+    display: inline-block;
+    text-align: left;
 }
-
-
 
 .searchContent__error {
     width: 100%;

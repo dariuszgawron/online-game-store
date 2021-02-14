@@ -126,69 +126,6 @@ class ProductFilter extends React.Component {
         <div className="filter">
           <h4 className="filter__title">Filtry</h4>
           <div className="filter__accordion">
-            {/* <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}>
-              <span>Gatunki</span><i className="fas fa-chevron-down"></i>
-            </div>
-            <div className="accordion__content">
-              <ul className="accorion__list">
-                {this.state.listOfGenres.map(gatunek => {
-                  return (
-                    <li className="accordion__element" key={'gatunek'+gatunek.id_gatunku}>
-                      <Link className="accordion__link" 
-                          to = {`/products?page=1&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}&producer=${this.props.queryValues.producer || ''}&publisher=${this.props.queryValues.publisher || ''}&genre=${this.createUrlParam('genre',gatunek.id_gatunku.toString())}`}>
-                        <input className="accordion__input" type='checkbox' name={`gatunek${gatunek.id_gatunku}`} id={`gatunek${gatunek.id_gatunku}`}/>
-                        <label className="accordion__label" htmlFor={`gatunek${gatunek.id_gatunku}`}>
-                          {gatunek.nazwa_gatunku}
-                        </label> 
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div> */}
-            
-            {/* <hr/>
-            <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}>
-              <span>Producenci</span><i className="fas fa-chevron-down"></i>
-            </div>
-            <div className="accordion__content">
-              <ul className="accorion__list">
-                {this.state.listOfProducers.map(producent => {
-                  return (
-                    <li className = "accordion__element" key = {'producent'+producent.id_producenta}>
-                      <Link className="accordion__link" 
-                          to = {`/products?page=1&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}&genre=${this.props.queryValues.genre || ''}&publisher=${this.props.queryValues.publisher || ''}&producer=${this.createUrlParam('producer',producent.id_producenta.toString())}`}>
-                        <input className="accordion__input" type='checkbox' name={`producent${producent.id_producenta}`} id={`producent${producent.id_producenta}`}/>
-                        <label className="accordion__label" htmlFor={`producent${producent.id_producenta}`}>{producent.nazwa_producenta}
-                        </label> 
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-
-            <hr/> */}
-            {/* <div className="accordion__toggle" onClick = {(e) => this.accordionContentShowHide(e)}> <span>Wydawcy</span><i className="fas fa-chevron-down"></i>
-            </div>
-            <div className="accordion__content">
-              <ul className="accorion__list">
-                {this.state.listOfPublishers.map(wydawca => {
-                  return (
-                    <li className="accordion__element" key = {'wydawca'+wydawca.id_wydawcy}>
-                      <Link className="accordion__link" 
-                          to = {`/products?page=1&category=${this.props.queryValues.category || ''}&search=${this.props.queryValues.search || ''}&order=${this.props.queryValues.order || ''}&genre=${this.props.queryValues.genre || ''}&producer=${this.props.queryValues.producer || ''}&publisher=${this.createUrlParam('publisher',wydawca.id_wydawcy.toString())}`}>
-                        <input className="accordion__input" type='checkbox' name={`wydawca${wydawca.id_wydawcy}`} id={`wydawca${wydawca.id_wydawcy}`}/>
-                        <label className="accordion__label" htmlFor={`wydawca${wydawca.id_wydawcy}`}>
-                          {wydawca.nazwa_wydawcy}
-                        </label>
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-            <hr /> */}
             <Accordion listOfElements={this.state.listOfGenres} 
                        queryValues={this.props.queryValues}
                        title="Gatunki" table="gatunki" id="gatunek"
@@ -198,7 +135,7 @@ class ProductFilter extends React.Component {
                        queryValues={this.props.queryValues}
                        title="Producenci" table="producenci" id="producent"
                        fieldId="id_producenta" fieldName="nazwa_producenta" />
-                       <hr />
+            <hr />
             <Accordion listOfElements={this.state.listOfPublishers} 
                        queryValues={this.props.queryValues}
                        title="Wydawcy" table="wydawcy" id="wydawca"

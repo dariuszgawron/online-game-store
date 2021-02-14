@@ -1,0 +1,10 @@
+.productGallery {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.productGallery > img {
+    width: 100%;
+    height: 200px;
+}

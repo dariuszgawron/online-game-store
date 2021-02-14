@@ -17,6 +17,7 @@ class Products extends React.Component {
       limit: 20,
       currentPage: 1,
       queryValues: '',
+      pageTitle: '',
       isLoaded: false
     };
     this.btnOnClick = this.btnOnClick.bind(this);
@@ -43,6 +44,13 @@ class Products extends React.Component {
     const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}${queryParams}`;
     const queryValues = queryString.parse(urlParams);
     const currentPage = queryValues.page || 1;
+    const pageTitle = 
+      (queryValues.category === 'nowosci') ? 'Nowości' :
+      (queryValues.category === 'promocje' ? 'Promocje' : 
+      (queryValues.category === 'preordery' ? 'Preordery' : 
+      (queryValues.category === 'dodatki' ? 'Dodatki' :
+      (queryValues.category === 'bestsellery' ? 'Bestsellery' :
+      (queryValues.search ? ('Szukasz: \"'+queryValues.search+'\"') : 'Wszystkie gry')))));
     fetch(productsUrl)
       .then(res => res.json())
       .then(data=>{
@@ -51,7 +59,8 @@ class Products extends React.Component {
           products: data.products,
           numberOfProducts: data.rowCount,
           currentPage: currentPage,
-          queryValues: queryValues
+          queryValues: queryValues,
+          pageTitle: pageTitle
         });
       })
       .catch(console.log(`Zaktualizowano dane`));
@@ -167,7 +176,7 @@ class Products extends React.Component {
       <main className="productsWrapper">
         <div className="productsWrapper__container">
           <div className="productsWrapper__content">
-            <h3 className="productsWrapper__title">Polecane</h3>
+            <h3 className="productsWrapper__title">{this.state.pageTitle}</h3>
             <hr />
             <div className="productsWrapper__sort">
               <span>Znaleziono {this.state.numberOfProducts} produktów</span>
