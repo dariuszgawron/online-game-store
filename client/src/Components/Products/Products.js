@@ -177,6 +177,14 @@ class Products extends React.Component {
         <div className="productsWrapper__container">
           <div className="productsWrapper__content">
             <h3 className="productsWrapper__title">{this.state.pageTitle}</h3>
+            <div className="productsFilter">
+              <button className="productsFilter__button">
+                <i class="fas fa-sliders-h"></i><span>Filtry</span>
+              </button>
+              <button className="productsFilter__button">
+                <i class="fas fa-sort-amount-down"></i><span>Sortuj według</span>
+              </button>
+            </div>
             <hr />
             <div className="productsWrapper__sort">
               <span>Znaleziono {this.state.numberOfProducts} produktów</span>

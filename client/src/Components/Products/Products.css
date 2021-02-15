@@ -56,6 +56,19 @@
 }
 
 
+.productsFilter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2px;
+}
+
+.productsFilter__button {
+    padding: 5px 0;
+    font-weight: 500;
+    border: none;
+    background-image: radial-gradient(#17abf0,#47e3ff);
+    color: #fff;
+}
 
 
 
@@ -64,4 +77,24 @@
     .productsWrapper {
         padding: 65px 0 10px;
     }
+
+    .productsContent {
+        grid-template-columns: 1fr;
+        background: none;
+    }
+
+    .productsContent__filter {
+        display: none;
+    }
+
+    .productsWrapper__sort {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 899px) {
+    .productsFilter {
+        display: none;
+    }
+
 }

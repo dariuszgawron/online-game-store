@@ -1,7 +1,15 @@
 .searchContent {
     display: inline-block;
+    /* display: inline; */
+    /* padding: 0; */
     text-align: left;
+    /* justify-content: center; */
 }
+
+/* .searchContent__container {
+    display: inline-block;
+    text-align: left;
+} */
 
 .searchContent__error {
     width: 100%;
