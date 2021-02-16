@@ -184,13 +184,17 @@ class Products extends React.Component {
               <button className="productsFilter__button">
                 <i class="fas fa-sort-amount-down"></i><span>Sortuj według</span>
               </button>
+              {/* <div className="productsFilter__panel">
+                <div className="productsFilter__"
+                <ProductFilter queryValues={this.state.queryValues} />
+              </div> */}
             </div>
-            <hr />
+            <hr className="productsWrapper__line" />
             <div className="productsWrapper__sort">
               <span>Znaleziono {this.state.numberOfProducts} produktów</span>
               <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
             </div>
-            <hr />
+            <hr className="productsWrapper__line" />
             <div className="productsContent">
               <div className="productsContent__filter">
                 <ProductFilter queryValues={this.state.queryValues} />

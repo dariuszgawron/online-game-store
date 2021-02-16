@@ -8,7 +8,7 @@
 
 .productPage__cover {
     height: 350px;
-    padding: 40px 30px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -21,19 +21,20 @@
 /* DETAILS STYLES */
 
 .productPage__details {
-    padding: 40px 30px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     font-size: 1rem;
 }
 
 .productDetails {
-    display: flex;
+    display: grid;
+    grid-template-columns: 150px 1fr;
     grid-gap: 20px;
 }
 
 .productDetails__label {
-    width: 210px;
+    /* width: 210px; */
     text-align: right;
     color: rgba(121, 121, 121, 0.897);
 }

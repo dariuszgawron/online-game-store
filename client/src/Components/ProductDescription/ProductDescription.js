@@ -21,8 +21,7 @@ const ProductDescription = (props) => {
   return (
     <div className="productPage__description">
       <div className="productPage__cover">
-        <img src = { props.product.grafiki.filter((image) => image.typ_grafiki === 0)[0].sciezka_do_pliku}
-            alt='jakiś tekst'  
+        <img src = { props.product.grafiki.filter((image) => image.typ_grafiki === 0)[0].sciezka_do_pliku} alt='jakiś tekst'  
         />
       </div>
       <div className="productPage__details">
