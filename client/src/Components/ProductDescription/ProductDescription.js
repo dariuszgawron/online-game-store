@@ -17,6 +17,14 @@ const ProductDescription = (props) => {
   // const liczbaOcen = props.product.oceny_gier.map((product) => product.ocena).length;
   // const liczbaOcen = 5;
   // const sredniaOcen = (props.product.oceny_gier.reduce((x, y) => x + y, 0) / liczbaOcen).toFixed(2);
+
+  const dateFormat = (date) => {
+    const dateParts = date.split('T')[0].split('-');
+    const day = dateParts[2];
+    const month = dateParts[1];
+    const year = dateParts[0];
+    return day + '-' + month + '-' + year;
+  }
   
   return (
     <div className="productPage__description">
@@ -31,7 +39,7 @@ const ProductDescription = (props) => {
         </div>
         <div className="productDetails">
           <span className="productDetails__label">Data wydania:</span>
-          <p className="productDetails__content">21.12.2020</p>
+          <p className="productDetails__content">{dateFormat(props.product.data_wydania)}</p>
         </div>
         <div className="productDetails">
           <span className="productDetails__label">Kategoria wiekowa:</span>
