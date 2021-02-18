@@ -30,7 +30,7 @@ class ProductGallery extends React.Component {
             return <img src={photo.sciezka_do_pliku} />
           })}
           {zwiastuny.map(zwiastun => {
-            return <iframe width="100%" height="200px" src="https://www.youtube.com/embed/LXK905yxHQg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+            return <iframe width="100%" height="200px" src="https://www.youtube.com/embed/LXK905yxHQg" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
           })}
         {/* </div> */}
       </div>

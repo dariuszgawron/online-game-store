@@ -28,15 +28,15 @@ class ProductFeatures extends React.Component {
   render() {
     return (
       <div className="productPage__features">
-        <ul class="bar">
-          <li class="bar__item bar__item--active" onClick={(e) => this.openTab(e,'Description')}>Opis</li>
-          <li class="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</li>
-          <li class="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</li>
+        <ul className="bar">
+          <li className="bar__item bar__item--active" onClick={(e) => this.openTab(e,'Description')}>Opis</li>
+          <li className="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</li>
+          <li className="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</li>
         </ul>
-        {/* <div class="bar">
-          <button class="bar__item bar__item--active" onClick={(e) => this.openTab(e,'Description')}>Opis</button>
-          <button class="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</button>
-          <button class="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</button>
+        {/* <div className="bar">
+          <button className="bar__item bar__item--active" onClick={(e) => this.openTab(e,'Description')}>Opis</button>
+          <button className="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</button>
+          <button className="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</button>
         </div> */}
 
         <ProductRequirements 

@@ -42,3 +42,9 @@
 .productDetails__content {
     margin-bottom: 0.5rem;
 }
+
+.fa-star {
+    background-image: radial-gradient(#f8fc0f,#ffc60a);
+    background-clip: text;
+    -webkit-text-fill-color: transparent
+}

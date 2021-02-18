@@ -36,10 +36,10 @@ class ProductInfo extends React.Component {
             </p>
           </div>
           <button className="productPage__basket" onClick={(e) => this.addToBasket(e)} >
-          <i class="fas fa-cart-plus"></i><span>Dodaj do koszyka</span>
+          <i className="fas fa-cart-plus"></i><span>Dodaj do koszyka</span>
           </button>
           <button className="productPage__wishlist">
-          <i class="fas fa-heart"></i><span>Lista życzeń</span>
+          <i className="fas fa-heart"></i><span>Lista życzeń</span>
           </button>  
         </div>
       </div>  

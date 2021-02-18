@@ -19,11 +19,9 @@ const ProductDescription = (props) => {
   // const sredniaOcen = (props.product.oceny_gier.reduce((x, y) => x + y, 0) / liczbaOcen).toFixed(2);
 
   const dateFormat = (date) => {
-    const dateParts = date.split('T')[0].split('-');
-    const day = dateParts[2];
-    const month = dateParts[1];
-    const year = dateParts[0];
-    return day + '-' + month + '-' + year;
+    // const dateParts = date.split('T')[0].split('-');
+    const dateFormat = new Date(date).toLocaleDateString('pl-PL',{year: 'numeric', month: 'long', day: 'numeric'});
+    return dateFormat;
   }
   
   return (
@@ -35,7 +33,9 @@ const ProductDescription = (props) => {
       <div className="productPage__details">
         <div className="productDetails">
           <span className="productDetails__label">Ocena:</span>
-          <p className="productDetails__content">***** (4.25) / 19 głosów</p>
+          <p className="productDetails__content">
+            <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i> (4.25) / 19 głosów
+          </p>
         </div>
         <div className="productDetails">
           <span className="productDetails__label">Data wydania:</span>
