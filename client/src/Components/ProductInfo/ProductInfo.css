@@ -69,3 +69,16 @@
     background-image: radial-gradient(#f86a3f,#ffbf47);
     color: #fff;
 }
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 990px) {
+    .productPage__main {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "title"
+            "description"
+            "price";
+    }
+}

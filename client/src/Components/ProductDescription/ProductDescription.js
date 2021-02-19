@@ -23,6 +23,19 @@ const ProductDescription = (props) => {
     const dateFormat = new Date(date).toLocaleDateString('pl-PL',{year: 'numeric', month: 'long', day: 'numeric'});
     return dateFormat;
   }
+
+  const generateStars = (average) => {
+    let stars = [];
+    for(let i = 1; i<= 5; i++) {
+      if(i <= average)
+        stars.push(<i className="star__icon star__icon--full fas fa-star"></i>)
+      else if (0.25 <= (i - average) & (i - average) <= 0.75)
+        stars.push(<i className="star__icon star__icon--half fas fa-star-half-alt"></i>)
+      else 
+        stars.push(<i className="star__icon star__icon--empty fas fa-star"></i>)
+    }
+    return stars;
+  };
   
   return (
     <div className="productPage__description">
@@ -34,7 +47,7 @@ const ProductDescription = (props) => {
         <div className="productDetails">
           <span className="productDetails__label">Ocena:</span>
           <p className="productDetails__content">
-            <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i> (4.25) / 19 głosów
+            {generateStars(3.25)} (4.25) / 19 głosów
           </p>
         </div>
         <div className="productDetails">

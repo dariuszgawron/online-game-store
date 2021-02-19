@@ -43,8 +43,30 @@
     margin-bottom: 0.5rem;
 }
 
-.fa-star {
+.star__icon--full {
     background-image: radial-gradient(#f8fc0f,#ffc60a);
     background-clip: text;
     -webkit-text-fill-color: transparent
+}
+
+.star__icon--half {
+    background-image: radial-gradient(#f8fc0f,#ffc60a);
+    background-clip: text;
+    -webkit-text-fill-color: transparent
+}
+
+.star__icon--empty {
+    background-image: radial-gradient(#d4d3d3, #e9e9e9);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 990px) {
+    .productPage__description {
+        grid-area: description;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }
