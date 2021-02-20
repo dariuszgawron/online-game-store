@@ -2,7 +2,7 @@ import React from 'react';
 import './ProductInfo.css';
 // import '../ProductDescription/ProductDescription';
 
-import ProductDescription from '../ProductDescription/ProductDescription';
+import ProductDetails from '../ProductDetails/ProductDetails';
 
 class ProductInfo extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class ProductInfo extends React.Component {
         <div className="productPage__title">
           <h3>{this.props.product.tytul}</h3>
         </div>
-        <ProductDescription product={this.props.product} />
+        <ProductDetails product={this.props.product} />
         <div className="productPage__price">
           <div className="productPrice">
             <p className="productPrice__base">

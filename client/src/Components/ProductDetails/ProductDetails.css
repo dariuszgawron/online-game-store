@@ -69,4 +69,12 @@
         display: grid;
         grid-template-columns: 1fr;
     }
+
+    .productPage__cover {
+        align-items: center;
+    }
+
+    .productPage__details {
+        padding: 20px 20px;
+    }
 }

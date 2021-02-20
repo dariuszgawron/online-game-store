@@ -29,7 +29,7 @@ class ProductFeatures extends React.Component {
     return (
       <div className="productPage__features">
         <ul className="bar">
-          <li className="bar__item bar__item--active" onClick={(e) => this.openTab(e,'Description')}>Opis</li>
+          <li className="bar__item bar__item--active" id="barDefault" onClick={(e) => this.openTab(e,'Description')}>Opis</li>
           <li className="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</li>
           <li className="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</li>
         </ul>
@@ -38,6 +38,10 @@ class ProductFeatures extends React.Component {
           <button className="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</button>
           <button className="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</button>
         </div> */}
+
+        <div className="productDescription tab" id="Description">
+          <p>{this.props.product.opis}</p>
+        </div>
 
         <ProductRequirements 
           wymagania={this.props.product.wymagania} 

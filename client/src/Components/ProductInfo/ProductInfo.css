@@ -81,4 +81,8 @@
             "description"
             "price";
     }
+
+    .productPage__price {
+        padding: 20px 20px;
+    }
 }

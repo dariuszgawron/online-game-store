@@ -1,7 +1,7 @@
 import React from 'react';
-import './ProductDescription.css';
+import './ProductDetails.css';
 
-const ProductDescription = (props) => {
+const ProductDetails = (props) => {
   const gatunki = props.product.gatunki.map((gatunek)=>{
     return gatunek.nazwa_gatunku
   }).join(", ");
@@ -84,4 +84,4 @@ const ProductDescription = (props) => {
 }
 
 
-export default ProductDescription;
+export default ProductDetails;

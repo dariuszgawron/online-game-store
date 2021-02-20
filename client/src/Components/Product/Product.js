@@ -47,15 +47,14 @@ class Product extends React.Component {
       return <span>Loading...</span>;
     }
     return (
-      <main className="productPage">
-        <div className="productPage__container">
-          <ProductInfo product={this.state.product} updateCart={this.props.updateCart} />
-          <ProductFeatures product={this.state.product} />
-          {/* <div className="productPage__features">
-            {console.log(this.state.product.gatunki[0].nazwa_gatunku)}
-          </div> */}
-          <div className="productPage__recommended">
-            {/* <ProductsList products={this.state.products} addProduct={this.props.addProduct}/> */}
+      <main className="productWrapper">
+        <div className="productWrapper__container">
+          <div className="productWrapper__content">
+            <ProductInfo product={this.state.product} updateCart={this.props.updateCart} />
+            <ProductFeatures product={this.state.product} />
+            <div className="productPage__recommended">
+              {/* <ProductsList products={this.state.products} addProduct={this.props.addProduct}/> */}
+            </div>
           </div>
         </div>
       </main>
