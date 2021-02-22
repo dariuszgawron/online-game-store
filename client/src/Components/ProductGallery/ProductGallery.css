@@ -1,5 +1,5 @@
 .productGallery {
-    display: grid;
+    display: none;
     grid-gap: 15px;
     grid-template-columns: repeat(4,1fr);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './ProductGallery.css';
+import PictureView from '../PictureView/PictureView';
 
 class ProductGallery extends React.Component {
   constructor(props) {
@@ -19,12 +20,16 @@ class ProductGallery extends React.Component {
   //   console.log(productsList[1].scrollWidth - productsList[1].scrollLeft);
   //   // this.props.addProduct({'title':'adaf','price': 12,'amount':1,'productId':1});
   // }
+  openImage() {
+
+  }
 
   render() {
     const grafiki = this.props.grafiki.filter(photo=>photo.typ_grafiki!==0);
     const zwiastuny = this.props.zwiastuny;
     return (
       <div className="productGallery tab" id="Gallery">
+        {/* <PictureView images={grafiki} /> */}
         {/* <div className="gallery"> */}
           {grafiki.map(photo=>{
             return <img src={photo.sciezka_do_pliku} />

@@ -1,5 +1,9 @@
-.productPage__features {
+/* .productPage__features {
     background-color: #fff;
     border-radius: 5px;
     padding: 25px;
+} */
+
+.productRequirements {
+    display: none;
 }
