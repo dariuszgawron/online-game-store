@@ -11,6 +11,7 @@ class ProductGallery extends React.Component {
     this.images = this.props.grafiki.filter(photo=>photo.typ_grafiki!==0);
     this.productTitle = /*this.props.title*/ 'Prince of Persia';
     this.pictureIndex = 1;
+    // this.openPicture = this.openPicture.bind(this);
     // this.btnOnClick = this.btnOnClick.bind(this);
   }
 
@@ -53,35 +54,47 @@ class ProductGallery extends React.Component {
     }
   }
 
-  openPicture = (index=2) => {
+  openPicture (index) {
+    console.log('ok');
     if (document.getElementsByClassName('pictureView')[0]) {
       document.getElementsByClassName('pictureView')[0].style.display = "block";
       this.pictureIndex = index;
-      this.displayPicture(this.pictureIndex);
+      // this.displayPicture(this.pictureIndex);
     }
   }
 
-  closePicture = () => {
+  closePicture () {
     if(document.getElementById('pictureView'))
       document.getElementById('pictureView').style.display = "none";
   }
 
   render() {
+    // const openPicture = (index) => {
+    //   console.log('ok');
+    //   if (document.getElementsByClassName('pictureView')[0]) {
+    //     document.getElementsByClassName('pictureView')[0].style.display = "block";
+    //     this.pictureIndex = index;
+    //     // this.displayPicture(this.pictureIndex);
+    //   }
+    // }
+    
     const grafiki = this.props.grafiki.filter(photo=>photo.typ_grafiki!==0);
     const zwiastuny = this.props.zwiastuny;
     return (
       <div className="productGallery tab" id="Gallery">
-        <PictureView images={grafiki} title='Prince' />
+        <PictureView images={grafiki} title='Prince' 
+                      closePicture = {this.closePicture} 
+                      displayPicture = {this.displayPicture} />
         {/* <div className="gallery"> */}
           {grafiki.map((photo,index) => {
-            return <img src = {photo.sciezka_do_pliku} alt={`${this.productTitle} (${index+1})`} 
-                        index = {index} onClick = {this.openPicture()} 
-                        closePicture = {this.closePicture} 
-                        displayPicture = {this.displayPicture} 
+            return <img src = {photo.sciezka_do_pliku} 
+                        onClick = {() => this.openPicture(1)} 
+                        alt={`${this.productTitle} (${index+1})`} 
+                        key = {`${this.productTitle}${index}`}  
                     />
           })}
-          {zwiastuny.map(zwiastun => {
-            return <iframe width="100%" height="200px" src="https://www.youtube.com/embed/LXK905yxHQg" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
+          {zwiastuny.map((zwiastun,index) => {
+            return <iframe width="100%" height="200px" key={`zwiastun${index}`} src={"https://www.youtube.com/embed/LXK905yxHQg"} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
           })}
         {/* </div> */}
       </div>

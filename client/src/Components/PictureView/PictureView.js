@@ -53,9 +53,9 @@ const PictureView = (props) => {
     <div className="pictureView" id="pictureView">
       <span className="pictureView__close" onClick={closePicture()}>&times;</span>
       <div className="pictureView__content">
-        {images.map(image => {
+        {images.map((image,index) => {
           return (
-            <div className="pictureView__image">
+            <div className="pictureView__image" key={`picture${index}`}>
               <img src={image} alt={`${imageTitle} (${++pictureNumber})`} />
             </div>
           )
