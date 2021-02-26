@@ -6,37 +6,37 @@ const PictureView = (props) => {
   const imageTitle = props.title;
   let pictureNumber = 0;
   // let id = props.pictureNumber;
-  let pictureIndex = 1;
+  // let pictureIndex = 1;
   // displayPicture(pictureIndex);
 
   const nextPicture = () => {
-    pictureIndex++;
-    displayPicture(pictureIndex);
+    // pictureIndex++;
+    props.displayPicture(1);
   }
 
   const prevPicture = () => {
-    pictureIndex--;
-    displayPicture(pictureIndex);
+    // pictureIndex--;
+    props.displayPicture(-1);
   }
 
-  const displayPicture = (index) => {
-    if (document.getElementsByClassName('pictureView__image')[0] && 
-        document.getElementsByClassName('pictureView__caption')[0])
-    {
-      let pictures = document.getElementsByClassName('pictureView__image');
-      let caption = document.getElementsByClassName('pictureView__caption');
-      if (index > images.length)
-        index = 1;
-      else if (index < 1)
-        index = images.length;
-      let pictureIndex;
-      for (pictureIndex = 0; pictureIndex < images.length; pictureIndex++ ) {
-        pictures[pictureIndex].style.display = "none";
-      }
-      pictures[pictureIndex-1].style.display = "block";
-      caption.innerHTML = `${imageTitle} +(${pictureIndex})`;
-    }
-  }
+  // const displayPicture = (index) => {
+  //   if (document.getElementsByClassName('pictureView__image')[0] && 
+  //       document.getElementsByClassName('pictureView__caption')[0])
+  //   {
+  //     let pictures = document.getElementsByClassName('pictureView__image');
+  //     let caption = document.getElementsByClassName('pictureView__caption');
+  //     if (index > images.length)
+  //       index = 1;
+  //     else if (index < 1)
+  //       index = images.length;
+  //     let pictureIndex;
+  //     for (pictureIndex = 0; pictureIndex < images.length; pictureIndex++ ) {
+  //       pictures[pictureIndex].style.display = "none";
+  //     }
+  //     pictures[pictureIndex-1].style.display = "block";
+  //     caption.innerHTML = `${imageTitle} +(${pictureIndex})`;
+  //   }
+  // }
 
   // const openPicture = (index) => {
   //   document.getElementsByClassName('pictureView')[0].style.display = "block";
@@ -50,25 +50,27 @@ const PictureView = (props) => {
   }
 
   return (
-    <div className="pictureView" id="pictureView">
-      <span className="pictureView__close" onClick={closePicture()}>&times;</span>
-      <div className="pictureView__content">
+    <div className = "pictureView" id = "pictureView">
+      <span className = "pictureView__close" onClick = {() => closePicture()}>&times;</span>
+      <div className = "pictureView__content">
         {images.map((image,index) => {
           return (
-            <div className="pictureView__image" key={`picture${index}`}>
-              <img src={image} alt={`${imageTitle} (${++pictureNumber})`} />
+            <div className = "pictureView__image" key = {`picture${index}`}>
+              <img src = {image.sciezka_do_pliku} alt = {`${imageTitle} (${++pictureNumber})`} />
             </div>
           )
         })}
 
-        <button className="pictureView__button pictureView__button--prev" onClick={nextPicture()}>
+        <button className = "pictureView__button pictureView__button--prev" 
+                onClick = {() => nextPicture()}>
           &#10094;
         </button>
-        <button className="pictureView__button pictureView__button--next" onClick={prevPicture()}>
+        <button className = "pictureView__button pictureView__button--next" 
+                onClick = {() => prevPicture()}>
           &#10095;
         </button>
 
-        <div className="pictureView__caption"></div>
+        <div className = "pictureView__caption"></div>
       </div>
     </div>
   )
