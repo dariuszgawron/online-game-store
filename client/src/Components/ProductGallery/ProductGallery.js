@@ -9,7 +9,7 @@ class ProductGallery extends React.Component {
       isLoaded: false
     };
     this.images = this.props.grafiki.filter(photo=>photo.typ_grafiki!==0);
-    this.productTitle = /*this.props.title*/ 'Prince of Persia';
+    this.productTitle = this.props.tytul;
     this.pictureIndex = 1;
     // this.openPicture = this.openPicture.bind(this);
     // this.btnOnClick = this.btnOnClick.bind(this);
@@ -26,31 +26,32 @@ class ProductGallery extends React.Component {
   // }
   
 
-  // nextPicture = () => {
-  //   this.pictureIndex++;
-  //   this.displayPicture(this.pictureIndex);
-  // }
+  nextPicture = () => {
+    this.pictureIndex++;
+    this.displayPicture(this.pictureIndex);
+  }
 
-  // prevPicture = () => {
-  //   this.pictureIndex--;
-  //   this.displayPicture(this.pictureIndex);
-  // }
+  prevPicture = () => {
+    this.pictureIndex--;
+    this.displayPicture(this.pictureIndex);
+  }
 
   displayPicture = (index) => {
     if (document.getElementsByClassName('pictureView__image')[0] && 
         document.getElementsByClassName('pictureView__caption')[0])
     {
       let pictures = document.getElementsByClassName('pictureView__image');
-      let caption = document.getElementsByClassName('pictureView__caption');
-      if (index > this.images.length)
-        index = 1;
-      else if (index < 1)
-        index = this.images.length;
+      let caption = document.getElementsByClassName('pictureView__caption')[0];
+      if (index >= this.images.length)
+        index = 0;
+      else if (index < 0)
+        index = this.images.length-1;
+      this.pictureIndex=index;
       for (let index = 0; index < this.images.length; index++ ) {
         pictures[index].style.display = "none";
       }
-      pictures[this.pictureIndex-1].style.display = "block";
-      caption.innerHTML = `${this.productTitle} +(${this.pictureIndex})`;
+      pictures[this.pictureIndex].style.display = "block";
+      caption.innerHTML = `${this.productTitle} (${this.pictureIndex+1}/${this.images.length})`;
     }
   }
 
@@ -79,22 +80,23 @@ class ProductGallery extends React.Component {
     
     const grafiki = this.props.grafiki.filter(photo => photo.typ_grafiki !== 0);
     const zwiastuny = this.props.zwiastuny;
-    console.log(zwiastuny);
     return (
       <div className = "productGallery tab" id = "Gallery">
-        <PictureView images={grafiki} title = 'Prince' 
+        <PictureView images={grafiki} productTitle = {this.productTitle} 
                       closePicture = {() => this.closePicture} 
-                      displayPicture = {() => this.displayPicture} />
+                      displayPicture = {() => this.displayPicture}
+                      nextPicture = {() => this.nextPicture}
+                      prevPicture = {() => this.prevPicture} />
         {/* <div className="gallery"> */}
           {grafiki.map((photo,index) => {
             return <img src = {photo.sciezka_do_pliku} 
-                        onClick = {() => this.openPicture(index+1)} 
+                        onClick = {() => this.openPicture(index)} 
                         alt = {`${this.productTitle} (${index+1})`} 
                         key = {`${this.productTitle}${index}`}  
                     />
           })}
           {zwiastuny.map((zwiastun,index) => {
-            return <iframe width="100%" height="200px" key={`zwiastun${index}`} src={"https://www.youtube.com/embed/LXK905yxHQg"} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
+            return <iframe width="100%" height="200px" key={`zwiastun${index}`} src={`${zwiastun.link.replace("watch?v=","embed/")}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe>
           })}
         {/* </div> */}
       </div>

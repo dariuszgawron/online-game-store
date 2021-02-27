@@ -17,6 +17,8 @@ class ProductInfo extends React.Component {
       productId: String(this.props.product.id_gry),
       title: this.props.product.tytul,
       price: parseFloat(this.props.product.cena_podstawowa),
+      image: this.props.product.grafiki.filter(image => image.typ_grafiki === 0)[0].sciezka_do_pliku,
+      platform: this.props.product.platformy.map(product => product.nazwa).join(", "),
       amount: 1
     }
     this.props.updateCart('insert',productData);

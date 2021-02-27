@@ -9,15 +9,15 @@ const PictureView = (props) => {
   // let pictureIndex = 1;
   // displayPicture(pictureIndex);
 
-  const nextPicture = () => {
-    // pictureIndex++;
-    props.displayPicture(1);
-  }
+  // const nextPicture = () => {
+  //   // pictureIndex++;
+  //   props.displayPicture(1);
+  // }
 
-  const prevPicture = () => {
-    // pictureIndex--;
-    props.displayPicture(-1);
-  }
+  // const prevPicture = () => {
+  //   // pictureIndex--;
+  //   props.displayPicture(-1);
+  // }
 
   // const displayPicture = (index) => {
   //   if (document.getElementsByClassName('pictureView__image')[0] && 
@@ -62,15 +62,17 @@ const PictureView = (props) => {
         })}
 
         <button className = "pictureView__button pictureView__button--prev" 
-                onClick = {() => nextPicture()}>
+                onClick = {props.prevPicture()}>
           &#10094;
         </button>
         <button className = "pictureView__button pictureView__button--next" 
-                onClick = {() => prevPicture()}>
+                onClick = {props.nextPicture()}>
           &#10095;
         </button>
 
-        <div className = "pictureView__caption"></div>
+        <div className = "pictureView__caption">
+          {props.productTitle}
+        </div>
       </div>
     </div>
   )

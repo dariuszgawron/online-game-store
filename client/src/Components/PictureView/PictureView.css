@@ -12,19 +12,75 @@
 }
 
 .pictureView__content {
+    position: relative;
     width: 90%;
-    max-width: 1000px;
+    max-width: 1100px;
+    height: calc(100vh - 100px - 200px);
+    margin: 0 auto;
+    text-align: center;
 }
 
 .pictureView__close {
+    cursor: pointer;
     position: absolute;
     color: #fff;
     top: 10px; 
     right: 30px;
     font-weight: 700;
     font-size: 3rem;
+    line-height: 40px;
+}
+
+.pictureView__close:hover {
+    color: rgb(158, 158, 158);
 }
 
 .pictureView__image {
     display: none;
+    height: 100%;
+    width: 100%;
+}
+
+.pictureView__image > img {
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+}
+
+.pictureView__button {
+    cursor: pointer;
+    position: absolute;
+    width: auto;
+    top: calc(50% - 40px);
+    margin: 0;
+    padding: 20px 10px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.pictureView__button:focus {
+    outline: none;
+}
+
+.pictureView__button:hover {
+    border-color: rgba(255, 255, 255, 0.295);
+    background-color: rgba(255, 255, 255, 0.541);
+}
+
+.pictureView__button--next {
+    right: 0;
+}
+
+.pictureView__button--prev {
+    left: 0;
+}
+
+.pictureView__caption {
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 40px;
+    font-weight: 500;
 }
