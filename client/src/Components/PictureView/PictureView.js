@@ -49,6 +49,12 @@ const PictureView = (props) => {
       document.getElementById('pictureView').style.display = "none";
   }
 
+  const changePicture = (e,index) => {
+    e.persist();
+    console.log(index);
+    props.displayPicture(index);
+  }
+
   return (
     <div className = "pictureView" id = "pictureView">
       <span className = "pictureView__close" onClick = {() => closePicture()}>&times;</span>
@@ -72,6 +78,19 @@ const PictureView = (props) => {
 
         <div className = "pictureView__caption">
           {props.productTitle}
+        </div>
+
+        <div className = "pictureThumbnails">
+          <div className = "pictureThumbnails__content">
+            {images.map((image, index) => {
+              return (
+                <div className = "pictureThumbnails__image" key = {`thumbnail${index}`}>
+                  <img src = {image.sciezka_do_pliku} alt = {`${imageTitle}`} 
+                      onClick = {(e) => changePicture(e,index)} />
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </div>

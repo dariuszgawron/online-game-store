@@ -36,7 +36,8 @@ class ProductGallery extends React.Component {
     this.displayPicture(this.pictureIndex);
   }
 
-  displayPicture = (index) => {
+  displayPicture (index) {
+    console.log(index);
     if (document.getElementsByClassName('pictureView__image')[0] && 
         document.getElementsByClassName('pictureView__caption')[0])
     {
@@ -46,7 +47,7 @@ class ProductGallery extends React.Component {
         index = 0;
       else if (index < 0)
         index = this.images.length-1;
-      this.pictureIndex=index;
+      this.pictureIndex = index;
       for (let index = 0; index < this.images.length; index++ ) {
         pictures[index].style.display = "none";
       }
