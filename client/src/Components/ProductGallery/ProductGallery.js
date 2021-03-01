@@ -36,8 +36,8 @@ class ProductGallery extends React.Component {
     this.displayPicture(this.pictureIndex);
   }
 
-  displayPicture (index) {
-    console.log(index);
+  displayPicture = (index) => {
+    console.log('a'+index);
     if (document.getElementsByClassName('pictureView__image')[0] && 
         document.getElementsByClassName('pictureView__caption')[0])
     {
@@ -85,7 +85,7 @@ class ProductGallery extends React.Component {
       <div className = "productGallery tab" id = "Gallery">
         <PictureView images={grafiki} productTitle = {this.productTitle} 
                       closePicture = {() => this.closePicture} 
-                      displayPicture = {() => this.displayPicture}
+                      displayPicture = {this.displayPicture}
                       nextPicture = {() => this.nextPicture}
                       prevPicture = {() => this.prevPicture} />
         {/* <div className="gallery"> */}

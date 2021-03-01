@@ -49,10 +49,9 @@ const PictureView = (props) => {
       document.getElementById('pictureView').style.display = "none";
   }
 
-  const changePicture = (e,index) => {
-    e.persist();
-    console.log(index);
-    props.displayPicture(index);
+  const changePicture = (e) => {
+    // e.currentTarget.getAttribute('data-id');
+    props.displayPicture(1);
   }
 
   return (
@@ -85,8 +84,8 @@ const PictureView = (props) => {
             {images.map((image, index) => {
               return (
                 <div className = "pictureThumbnails__image" key = {`thumbnail${index}`}>
-                  <img src = {image.sciezka_do_pliku} alt = {`${imageTitle}`} 
-                      onClick = {(e) => changePicture(e,index)} />
+                  <img src = {image.sciezka_do_pliku} alt = {`${imageTitle}`} data-id={index}
+                      onClick = {() => props.displayPicture(index)} />
                 </div>
               )
             })}
