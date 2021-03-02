@@ -49,9 +49,19 @@ const PictureView = (props) => {
       document.getElementById('pictureView').style.display = "none";
   }
 
-  const changePicture = (e) => {
-    // e.currentTarget.getAttribute('data-id');
-    props.displayPicture(1);
+  // const changePicture = (e) => {
+  //   // e.currentTarget.getAttribute('data-id');
+  //   props.displayPicture(1);
+  // }
+
+  const scrollRight = () => {
+    let thumbnails = document.getElementsByClassName('pictureThumbnails__content')[0];
+    thumbnails.scrollLeft += thumbnails.offsetWidth * (2/3);
+  }
+
+  const scrollLeft = () => {
+    let thumbnails = document.getElementsByClassName('pictureThumbnails__content')[0];
+    thumbnails.scrollLeft -= thumbnails.offsetWidth * (2/3);
   }
 
   return (
@@ -89,7 +99,16 @@ const PictureView = (props) => {
                 </div>
               )
             })}
+            
           </div>
+          <button className = "pictureThumbnails__button pictureThumbnails__button--prev" 
+                  onClick = {() => scrollLeft()}>
+              &#10094;
+            </button>
+            <button className = "pictureThumbnails__button pictureThumbnails__button--next" 
+                    onClick = {() => scrollRight()}>
+              &#10095;
+            </button>
         </div>
       </div>
     </div>

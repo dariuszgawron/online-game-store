@@ -39,10 +39,12 @@ class ProductGallery extends React.Component {
   displayPicture = (index) => {
     console.log('a'+index);
     if (document.getElementsByClassName('pictureView__image')[0] && 
-        document.getElementsByClassName('pictureView__caption')[0])
+        document.getElementsByClassName('pictureView__caption')[0] &&
+        document.getElementsByClassName('pictureThumbnails__image')[0])
     {
       let pictures = document.getElementsByClassName('pictureView__image');
       let caption = document.getElementsByClassName('pictureView__caption')[0];
+      let thumbnails = document.getElementsByClassName('pictureThumbnails__image');
       if (index >= this.images.length)
         index = 0;
       else if (index < 0)
@@ -50,9 +52,12 @@ class ProductGallery extends React.Component {
       this.pictureIndex = index;
       for (let index = 0; index < this.images.length; index++ ) {
         pictures[index].style.display = "none";
+        thumbnails[index].firstChild.classList.remove('img--active');
       }
       pictures[this.pictureIndex].style.display = "block";
       caption.innerHTML = `${this.productTitle} (${this.pictureIndex+1}/${this.images.length})`;
+      thumbnails[this.pictureIndex].firstChild.classList.add('img--active');
+      thumbnails[0].parentNode.scrollLeft = ((this.pictureIndex-1)*thumbnails[0].offsetWidth);
     }
   }
 
