@@ -38,7 +38,7 @@ class Cart extends React.Component {
                             <div className="cart__colTitle">USUŃ</div>
                         </div>
                     :   <div className="cart__info">
-                            <i class="far fa-sad-cry"></i>
+                            <i className="far fa-sad-cry"></i>
                             <h4>Twój koszyk jest pusty.</h4>
                         </div>}
                     <div className="cart__items">{ 

@@ -12,6 +12,8 @@ const Accordion = (props) => {
   }
 
   const createUrlParam = (param, value) => {
+    if (value === '')
+      return value;
     const queryValue = props.queryValues[param] || '';
     const queryTab = queryValue.split(',').filter(el => el !== "");
     const index = queryTab.indexOf(value);
@@ -38,11 +40,11 @@ const Accordion = (props) => {
     <div className="accordion">
       <div className="accordion__toggle" onClick = {(e) => accordionContentShowHide(e)}>
         <span>
-          {/* {props.queryValues.producer && 
-          <Link className="accordion__link2" to = {createUrl(props.table, '')}>
-            <i className="accordion__remove far fa-times-circle"></i> 
+          {props.queryValues[props.filter] && 
+          <Link className="accordion__link2" onClick = {e => e.stopPropagation()} to = {createUrl(props.table, '')}>
+            <i className = "accordion__remove far fa-times-circle"></i> 
           </Link>
-          } */}
+          }
           {props.title}
         </span>
         <i className="fas fa-chevron-down"></i>

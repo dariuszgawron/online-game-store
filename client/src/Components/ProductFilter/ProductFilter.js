@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 import './ProductFilter.css';
 import Accordion from '../Accordion/Accordion';
@@ -128,17 +127,17 @@ class ProductFilter extends React.Component {
           <div className="filter__accordion">
             <Accordion listOfElements={this.state.listOfGenres} 
                        queryValues={this.props.queryValues}
-                       title="Gatunki" table="gatunki" id="gatunek"
+                       title="Gatunki" table="gatunki" id="gatunek" filter="genre"
                        fieldId="id_gatunku" fieldName="nazwa_gatunku" />
             <hr />
             <Accordion listOfElements={this.state.listOfProducers} 
                        queryValues={this.props.queryValues}
-                       title="Producenci" table="producenci" id="producent"
+                       title="Producenci" table="producenci" id="producent" filter="producer"
                        fieldId="id_producenta" fieldName="nazwa_producenta" />
             <hr />
             <Accordion listOfElements={this.state.listOfPublishers} 
                        queryValues={this.props.queryValues}
-                       title="Wydawcy" table="wydawcy" id="wydawca"
+                       title="Wydawcy" table="wydawcy" id="wydawca" filter="publisher"
                        fieldId="id_wydawcy" fieldName="nazwa_wydawcy" />
           </div>
         </div>

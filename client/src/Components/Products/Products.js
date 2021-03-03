@@ -50,7 +50,7 @@ class Products extends React.Component {
       (queryValues.category === 'preordery' ? 'Preordery' : 
       (queryValues.category === 'dodatki' ? 'Dodatki' :
       (queryValues.category === 'bestsellery' ? 'Bestsellery' :
-      (queryValues.search ? ('Szukasz: \"'+queryValues.search+'\"') : 'Wszystkie gry')))));
+      (queryValues.search ? ('Szukasz: "'+queryValues.search+'"') : 'Wszystkie gry')))));
     fetch(productsUrl)
       .then(res => res.json())
       .then(data=>{
@@ -179,10 +179,10 @@ class Products extends React.Component {
             <h3 className="productsWrapper__title">{this.state.pageTitle}</h3>
             <div className="productsFilter">
               <button className="productsFilter__button">
-                <i class="fas fa-sliders-h"></i><span>Filtry</span>
+                <i className="fas fa-sliders-h"></i><span>Filtry</span>
               </button>
               <button className="productsFilter__button">
-                <i class="fas fa-sort-amount-down"></i><span>Sortuj według</span>
+                <i className="fas fa-sort-amount-down"></i><span>Sortuj według</span>
               </button>
               {/* <div className="productsFilter__panel">
                 <div className="productsFilter__"

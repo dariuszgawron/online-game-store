@@ -47,7 +47,7 @@ const ProductList = (props) => {
                 <div className="productList__content">
                     <div className="productList__header">
                         <h3 className="productList__title">{props.title}</h3>
-                        <Link className="productList__button">Zobacz więcej ></Link>
+                        <Link className="productList__button" to = ''>Zobacz więcej ></Link>
                     </div>
                     <hr/>
                     <ProductSlider products={props.products} updateCart={props.updateCart} />
