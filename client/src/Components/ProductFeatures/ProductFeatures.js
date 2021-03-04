@@ -1,6 +1,6 @@
 import React from 'react';
-import './ProductFeatures.css';
 
+import './ProductFeatures.css';
 import ProductRequirements from '../ProductRequirements/ProductRequirements';
 import ProductGallery from '../ProductGallery/ProductGallery';
 

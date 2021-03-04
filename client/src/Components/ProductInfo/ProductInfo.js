@@ -1,7 +1,7 @@
 import React from 'react';
+
 import './ProductInfo.css';
 // import '../ProductDescription/ProductDescription';
-
 import ProductDetails from '../ProductDetails/ProductDetails';
 
 class ProductInfo extends React.Component {

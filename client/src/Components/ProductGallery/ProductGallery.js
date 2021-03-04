@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './ProductGallery.css';
 import PictureView from '../PictureView/PictureView';
 

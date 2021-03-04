@@ -1,7 +1,7 @@
 import React from 'react';
 import queryString from 'query-string';
-import './Products.css';
 
+import './Products.css';
 // import ProductsList from '../ProductList/ProductsList';
 import ProductFilter from '../ProductFilter/ProductFilter';
 import ProductPagination from '../ProductPagination/ProductPagination';

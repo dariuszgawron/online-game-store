@@ -1,9 +1,10 @@
 import React from 'react';
+// import { withRouter } from 'react-router';
+
 import './Product.css';
 import ProductInfo from '../ProductInfo/ProductInfo';
 import ProductFeatures from '../ProductFeatures/ProductFeatures';
 // import ProductsList from '../ProductList/ProductsList';
-// import { withRouter } from 'react-router';
 
 class Product extends React.Component {
   constructor(props) {
