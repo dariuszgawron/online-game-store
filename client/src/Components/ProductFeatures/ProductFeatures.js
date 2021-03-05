@@ -51,9 +51,9 @@ class ProductFeatures extends React.Component {
             wymagania={this.props.product.wymagania} 
           />
           <ProductGallery 
-            grafiki={this.props.product.grafiki} 
-            zwiastuny={this.props.product.zwiastuny} 
-            tytul={this.props.product.tytul}
+            grafiki = {this.props.product.grafiki} 
+            zwiastuny = {this.props.product.zwiastuny} 
+            tytul = {this.props.product.tytul}
           />
         </div>
 
@@ -68,9 +68,9 @@ class ProductFeatures extends React.Component {
             <i className="fas fa-angle-right"></i><span>Galeria</span>
           </button>
           <ProductGallery 
-            grafiki={this.props.product.grafiki} 
-            zwiastuny={this.props.product.zwiastuny} 
-            tytul={this.props.product.tytul}
+            grafiki = {this.props.product.grafiki} 
+            zwiastuny = {this.props.product.zwiastuny} 
+            tytul = {this.props.product.tytul}
           />
           <button className="bar__item" onClick={(e) => this.openAccordion(e,'Requirements')}>
             <i className="fas fa-angle-right"></i><span>Wymagania</span>

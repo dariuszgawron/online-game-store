@@ -43,7 +43,7 @@ class ProductCard extends React.Component {
                     </h5>
                     <p className="productCard__studio">
                         {this.props.product.producenci
-                            .map((product)=>{
+                            .map((product) => {
                                 return product.nazwa_producenta
                             })
                             .join(", ")
@@ -56,13 +56,13 @@ class ProductCard extends React.Component {
                     </div>
                 </Link>
                 <button className="productCard__button"
-                        data-productid={this.props.product.id_gry} 
-                        data-image={this.props.product.grafiki.filter(this.findCover.bind(this))[0].sciezka_do_pliku}
-                        data-title={this.props.product.tytul}
-                        data-platform={this.props.product.platformy.map(product => product.nazwa).join(", ")}
-                        data-price={this.props.product.cena_podstawowa}
-                        onClick={this.addToBasket.bind(this)} 
-                        key={this.props.product.id_gry}
+                        data-productid = {this.props.product.id_gry} 
+                        data-image = {this.props.product.grafiki.filter(this.findCover.bind(this))[0].sciezka_do_pliku}
+                        data-title = {this.props.product.tytul}
+                        data-platform = {this.props.product.platformy.map(product => product.nazwa).join(", ")}
+                        data-price = {this.props.product.cena_podstawowa}
+                        onClick = {this.addToBasket.bind(this)} 
+                        key = {this.props.product.id_gry}
                 >
                     Do koszyka
                 </button>
