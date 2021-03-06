@@ -168,6 +168,15 @@ class Products extends React.Component {
     // this.props.history.push(`/products?order=${e.target.value}`);
   }
 
+  onSelectionChange = (e) => {
+    this.props.history.push(`/products?page=1&category=${this.state.queryValues.category || ''}&search=${this.state.queryValues.search || ''}&order=${e.target.value || ''}&producer=${this.state.queryValues.producer || ''}&publisher=${this.state.queryValues.publisher || ''}&genre=${this.state.queryValues.genre || ''}`);
+    // this.props.history.push(`/products?order=${e.target.value}`);
+  }
+
+  openSortWindow = () => {
+    document.getElementsByClassName('productSort__mobile')[0].style.display = "block";
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return <span>Loading...</span>;
@@ -181,13 +190,14 @@ class Products extends React.Component {
               <button className="productsFilter__button">
                 <i className="fas fa-sliders-h"></i><span>Filtry</span>
               </button>
-              <button className="productsFilter__button">
+              <button className="productsFilter__button" onClick={this.openSortWindow}>
                 <i className="fas fa-sort-amount-down"></i><span>Sortuj według</span>
               </button>
               {/* <div className="productsFilter__panel">
                 <div className="productsFilter__"
                 <ProductFilter queryValues={this.state.queryValues} />
               </div> */}
+              <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
             </div>
             <hr className="productsWrapper__line" />
             <div className="productsWrapper__sort">
