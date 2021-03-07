@@ -6,6 +6,7 @@ import './Products.css';
 import ProductFilter from '../ProductFilter/ProductFilter';
 import ProductPagination from '../ProductPagination/ProductPagination';
 import ProductSort from '../ProductSort/ProductSort';
+import ProductMobileSort from '../ProductMobileSort/ProductMobileSort';
 import SearchContent from '../SearchContent/SearchContent';
 
 class Products extends React.Component {
@@ -55,12 +56,12 @@ class Products extends React.Component {
       .then(res => res.json())
       .then(data=>{
         this.setState({
-          isLoaded: true,
           products: data.products,
           numberOfProducts: data.rowCount,
           currentPage: currentPage,
           queryValues: queryValues,
-          pageTitle: pageTitle
+          pageTitle: pageTitle,
+          isLoaded: true
         });
       })
       .catch(console.log(`Zaktualizowano dane`));
@@ -174,7 +175,7 @@ class Products extends React.Component {
   }
 
   openSortWindow = () => {
-    document.getElementsByClassName('productSort__mobile')[0].style.display = "block";
+    document.getElementsByClassName('productMobileSort')[0].style.display = "block";
   }
 
   render() {
@@ -197,12 +198,13 @@ class Products extends React.Component {
                 <div className="productsFilter__"
                 <ProductFilter queryValues={this.state.queryValues} />
               </div> */}
-              <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
+              {console.log(this.state.queryValues.order)}
+              <ProductMobileSort value={this.state.queryValues.order || ''} onSelectionChange={this.onSelectionChange} />
             </div>
             <hr className="productsWrapper__line" />
             <div className="productsWrapper__sort">
               <span>Znaleziono {this.state.numberOfProducts} produktów</span>
-              <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
+              <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} key="pc" />
             </div>
             <hr className="productsWrapper__line" />
             <div className="productsContent">

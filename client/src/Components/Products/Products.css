@@ -63,6 +63,7 @@
 }
 
 .productsFilter__button {
+    cursor: pointer;
     padding: 5px 0;
     font-weight: 500;
     border: none;

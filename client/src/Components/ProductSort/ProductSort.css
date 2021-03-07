@@ -48,7 +48,7 @@
 } */
 
 .productSort__mobile {
-    /* display: none; */
+    display: none;
     position: fixed;
     overflow-y: auto;
     top: 0;
