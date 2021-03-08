@@ -178,6 +178,11 @@ class Products extends React.Component {
     document.getElementsByClassName('productMobileSort')[0].style.display = "block";
   }
 
+  openFilterWindow = () => {
+    // document.getElementsByClassName('productsContent__filter')[0].style.display = "block";
+    document.getElementsByClassName('productsContent__filter')[0].classList.remove('productsContent__filter--hidden');
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return <span>Loading...</span>;
@@ -188,7 +193,7 @@ class Products extends React.Component {
           <div className="productsWrapper__content">
             <h3 className="productsWrapper__title">{this.state.pageTitle}</h3>
             <div className="productsFilter">
-              <button className="productsFilter__button">
+              <button className="productsFilter__button" onClick={this.openFilterWindow}>
                 <i className="fas fa-sliders-h"></i><span>Filtry</span>
               </button>
               <button className="productsFilter__button" onClick={this.openSortWindow}>
@@ -208,7 +213,7 @@ class Products extends React.Component {
             </div>
             <hr className="productsWrapper__line" />
             <div className="productsContent">
-              <div className="productsContent__filter">
+              <div className="productsContent__filter productsContent__filter--hidden">
                 <ProductFilter queryValues={this.state.queryValues} />
               </div>
               <div className="productsContent__results">

@@ -116,6 +116,12 @@ class ProductFilter extends React.Component {
     });
   }
 
+  showResults () {
+    const filterWindow = document.getElementsByClassName('productsContent__filter')[0];
+    // filterWindow.style.display = "none";
+    filterWindow.classList.add('productsContent__filter--hidden');
+  }
+
   render() {
     // if (!this.state.isLoaded) {
     //   return <span>Loading...</span>;
@@ -123,7 +129,11 @@ class ProductFilter extends React.Component {
     return (
       <div className="productFilter">
         <div className="filter">
-          <h4 className="filter__title">Filtry</h4>
+          <div className="filter__header">
+            <h4 className="filter__title">Filtry</h4>
+            <span className = "filter__close" onClick = {this.showResults}>&#10006;</span>
+          </div>
+          {/* <h4 className="filter__title">Filtry</h4> */}
           <div className="filter__accordion">
             <Accordion listOfElements={this.state.listOfGenres} 
                        queryValues={this.props.queryValues}
@@ -139,6 +149,11 @@ class ProductFilter extends React.Component {
                        queryValues={this.props.queryValues}
                        title="Wydawcy" table="wydawcy" id="wydawca" filter="publisher"
                        fieldId="id_wydawcy" fieldName="nazwa_wydawcy" />
+          </div>
+          <div className="filter__footer">
+            <button className="filter__button" onClick = {this.showResults}>
+              Zobacz wyniki
+            </button>
           </div>
         </div>
       </div>
