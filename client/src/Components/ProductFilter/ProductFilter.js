@@ -2,7 +2,6 @@ import React from 'react';
 
 import './ProductFilter.css';
 import Accordion from '../Accordion/Accordion';
-// import Accordion from ;
 // import '../AccordionElement/AccordionElement';
 
 class ProductFilter extends React.Component {
@@ -81,7 +80,6 @@ class ProductFilter extends React.Component {
   }
 
   accordionContentShowHide(e) {
-    // console.log(e.target.classList);
     e.currentTarget.classList.toggle('active');
     let accordionContent = e.currentTarget.nextElementSibling;
     console.log(accordionContent.style.display);
@@ -96,19 +94,6 @@ class ProductFilter extends React.Component {
     queryTab.sort();
     return queryTab.join(',');
   }
-
-  // checkboxChecked() {
-  //   // const producerQueryValue = this.props.queryValues['producer'] || '';
-  //   const publisherQueryValue = this.props.queryValues['publisher'] || '';
-  //   // const genreQueryValue = this.props.queryValues['genre'] || '';
-  //   // const producerTab = producerQueryValue.split(',').filter(el => el !== "");
-  //   const publisherTab = publisherQueryValue.split(',').filter(el => el !== "");
-  //   // const genreTab = genreQueryValue.split(',').filter(el => el !== "");
-  //   publisherTab.forEach((item,index) => {
-  //     document.getElementById(`wydawca${item}`).checked = true;
-  //   });
-  //   // document.getElementById("checkbox").checked = true;
-  // }
 
   checkboxChecked(arrayItems, paramName, checked) {
     arrayItems.forEach((item,index) => {
@@ -133,25 +118,30 @@ class ProductFilter extends React.Component {
             <h4 className="filter__title">Filtry</h4>
             <span className = "filter__close" onClick = {this.showResults}>&#10006;</span>
           </div>
-          {/* <h4 className="filter__title">Filtry</h4> */}
           <div className="filter__accordion">
-            <Accordion listOfElements={this.state.listOfGenres} 
-                       queryValues={this.props.queryValues}
-                       title="Gatunki" table="gatunki" id="gatunek" filter="genre"
-                       fieldId="id_gatunku" fieldName="nazwa_gatunku" />
+            <Accordion 
+              listOfElements = {this.state.listOfGenres} 
+              queryValues = {this.props.queryValues}
+              title = "Gatunki" table = "gatunki" id = "gatunek" filter = "genre"
+              fieldId = "id_gatunku" fieldName = "nazwa_gatunku" 
+            />
             <hr />
-            <Accordion listOfElements={this.state.listOfProducers} 
-                       queryValues={this.props.queryValues}
-                       title="Producenci" table="producenci" id="producent" filter="producer"
-                       fieldId="id_producenta" fieldName="nazwa_producenta" />
+            <Accordion 
+              listOfElements = {this.state.listOfProducers} 
+              queryValues = {this.props.queryValues}
+              title = "Producenci" table = "producenci" id = "producent" filter = "producer"
+              fieldId = "id_producenta" fieldName = "nazwa_producenta" 
+            />
             <hr />
-            <Accordion listOfElements={this.state.listOfPublishers} 
-                       queryValues={this.props.queryValues}
-                       title="Wydawcy" table="wydawcy" id="wydawca" filter="publisher"
-                       fieldId="id_wydawcy" fieldName="nazwa_wydawcy" />
+            <Accordion 
+              listOfElements = {this.state.listOfPublishers} 
+              queryValues = {this.props.queryValues}
+              title = "Wydawcy" table = "wydawcy" id = "wydawca" filter = "publisher"
+              fieldId = "id_wydawcy" fieldName = "nazwa_wydawcy" 
+            />
           </div>
-          <div className="filter__footer">
-            <button className="filter__button" onClick = {this.showResults}>
+          <div className = "filter__footer">
+            <button className = "filter__button" onClick = {this.showResults}>
               Zobacz wyniki
             </button>
           </div>

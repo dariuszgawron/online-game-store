@@ -12,7 +12,8 @@ const SearchContent = (props) => {
                 </div> 
             :   props.products.map(
                     product => {
-                        return <ProductCard product = {product} 
+                        return <ProductCard 
+                                    product = {product} 
                                     updateCart = {props.updateCart}
                                     key = {product.id_gry}
                                 />

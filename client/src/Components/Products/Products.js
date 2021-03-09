@@ -67,79 +67,6 @@ class Products extends React.Component {
       .catch(console.log(`Zaktualizowano dane`));
   }
 
-  // componentDidMount() {
-  //   const queryValues = queryString.parse(this.props.location.search);
-  //   const currentPage = queryValues.page || 1;
-  //   this.setState({
-  //     currentPage: currentPage
-  //   });
-  //   this.getProductData();
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const prevQueryValues = queryString.parse(prevProps.location.search);
-  //   const queryValues = queryString.parse(this.props.location.search);
-  //   const queryParams = Object.keys(this.props.location.search).length ? '&'+this.props.location.search.substring(1) : '';
-  //   // const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}${queryParams}`;
-  //   // const numberOfProductsUrl = 'http://localhost:4001/products/count';
-  //   const prevPage = prevQueryValues.page ? prevQueryValues.page : '1';
-  //   const currPage = queryValues.page ? queryValues.page : '1';
-  //   // const currentPage = queryValues.page || 1;
-  //   // const offset = (currentPage-1)*20;
-  //   if(prevPage !== currPage || prevQueryValues.search !== queryValues.search ||prevQueryValues.sort !== queryValues.sort || prevQueryValues.genre !== queryValues.genre || prevQueryValues.producer !== queryValues.producer || prevQueryValues.publisher !== queryValues.publisher || prevQueryValues.category !== queryValues.category) {
-      
-  //     this.getProductsData(queryParams);
-  //   };
-  // }
-
-  // getProductsData(queryParams='') {
-  //   const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}${queryParams}`;
-  //   // const numberOfProductsUrl = 'http://localhost:4001/products/count';
-  //   fetch(productsUrl)
-  //     .then(res => res.json())
-  //     .then(data=>{
-  //       this.setState({
-  //         isLoaded: true,
-  //         products: data.products,
-  //         numberOfProducts: data.pagination.rowCount
-  //       });
-  //       // fetch(numberOfProductsUrl)
-  //       //   .then(res => res.json())
-  //       //   .then(data => {
-  //       //     this.setState({
-  //       //       isLoaded: true,
-  //       //       // numberOfProducts: data.products[0].totalNumber,
-
-  //       //     });
-  //       //   });
-  //     })
-  //     .catch(console.log('Zaktualizowano dane'));
-  // }
-
-  // getProductData() {
-  //   const queryValues = queryString.parse(this.props.location.search);
-  //   const currentPage = queryValues.page || 1;
-  //   const offset = (currentPage-1)*20;
-  //   const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}&offset=${offset}`;
-  //   const numberOfProductsUrl = 'http://localhost:4001/products/count';
-  //   fetch(productsUrl)
-  //     .then(res => res.json())
-  //     .then(data=>{
-  //       this.setState({
-  //         products: data.products
-  //       });
-  //       fetch(numberOfProductsUrl)
-  //         .then(res => res.json())
-  //         .then(data => {
-  //           this.setState({
-  //             isLoaded: true,
-  //             numberOfProducts: data.products[0].totalNumber
-  //           });
-  //         });
-  //     })
-  //     .catch(console.log('Załadowano dane'));
-  // }
-
   changePage(nextPage) {
     // console.log(nextPage);
     // const offset = (nextPage-1)*20;
@@ -159,9 +86,7 @@ class Products extends React.Component {
     (e.target.classList[1]==='productsNav--left') 
     ? productsList[1].scrollLeft -= (window.innerWidth/2)
     : productsList[1].scrollLeft += (window.innerWidth/2);
-    // console.log(productsList[1].scrollWidth - productsList[1].clientWidth);
     console.log(productsList[1].scrollWidth - productsList[1].scrollLeft);
-    // this.props.addProduct({'title':'adaf','price': 12,'amount':1,'productId':1});
   }
 
   onSelectionChange = (e) => {
@@ -199,36 +124,37 @@ class Products extends React.Component {
               <button className="productsFilter__button" onClick={this.openSortWindow}>
                 <i className="fas fa-sort-amount-down"></i><span>Sortuj według</span>
               </button>
-              {/* <div className="productsFilter__panel">
-                <div className="productsFilter__"
-                <ProductFilter queryValues={this.state.queryValues} />
-              </div> */}
-              {console.log(this.state.queryValues.order)}
-              <ProductMobileSort value={this.state.queryValues.order || ''} onSelectionChange={this.onSelectionChange} />
+              <ProductMobileSort 
+                value = {this.state.queryValues.order || ''} 
+                onSelectionChange = {this.onSelectionChange} 
+              />
             </div>
             <hr className="productsWrapper__line" />
             <div className="productsWrapper__sort">
               <span>Znaleziono {this.state.numberOfProducts} produktów</span>
-              <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} key="pc" />
+              <ProductSort 
+                value = {this.state.queryValues.order || ''} 
+                queryValues = {this.state.queryValues} 
+                onSelectionChange = {this.onSelectionChange} 
+                key="pc" 
+              />
             </div>
             <hr className="productsWrapper__line" />
             <div className="productsContent">
               <div className="productsContent__filter productsContent__filter--hidden">
-                <ProductFilter queryValues={this.state.queryValues} />
+                <ProductFilter queryValues = {this.state.queryValues} />
               </div>
               <div className="productsContent__results">
-                {/* <div className="mainWrapper__products"> */}
-                  <SearchContent 
-                    products={this.state.products} 
-                    updateCart={this.props.updateCart}
-                  />
-                {/* </div> */}
+                <SearchContent 
+                  products = {this.state.products} 
+                  updateCart = {this.props.updateCart}
+                />
                 <ProductPagination 
-                  numberOfProducts={this.state.numberOfProducts}
-                  limit={this.state.limit} 
-                  currentPage={this.state.currentPage} 
-                  getProductData={this.changePage} 
-                  queryValues={this.state.queryValues}
+                  numberOfProducts = {this.state.numberOfProducts}
+                  limit = {this.state.limit} 
+                  currentPage = {this.state.currentPage} 
+                  getProductData = {this.changePage} 
+                  queryValues = {this.state.queryValues}
                 />
               </div>
             </div>

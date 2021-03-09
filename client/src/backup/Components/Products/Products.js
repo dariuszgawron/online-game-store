@@ -1,11 +1,12 @@
 import React from 'react';
 import queryString from 'query-string';
-import './Products.css';
 
+import './Products.css';
 // import ProductsList from '../ProductList/ProductsList';
 import ProductFilter from '../ProductFilter/ProductFilter';
 import ProductPagination from '../ProductPagination/ProductPagination';
 import ProductSort from '../ProductSort/ProductSort';
+import ProductMobileSort from '../ProductMobileSort/ProductMobileSort';
 import SearchContent from '../SearchContent/SearchContent';
 
 class Products extends React.Component {
@@ -17,6 +18,7 @@ class Products extends React.Component {
       limit: 20,
       currentPage: 1,
       queryValues: '',
+      pageTitle: '',
       isLoaded: false
     };
     this.btnOnClick = this.btnOnClick.bind(this);
@@ -43,15 +45,23 @@ class Products extends React.Component {
     const productsUrl = `http://localhost:4001/products?limit=${this.state.limit}${queryParams}`;
     const queryValues = queryString.parse(urlParams);
     const currentPage = queryValues.page || 1;
+    const pageTitle = 
+      (queryValues.category === 'nowosci') ? 'Nowości' :
+      (queryValues.category === 'promocje' ? 'Promocje' : 
+      (queryValues.category === 'preordery' ? 'Preordery' : 
+      (queryValues.category === 'dodatki' ? 'Dodatki' :
+      (queryValues.category === 'bestsellery' ? 'Bestsellery' :
+      (queryValues.search ? ('Szukasz: "'+queryValues.search+'"') : 'Wszystkie gry')))));
     fetch(productsUrl)
       .then(res => res.json())
       .then(data=>{
         this.setState({
-          isLoaded: true,
           products: data.products,
           numberOfProducts: data.rowCount,
           currentPage: currentPage,
-          queryValues: queryValues
+          queryValues: queryValues,
+          pageTitle: pageTitle,
+          isLoaded: true
         });
       })
       .catch(console.log(`Zaktualizowano dane`));
@@ -159,6 +169,20 @@ class Products extends React.Component {
     // this.props.history.push(`/products?order=${e.target.value}`);
   }
 
+  onSelectionChange = (e) => {
+    this.props.history.push(`/products?page=1&category=${this.state.queryValues.category || ''}&search=${this.state.queryValues.search || ''}&order=${e.target.value || ''}&producer=${this.state.queryValues.producer || ''}&publisher=${this.state.queryValues.publisher || ''}&genre=${this.state.queryValues.genre || ''}`);
+    // this.props.history.push(`/products?order=${e.target.value}`);
+  }
+
+  openSortWindow = () => {
+    document.getElementsByClassName('productMobileSort')[0].style.display = "block";
+  }
+
+  openFilterWindow = () => {
+    // document.getElementsByClassName('productsContent__filter')[0].style.display = "block";
+    document.getElementsByClassName('productsContent__filter')[0].classList.remove('productsContent__filter--hidden');
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return <span>Loading...</span>;
@@ -167,15 +191,29 @@ class Products extends React.Component {
       <main className="productsWrapper">
         <div className="productsWrapper__container">
           <div className="productsWrapper__content">
-            <h3 className="productsWrapper__title">Polecane</h3>
-            <hr />
+            <h3 className="productsWrapper__title">{this.state.pageTitle}</h3>
+            <div className="productsFilter">
+              <button className="productsFilter__button" onClick={this.openFilterWindow}>
+                <i className="fas fa-sliders-h"></i><span>Filtry</span>
+              </button>
+              <button className="productsFilter__button" onClick={this.openSortWindow}>
+                <i className="fas fa-sort-amount-down"></i><span>Sortuj według</span>
+              </button>
+              {/* <div className="productsFilter__panel">
+                <div className="productsFilter__"
+                <ProductFilter queryValues={this.state.queryValues} />
+              </div> */}
+              {console.log(this.state.queryValues.order)}
+              <ProductMobileSort value={this.state.queryValues.order || ''} onSelectionChange={this.onSelectionChange} />
+            </div>
+            <hr className="productsWrapper__line" />
             <div className="productsWrapper__sort">
               <span>Znaleziono {this.state.numberOfProducts} produktów</span>
-              <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} />
+              <ProductSort value={this.state.queryValues.order || ''} queryValues={this.state.queryValues} onSelectionChange={this.onSelectionChange} key="pc" />
             </div>
-            <hr />
+            <hr className="productsWrapper__line" />
             <div className="productsContent">
-              <div className="productsContent__filter">
+              <div className="productsContent__filter productsContent__filter--hidden">
                 <ProductFilter queryValues={this.state.queryValues} />
               </div>
               <div className="productsContent__results">

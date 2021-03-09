@@ -1,6 +1,4 @@
 import React from 'react';
-// import queryString from 'query-string';
-// import {RouteComponentProps, withRouter} from "react-router";
 import {Link} from 'react-router-dom';
 
 import './ProductPagination.css';
@@ -108,15 +106,6 @@ class ProductPagination extends React.Component {
             </Link>
           </li>
         </ul>
-        
-        {/* {this.props.count}
-        {this.props.numberOfProducts}
-        <Link className="abc" to="/products?page=12" onClick={this.props.getProductData}>Bestsellery</Link>
-        <Link className="abc" to={`/products?page=${this.props.count}`}>{this.props.numberOfProducts}</Link>
-        <Link className="abc" to={`/products?page=1`} onClick={() => this.props.getProductData(1)}> @1@ </Link>
-        <Link className="abc" to={`/products?page=2`} onClick={() => this.props.getProductData(2)}> @2@ </Link>
-        <Link className="abc" to={`/products?page=1`}> @1@ </Link>
-        <Link className="abc" to={`/products?page=2`}> @2@ </Link> */}
       </div>
     )
   }

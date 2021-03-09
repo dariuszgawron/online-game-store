@@ -33,7 +33,7 @@ const HeaderTop = (props) => {
                         <div className="headerTop__right">
                             <Link className="headerTop__link userAccount__link" to="/login">
                                 <div className="userAccount">
-                                    <i class="userAccount__icon fas fa-user-tie"></i>
+                                    <i className="userAccount__icon fas fa-user-tie"></i>
                                     <span className="userAccount__text">Konto</span>
                                 </div>
                             </Link>
@@ -41,7 +41,7 @@ const HeaderTop = (props) => {
                                 <MiniCart cartItems={props.cartItems} />
                             </Link>
                             {/* <div className="headerTop__link menuSearch__link">
-                                <i class="searchLink__icon fas fa-search"></i>
+                                <i className="searchLink__icon fas fa-search"></i>
                             </div> */}
                             <div className="headerTop__hamburger" id="hamburgerIcon" onClick={hamburgerOnClick}>
                                 <span></span>

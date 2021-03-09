@@ -1,0 +1,48 @@
+.accordion__content {
+  padding: 4px 7px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+.accordion__toggle {
+  width: 100%;
+  padding: 5px 0px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.accordion__toggle:hover {
+  cursor: pointer;
+}
+
+.accordion__link {
+  display: block;
+  color: #000;
+}
+
+.accordion__link:hover {
+  color: #000;
+  /* box-shadow: 0 0 2px #61a4e2; */
+}
+
+.accordion__link:hover > .accordion__input {
+  box-shadow: 0 0 6px #61a4e2; 
+}
+
+.accordion__link:hover input, .accordion__link:hover label {
+  cursor: pointer;
+}
+
+.accordion__input {
+  transform: scale(1.5);
+}
+
+.accordion__label {
+  padding-left: 10px; 
+}
+
+hr {
+  margin: 0.5rem 0;
+}

@@ -19,7 +19,7 @@ const ProductSlider = (props) => {
         <div className = "productSlider">
             <button className = "productSlider__control productSlider__control--left" 
                     onClick = {scrollLeft}>
-                <i class="fas fa-chevron-left"></i>
+                <i className="fas fa-chevron-left"></i>
             </button>
             <div className = "productSlider__content">{
                 props.products.length === 0
@@ -32,7 +32,7 @@ const ProductSlider = (props) => {
             </div>
             <button className = "productSlider__control productSlider__control--right" 
                     onClick = {scrollRight}>
-                <i class="fas fa-chevron-right"></i>
+                <i className="fas fa-chevron-right"></i>
             </button>
         </div>
     )

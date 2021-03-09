@@ -25,8 +25,6 @@ class App extends React.Component {
       previousPage: ''
     };
     this.addProduct=this.addProduct.bind(this);
-    // this.changeAmountInCart=this.changeAmountInCart.bind(this);
-    // this.deleteProductFromCart=this.deleteProductFromCart.bind(this);
     this.updateCart = this.updateCart.bind(this);
   }
 

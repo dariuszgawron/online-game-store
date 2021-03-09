@@ -32,9 +32,7 @@ class ProductCard extends React.Component {
                 <Link className="productCard__link" to={{pathname: `/product/${this.props.product.id_gry}`}}>
                     <div className="productCard__image">
                         <img 
-                            src={this.props.product.grafiki
-                                    .filter(this.findCover.bind(this))[0].sciezka_do_pliku
-                                }
+                            src = {this.props.product.grafiki.filter(this.findCover.bind(this))[0].sciezka_do_pliku}
                             alt={this.props.tytul}
                         />
                     </div>
@@ -66,47 +64,9 @@ class ProductCard extends React.Component {
                 >
                     Do koszyka
                 </button>
-                {/* <button 
-                    data-productid={this.props.product.id_gry} 
-                    data-title={this.props.product.tytul}
-                    data-price={this.props.product.cena_podstawowa}
-                    onClick={this.addToBasket.bind(this)} 
-                    key={this.props.product.id_gry}
-                >{this.props.product.tytul}Dodaj do koszyka</button> */}
-                
             </div>
         )
     }
 }
-
-// const ProductCard = (props) => {
-//     return (
-//         <div className="productCard">
-//             <div className="productCard__image">
-            
-//             </div>
-//             <div className="productCard__title">
-            
-//             </div>
-//             <div className="productCard__studio">
-            
-//             </div>
-//             <div className="productCard__price">
-            
-//             </div>
-//             <div className="productCard__button">
-            
-//             </div>
-//             <button 
-//                 data-id={props.product.id_gry} 
-//                 data-title={props.product.tytul}
-//                 data-price={props.product.cena}
-//                 // onClick={addToBasket} 
-//                 key={props.product.id_gry}
-//             >{props.product.tytul}Dodaj do koszyka</button>
-//         </div>
-       
-//     )
-// }
 
 export default ProductCard;

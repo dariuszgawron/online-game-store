@@ -7,10 +7,24 @@
 
 .accordion__toggle {
   width: 100%;
-  padding: 5px 0px;
+  padding: 5px 0;
+  padding-left: 4px;
   display: flex;
   justify-content: space-between;
   font-weight: 500;
+  position: relative;
+}
+
+.accordion__toggle > i {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translate(0%, -50%);
+}
+
+.accordion__remove {
+  color: rgb(184, 44, 1);
+  padding: 0 7px 0 1px;
 }
 
 .accordion__toggle:hover {
@@ -45,4 +59,20 @@
 
 hr {
   margin: 0.5rem 0;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 899px) {
+  .accordion__toggle {
+    padding: 15px 20px;
+  }
+
+  .accordion__content {
+    padding: 4px 25px;
+  }
+
+  hr {
+    margin: 0;
+  }
 }

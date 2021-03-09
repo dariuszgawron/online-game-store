@@ -11,7 +11,6 @@ const HeaderTop = (props) => {
         e.currentTarget.classList.toggle('active');
         let sidenav = document.getElementById('sidenav');
         sidenav.classList.toggle('sidenav--visible');
-        // console.log(e.currentTarget.classList);
         // e.currentTarget.classList.contains("active")
         // ? sidenav.style.display = "block" 
         // : sidenav.style.display = "none";
@@ -50,11 +49,6 @@ const HeaderTop = (props) => {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="headerTop__line">
-                        <div className="search">
-                            <input className="search__input" />
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>

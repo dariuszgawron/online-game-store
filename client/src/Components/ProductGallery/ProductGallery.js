@@ -89,23 +89,24 @@ class ProductGallery extends React.Component {
     const zwiastuny = this.props.zwiastuny;
     return (
       <div className = "productGallery tab" id = "Gallery">
-        <PictureView images={grafiki} productTitle = {this.productTitle} 
-                      closePicture = {() => this.closePicture} 
-                      displayPicture = {this.displayPicture}
-                      nextPicture = {() => this.nextPicture}
-                      prevPicture = {() => this.prevPicture} />
-        {/* <div className="gallery"> */}
-          {grafiki.map((photo,index) => {
-            return <img src = {photo.sciezka_do_pliku} 
-                        onClick = {() => this.openPicture(index)} 
-                        alt = {`${this.productTitle} (${index+1})`} 
-                        key = {`${this.productTitle}${index}`}  
-                    />
-          })}
-          {zwiastuny.map((zwiastun,index) => {
-            return <iframe width="100%" height="200px" key={`zwiastun${index}`} src={`${zwiastun.link.replace("watch?v=","embed/")}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe>
-          })}
-        {/* </div> */}
+        <PictureView 
+          images = {grafiki} 
+          productTitle = {this.productTitle} 
+          closePicture = {() => this.closePicture} 
+          displayPicture = {this.displayPicture}
+          nextPicture = {() => this.nextPicture}
+          prevPicture = {() => this.prevPicture} 
+        />
+        {grafiki.map((photo,index) => {
+          return <img src = {photo.sciezka_do_pliku} 
+                      onClick = {() => this.openPicture(index)} 
+                      alt = {`${this.productTitle} (${index+1})`} 
+                      key = {`${this.productTitle}${index}`}  
+                  />
+        })}
+        {zwiastuny.map((zwiastun,index) => {
+          return <iframe width="100%" height="200px" key={`zwiastun${index}`} src={`${zwiastun.link.replace("watch?v=","embed/")}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe>
+        })}
       </div>
     );
   }

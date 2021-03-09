@@ -30,7 +30,7 @@ class ProductInfo extends React.Component {
         <div className="productPage__title">
           <h3>{this.props.product.tytul}</h3>
         </div>
-        <ProductDetails product={this.props.product} />
+        <ProductDetails product = {this.props.product} />
         <div className="productPage__price">
           <div className="productPrice">
             <p className="productPrice__base">
@@ -38,10 +38,10 @@ class ProductInfo extends React.Component {
             </p>
           </div>
           <button className="productPage__basket" onClick={(e) => this.addToBasket(e)} >
-          <i className="fas fa-cart-plus"></i><span>Dodaj do koszyka</span>
+            <i className="fas fa-cart-plus"></i><span>Dodaj do koszyka</span>
           </button>
           <button className="productPage__wishlist">
-          <i className="fas fa-heart"></i><span>Lista życzeń</span>
+            <i className="fas fa-heart"></i><span>Lista życzeń</span>
           </button>  
         </div>
       </div>  

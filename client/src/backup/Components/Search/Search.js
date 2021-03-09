@@ -1,6 +1,6 @@
 import React from 'react';
 // import { useHistory, useLocation } from "react-router";
-import { BrowserRouter as Router } from 'react-router-dom'
+// import { BrowserRouter as Router } from 'react-router-dom'
 import queryString from 'query-string';
 
 import './Search.css';

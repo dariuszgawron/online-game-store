@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './ProductRequirements.css';
 
 class ProductRequirements extends React.Component {

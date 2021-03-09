@@ -1,8 +1,20 @@
 .searchContent {
-    text-align: center;
+    display: inline-block;
+    /* width: fit-content; */
+    /* display: inline; */
+    /* padding: 0; */
+    /* text-align: left; */
+    /* justify-content: center; */
 }
 
+.searchContent>div {
+    /* margin-left: 0; */
+}
 
+/* .searchContent__container {
+    display: inline-block;
+    text-align: left;
+} */
 
 .searchContent__error {
     width: 100%;

@@ -11,7 +11,7 @@ const SearchContent = (props) => {
                     Brak danych spełniających podane kryteria
                 </div> 
             :   props.products.map(
-                    product=>{
+                    product => {
                         return <ProductCard product = {product} 
                                     updateCart = {props.updateCart}
                                     key = {product.id_gry}

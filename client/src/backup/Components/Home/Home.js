@@ -52,10 +52,10 @@ class Home extends React.Component {
     }
     return (
       <main className="homeWrapper">
-        <ProductList products={this.state.recommended} updateCart={this.props.updateCart} title='Polecane' />
-        <ProductList products={this.state.recommended} updateCart={this.props.updateCart} title='Promocje' />
-        <ProductList products={this.state.recommended} updateCart={this.props.updateCart} title='Bestsellery' />
-        <ProductList products={this.state.recommended} updateCart={this.props.updateCart} title='Nowości' />
+        <ProductList products = {this.state.recommended} updateCart = {this.props.updateCart} title = 'Polecane' />
+        <ProductList products = {this.state.recommended} updateCart = {this.props.updateCart} title = 'Promocje' />
+        <ProductList products = {this.state.recommended} updateCart = {this.props.updateCart} title = 'Bestsellery' />
+        <ProductList products = {this.state.recommended} updateCart = {this.props.updateCart} title = 'Nowości' />
       </main>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
-import './ProductFeatures.css';
 
+import './ProductFeatures.css';
 import ProductRequirements from '../ProductRequirements/ProductRequirements';
 import ProductGallery from '../ProductGallery/ProductGallery';
 
@@ -25,29 +25,60 @@ class ProductFeatures extends React.Component {
     e.target.className += " bar__item--active";
   }
 
+  openAccordion (e, id) {
+    let accordionSections = document.getElementsByClassName('bar--accordion')[0].getElementsByClassName('bar__item');
+    console.log(e.currentTarget.nextSibling);
+    let section = e.currentTarget.nextSibling;
+    for( let i = 0; i < accordionSections.length; i++) {
+      accordionSections[i].nextSibling.style.display = "none";
+    }
+    section.style.display = "grid";
+  }
+
   render() {
     return (
       <div className="productPage__features">
-        <ul class="bar">
-          <li class="bar__item bar__item--active" onClick={(e) => this.openTab(e,'Description')}>Opis</li>
-          <li class="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</li>
-          <li class="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</li>
+        <ul className="bar bar--tab">
+          <li className="bar__item bar__item--active" id="barDefault" onClick={(e) => this.openTab(e,'Description')}>Opis</li>
+          <li className="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</li>
+          <li className="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</li>
         </ul>
-        {/* <div class="bar">
-          <button class="bar__item bar__item--active" onClick={(e) => this.openTab(e,'Description')}>Opis</button>
-          <button class="bar__item" onClick={(e) => this.openTab(e,'Gallery')}>Galeria</button>
-          <button class="bar__item" onClick={(e) => this.openTab(e,'Requirements')}>Wymagania</button>
-        </div> */}
+        <div className="accordionContent">
+          <div className="productDescription tab" id="Description">
+            <p>{this.props.product.opis}</p>
+          </div>
+          <ProductRequirements 
+            wymagania={this.props.product.wymagania} 
+          />
+          <ProductGallery 
+            grafiki = {this.props.product.grafiki} 
+            zwiastuny = {this.props.product.zwiastuny} 
+            tytul = {this.props.product.tytul}
+          />
+        </div>
 
-        <ProductRequirements 
-          wymagania={this.props.product.wymagania} 
-        />
-        
-        <ProductGallery 
-          grafiki={this.props.product.grafiki} 
-          zwiastuny={this.props.product.zwiastuny} 
-        />
-        
+        <div className="bar bar--accordion">
+          <button className="bar__item bar__item--active" id="berDefault" onClick={(e) => this.openAccordion(e,'Description')}>
+            <i className="fas fa-angle-right"></i><span>Opis</span>
+          </button>
+          <div className="productDescription tab" id="Description">
+            <p>{this.props.product.opis}</p>
+          </div>
+          <button className="bar__item" onClick={(e) => this.openAccordion(e,'Gallery')}>
+            <i className="fas fa-angle-right"></i><span>Galeria</span>
+          </button>
+          <ProductGallery 
+            grafiki = {this.props.product.grafiki} 
+            zwiastuny = {this.props.product.zwiastuny} 
+            tytul = {this.props.product.tytul}
+          />
+          <button className="bar__item" onClick={(e) => this.openAccordion(e,'Requirements')}>
+            <i className="fas fa-angle-right"></i><span>Wymagania</span>
+          </button>
+          <ProductRequirements 
+            wymagania={this.props.product.wymagania} 
+          />
+        </div>
       </div>
     );
   }

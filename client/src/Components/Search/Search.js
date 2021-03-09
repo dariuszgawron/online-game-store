@@ -1,6 +1,4 @@
 import React from 'react';
-// import { useHistory, useLocation } from "react-router";
-// import { BrowserRouter as Router } from 'react-router-dom'
 import queryString from 'query-string';
 
 import './Search.css';
@@ -24,7 +22,7 @@ class Search extends React.Component {
     componentDidUpdate(prevProps) {
         const searchParamPrev = queryString.parse(prevProps.location.search).search || '';
         const searchParam = queryString.parse(this.props.location.search).search || '';
-        if(searchParamPrev!==searchParam)
+        if (searchParamPrev !== searchParam)
             this.setState({
                 searchText: searchParam
             });
@@ -35,8 +33,8 @@ class Search extends React.Component {
         });
     }
     handleSubmit(e) {
-        if(e.key === "Enter" || e.key === 13) {
-            if(window.screen.width < 900){
+        if (e.key === "Enter" || e.key === 13) {
+            if (window.screen.width < 900){
                 let hamburger = document.getElementById('hamburgerIcon');
                 let sidenav = document.getElementById('sidenav');
                 hamburger.classList.toggle('active');
@@ -48,21 +46,10 @@ class Search extends React.Component {
     render() {
         return (
             <div className="search">
-                <input className="search__input" type="search" placeholder="Wyszukaj produkt" onChange={this.handleChange} onKeyUp={this.handleSubmit} value={this.state.searchText}/>
+                <input className = "search__input" type = "search" placeholder = "Wyszukaj produkt"    onChange = {this.handleChange} onKeyUp = {this.handleSubmit} value={this.state.searchText}/>
             </div>
         )
     }
-    // const history = useHistory();
-    // const location = useLocation();
-    // const urlParams = queryString.parse(location.search);
-    // const onSubmitSearch = (e) => {
-    //     if(e.key === "Enter" || e.key === 13)
-    //         history.push(`/products?search=${e.target.value}`);
-    // }
-    // return (
-    //     <input className="sidenav__input" placeholder="Wyszukaj produkt" onKeyUp={onSubmitSearch} value={urlParams.search}/>
-                    
-    // )
 }
 
 export default Search;

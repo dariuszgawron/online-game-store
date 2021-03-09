@@ -1,0 +1,66 @@
+/* GENERAL STYLES */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ul {
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+a {
+
+}
+a:hover {
+    text-decoration: none;
+}
+
+/* NAVBAR STYLES */
+.navbar{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.navbar--light {
+    background-color: #fff;
+    color: #000;
+}
+
+.navbar__container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.navbar__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__link {
+    cursor: pointer;
+    color: inherit;
+}
+
+.navbar__link:hover {
+    /* font-weight: bold; */
+}
+
+
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 899px) {
+    .navbar {
+        display: none;
+    }
+    
+}

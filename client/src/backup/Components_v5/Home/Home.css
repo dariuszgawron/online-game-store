@@ -1,0 +1,26 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+.homeWrapper {
+    background-color: #e4e4e4;
+    padding: 110px 0 10px;
+}
+
+.homeWrapper__container {
+    width: 90%;
+    margin: 30px auto;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgb(243, 243, 243);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 899px) {
+    .homeWrapper {
+        padding: 65px 0 10px;
+    }
+}

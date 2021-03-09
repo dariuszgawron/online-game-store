@@ -12,6 +12,8 @@ const Accordion = (props) => {
   }
 
   const createUrlParam = (param, value) => {
+    if (value === '')
+      return value;
     const queryValue = props.queryValues[param] || '';
     const queryTab = queryValue.split(',').filter(el => el !== "");
     const index = queryTab.indexOf(value);
@@ -21,20 +23,31 @@ const Accordion = (props) => {
   }
 
   const createUrl = (param, value) => {
-    let url = `/products?page=1`;
-    url += `&category=` + (props.queryValues.category || '');
-    url += `&search=` + (props.queryValues.search || '');
-    url += `&producer=` + ((param==='producenci') ? createUrlParam('producer',value.toString()) : (props.queryValues.producer || ''));
-    url += `&publisher=` + ((param==='wydawcy') ? createUrlParam('publisher',value.toString()) : (props.queryValues.publisher || ''));
-    url += `&genre=` + ((param==='gatunki') ? createUrlParam('genre',value.toString()) : (props.queryValues.genre || ''));
-    url += `&order=` + (props.queryValues.order || '');
-    return url;
+    // const url = '/products?page=1';
+    // for(let k in ['category','search','producer','publisher','genre','order']) {
+    //   url += ``
+    // }
+    const category = (props.queryValues.category || '');
+    const search = (props.queryValues.search || '');
+    const producer = (param === 'producenci') ? createUrlParam('producer', value.toString()) : (props.queryValues.producer || '');
+    const publisher = (param==='wydawcy') ? createUrlParam('publisher',value.toString()) : (props.queryValues.publisher || '');
+    const genre = (param==='gatunki') ? createUrlParam('genre',value.toString()) : (props.queryValues.genre || '');
+    const order = (props.queryValues.order || '');
+    return `/products?page=1&category=${category}&search=${search}&producer=${producer}&publisher=${publisher}&genre=${genre}&order=${order}`;
   }
 
   return (
     <div className="accordion">
       <div className="accordion__toggle" onClick = {(e) => accordionContentShowHide(e)}>
-        <span>{props.title}</span><i className="fas fa-chevron-down"></i>
+        <span>
+          {props.queryValues[props.filter] && 
+          <Link className="accordion__link2" onClick = {e => e.stopPropagation()} to = {createUrl(props.table, '')}>
+            <i className = "accordion__remove far fa-times-circle"></i> 
+          </Link>
+          }
+          {props.title}
+        </span>
+        <i className="fas fa-chevron-down"></i>
       </div>
       <div className="accordion__content">
         <ul className="accorion__list">
